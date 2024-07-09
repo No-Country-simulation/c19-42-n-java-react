@@ -19,7 +19,7 @@ public class EstadoController {
         return ResponseEntity.ok(service.getAllEstados());
     }
 
-    @GetMapping("/listar/{id]")
+    @GetMapping("/listar/{id}")
     public ResponseEntity<?> listarEstadoporId(@PathVariable Long id){
         EstadoAdopcion estadoAdopcion = service.getEstadosById(id);
         if (estadoAdopcion != null){

@@ -20,7 +20,7 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.getAllUsuarios());
     }
 
-    @GetMapping("/listar/{id]")
+    @GetMapping("/listar/{id}")
     public ResponseEntity<?> listaUsuarioporId(@PathVariable Long id){
         Usuario usuario = usuarioService.getUsuarioById(id);
         if (usuario != null){
