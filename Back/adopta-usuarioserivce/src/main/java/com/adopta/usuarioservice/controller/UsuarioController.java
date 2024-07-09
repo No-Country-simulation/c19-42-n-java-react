@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuario")
@@ -18,7 +16,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping("/listar")
-    public ResponseEntity<?> listarNoticias() {
+    public ResponseEntity<?> listarUsuarios() {
         return ResponseEntity.ok(usuarioService.getAllUsuarios());
     }
 
@@ -52,7 +50,7 @@ public class UsuarioController {
         Usuario usuario = usuarioService.getUsuarioById(id);
         if (usuario != null){
             usuarioService.deleteUsuario(id);
-            return ResponseEntity.ok().body("{\"message\": \"Evento Eliminado exitosamente\"}");
+            return ResponseEntity.ok().body("{\"message\": \"Usuario Eliminado exitosamente\"}");
         }else {
             return ResponseEntity.badRequest().body("No se encontro el id del usuario");
         }
