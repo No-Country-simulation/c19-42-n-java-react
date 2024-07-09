@@ -40,7 +40,7 @@ public class RolController {
         if (rol1 != null){
             return ResponseEntity.ok(rolService.updateRol(id, rol));
         }else {
-            return ResponseEntity.badRequest().body("No se encontro el id del usuario");
+            return ResponseEntity.badRequest().body("No se encontro el id del rol");
         }
     }
 
