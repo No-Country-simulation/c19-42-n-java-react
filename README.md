@@ -49,9 +49,9 @@ Descubre nuestra plataforma de adopción de mascotas diseñada para conectar ref
     <td><a href="https://www.linkedin.com/in/">Nestor Rubiano</a></td>
   </tr>
   <tr>
-    <td>Sebastian Velarde</td>
+    <td>Sebastián Velarde</td>
     <td>Back-End Developer</td>
-    <td><a href="https://www.linkedin.com/in/">Sebastian Velarde</a></td>
+    <td><a href="https://www.linkedin.com/in/">Sebastián Velarde</a></td>
   </tr>
   <tr>
     <td>Abel Fucili</td>
