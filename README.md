@@ -51,7 +51,7 @@ Descubre nuestra plataforma de adopción de mascotas diseñada para conectar ref
   <tr>
     <td>Sebastián Velarde</td>
     <td>Back-End Developer</td>
-    <td><a href="https://www.linkedin.com/in/">Sebastián Velarde</a></td>
+    <td><a href="https://www.linkedin.com/in/sebasvelardedev/">Sebastián Velarde</a></td>
   </tr>
   <tr>
     <td>Abel Fucili</td>
