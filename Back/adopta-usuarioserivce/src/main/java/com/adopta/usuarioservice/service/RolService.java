@@ -14,19 +14,19 @@ public class RolService {
     @Autowired
     private RolRepository rolRepository;
 
-    public List<Rol> getAllRoles() {
+    private List<Rol> getAllRoles() {
         return rolRepository.findAll();
     }
 
-    public Optional<Rol> getRolById(Long id) {
-        return rolRepository.findById(id);
+    private Rol getRolById(Long id) {
+        return rolRepository.findById(id).orElse(null);
     }
 
-    public Rol createRol(Rol rol) {
+    private Rol createRol(Rol rol) {
         return rolRepository.save(rol);
     }
 
-    public Rol updateRol(Long id, Rol rol) {
+    private Rol updateRol(Long id, Rol rol) {
         if (rolRepository.existsById(id)) {
             rol.setIdrol(id);
             return rolRepository.save(rol);
@@ -34,7 +34,7 @@ public class RolService {
         return null;
     }
 
-    public void deleteRol(Long id) {
+    private void deleteRol(Long id) {
         rolRepository.deleteById(id);
     }
 }
