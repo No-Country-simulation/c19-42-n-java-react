@@ -19,7 +19,7 @@ export const routes: Routes = [
 	{
 		path: 'manage-pet',
 		loadChildren: () =>
-			import('./pages/managePet/manage-pet.routes').then(
+			import('./pages/manage-pet/manage-pet.routes').then(
 				(m) => m.MANAGE_PET_ROUTES
 			),
 	},
