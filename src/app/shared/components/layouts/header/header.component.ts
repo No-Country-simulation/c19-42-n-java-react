@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 	styleUrls: ['./header.component.css', '/src/app/app.component.scss'],
 })
 export class HeaderComponent {
-	public isLogged = false;
+	public isLogged: boolean = false;
 }
