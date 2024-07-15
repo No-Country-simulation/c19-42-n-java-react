@@ -1,12 +1,40 @@
 import { Component } from '@angular/core';
+import {
+	ReactiveFormsModule,
+	FormBuilder,
+	FormGroup,
+	FormControl,
+	Validators,
+} from '@angular/forms';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+	selector: 'app-login',
+	standalone: true,
+	imports: [ReactiveFormsModule],
+	templateUrl: './login.component.html',
+	styles: [
+		`
+			@media (width >= 992px) {
+				.container {
+					width: 45%;
+				}
+			}
+		`,
+	],
 })
 export class LoginComponent {
+	constructor(private fb: FormBuilder) {}
 
+	get userName() {
+		return this.loginForm.get('userName') as FormControl;
+	}
+
+	get password() {
+		return this.loginForm.get('password') as FormControl;
+	}
+
+	public loginForm: FormGroup = this.fb.group({
+		userName: ['', Validators.required],
+		password: ['', Validators.required],
+	});
 }
