@@ -4,7 +4,7 @@
 </div>
 
 <div class="container">
-	<form class="row g-3" [formGroup]="loginForm">
+	<form class="row g-3" [formGroup]="loginForm" (submit)="login()">
 		<div class="col-12">
 			<label for="userName" class="form-label user-select-none"
 				>Usuario</label
@@ -57,9 +57,8 @@
 				Iniciar sesión
 			</button>
 		</div>
-
 		<span class="col-12 text-center"
-			>¿No tienes una cuenta <a href="">¡Regístrate!</a></span
+			>¿No tienes una cuenta?<a href="">¡Regístrate!</a></span
 		>
 	</form>
 </div>

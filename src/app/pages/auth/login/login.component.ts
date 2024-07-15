@@ -37,4 +37,11 @@ export class LoginComponent {
 		userName: ['', Validators.required],
 		password: ['', Validators.required],
 	});
+
+	public login() {
+		if (this.loginForm.valid) {
+			console.log('Login successful');
+			console.log(this.loginForm.value);
+		}
+	}
 }
