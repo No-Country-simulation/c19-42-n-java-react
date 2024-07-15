@@ -2,12 +2,11 @@
 	<h2 class="fw-bold">¡Bienvenido a Adoptify!</h2>
 	<small class="fw-light"
 		>Completa tus datos para formar parte de nuestra familia o si ya tienes
-		una cuenta <a href="">ingresa aquí</a></small
+		una cuenta puedes <a href="">ingresar aquí</a></small
 	>
 </div>
-
 <div class="container">
-	<form class="row g-3" [formGroup]="registerForm">
+	<form class="row g-3" [formGroup]="registerForm" (submit)="register()">
 		<span class="col-12 user-select-none">¿Cómo te identificas?</span>
 		<div class="col-6">
 			<input
@@ -16,9 +15,11 @@
 				name="adopterOrRefuge"
 				id="isAdopter"
 				autocomplete="off"
+				value="adopter"
+				formControlName="role"
 				checked
-				(change)="isAdopter = true"
-				[checked]="isAdopter"
+				[checked]="registerForm.get('role')?.value === 'adopter'"
+				(change)="resetAdopter()"
 			/>
 			<label class="btn btn-outline-success w-100" for="isAdopter"
 				>Adoptante</label
@@ -31,14 +32,16 @@
 				name="adopterOrRefuge"
 				id="isRefuge"
 				autocomplete="off"
-				(change)="isAdopter = false"
-				[checked]="!isAdopter"
+				value="refuge"
+				formControlName="role"
+				[checked]="registerForm.get('role')?.value === 'refuge'"
+				(change)="resetRefuge()"
 			/>
 			<label class="btn btn-outline-danger w-100" for="isRefuge"
 				>Refugio</label
 			>
 		</div>
-		@if (isAdopter) {
+		@if (registerForm.get('role')?.value === 'adopter'){
 		<div class="col-md-6">
 			<label for="firstName" class="form-label user-select-none"
 				>Nombre(s)</label
@@ -132,7 +135,7 @@
 				formControlName="confirmPassword"
 			/>
 		</div>
-		@if (isAdopter) {
+		@if (registerForm.get('role')?.value === 'adopter'){
 		<div class="col-12">
 			<label for="birthDate" class="form-label user-select-none"
 				>Fecha de nacimiento</label
@@ -143,6 +146,7 @@
 				class="form-control"
 				id="birthDate"
 				autocomplete="bday"
+				formControlName="birthDate"
 			/>
 		</div>
 		}
@@ -152,7 +156,6 @@
 			>
 			<div class="input-group">
 				<select name="countryCode" class="form-select" id="countryCode">
-					<option selected disabled>Código de país</option>
 					<option value="1">One</option>
 					<option value="2">Two</option>
 					<option value="3">Three</option>
@@ -178,7 +181,6 @@
 				autocomplete="country"
 				formControlName="country"
 			>
-				<option selected disabled>País</option>
 				<option value="1">One</option>
 				<option value="2">Two</option>
 				<option value="3">Three</option>
@@ -195,7 +197,6 @@
 				autocomplete="off"
 				formControlName="state"
 			>
-				<option selected disabled>Provincia</option>
 				<option value="1">One</option>
 				<option value="2">Two</option>
 				<option value="3">Three</option>
@@ -210,7 +211,6 @@
 				autocomplete="off"
 				formControlName="city"
 			>
-				<option selected disabled>Ciudad</option>
 				<option value="1">One</option>
 				<option value="2">Two</option>
 				<option value="3">Three</option>
@@ -220,18 +220,14 @@
 			<label for="zipCode" class="form-label user-select-none"
 				>Código postal</label
 			>
-			<select
+			<input
+				type="text"
 				name="zipCode"
 				id="zipCode"
-				class="form-select"
+				class="form-control"
 				autocomplete="postal-code"
 				formControlName="zipCode"
-			>
-				<option selected disabled>Código postal</option>
-				<option value="1">One</option>
-				<option value="2">Two</option>
-				<option value="3">Three</option>
-			</select>
+			/>
 		</div>
 		<div class="col-12">
 			<label for="address" class="form-label user-select-none"
@@ -262,7 +258,13 @@
 			</div>
 		</div>
 		<div class="col-12">
-			<button type="submit" class="btn btn-primary">Registrarse</button>
+			<button
+				type="submit"
+				class="btn btn-primary w-100"
+				[disabled]="registerForm.invalid"
+			>
+				Registrarse
+			</button>
 		</div>
 	</form>
 </div>

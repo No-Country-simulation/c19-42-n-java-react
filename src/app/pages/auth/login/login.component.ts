@@ -40,8 +40,10 @@ export class LoginComponent {
 
 	public login() {
 		if (this.loginForm.valid) {
-			console.log('Login successful');
+			console.log('Formulario válido');
 			console.log(this.loginForm.value);
+		} else {
+			console.log('Formulario inválido');
 		}
 	}
 }
