@@ -17,7 +17,7 @@
 				value="adopter"
 				formControlName="role"
 				[checked]="role.value === 'adopter'"
-				(change)="resetAdopter()"
+				(change)="reset()"
 			/>
 			<label class="btn btn-outline-success w-100" for="isAdopter"
 				>Adoptante</label
@@ -32,7 +32,7 @@
 				value="refuge"
 				formControlName="role"
 				[checked]="role.value === 'refuge'"
-				(change)="resetRefuge()"
+				(change)="reset()"
 			/>
 			<label class="btn btn-outline-danger w-100" for="isRefuge"
 				>Refugio</label
@@ -91,7 +91,7 @@
 		</div>
 		<div class="col-12">
 			<label for="userName" class="form-label user-select-none"
-				>Usuario</label
+				>Nombre de usuario</label
 			>
 			<input
 				type="text"
@@ -193,7 +193,7 @@
 				formControlName="phoneNumber"
 			/>
 		</div>
-		}
+		} @if (role.value === 'refuge') {
 		<div class="col-6">
 			<label for="country" class="form-label user-select-none"
 				>País</label
@@ -262,6 +262,7 @@
 				formControlName="address"
 			/>
 		</div>
+		}
 		<div class="col-12">
 			<div class="form-check">
 				<input

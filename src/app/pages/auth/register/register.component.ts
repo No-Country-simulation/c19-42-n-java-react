@@ -48,6 +48,26 @@ export class RegisterComponent {
 		return this.registerForm.get('refugeName') as FormControl;
 	}
 
+	get country() {
+		return this.registerForm.get('country') as FormControl;
+	}
+
+	get state() {
+		return this.registerForm.get('state') as FormControl;
+	}
+
+	get city() {
+		return this.registerForm.get('city') as FormControl;
+	}
+
+	get zipCode() {
+		return this.registerForm.get('zipCode') as FormControl;
+	}
+
+	get address() {
+		return this.registerForm.get('address') as FormControl;
+	}
+
 	public registerForm: FormGroup = this.fb.group(
 		{
 			role: ['', Validators.required],
@@ -61,7 +81,7 @@ export class RegisterComponent {
 				[
 					Validators.required,
 					Validators.pattern(
-						'^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*])[A-Za-z\\d!@#$%^&*]{8,26}$'
+						'^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*-/])[A-Za-z\\d!@#$%^&*-/]{8,}$'
 					),
 				],
 			],
@@ -69,27 +89,26 @@ export class RegisterComponent {
 			birthDate: [null],
 			codeCountry: ['', Validators.required],
 			phoneNumber: ['', Validators.required],
-			country: ['', Validators.required],
-			state: ['', Validators.required],
-			city: ['', Validators.required],
-			zipCode: [
-				'',
-				[Validators.required, Validators.pattern('^[0-9]{3,6}$')],
-			],
-			address: ['', Validators.required],
+			country: [null],
+			state: [null],
+			city: [null],
+			zipCode: [null, [Validators.pattern('^[0-9]{3,6}$')]],
+			address: [null],
 			terms: ['', [Validators.requiredTrue]],
 		},
 		{ validators: passwordValidator.passwordsMatch }
 	);
 
-	public resetAdopter() {
+	public reset() {
 		this.firstName.setValue(null);
 		this.lastName.setValue(null);
 		this.birthDate.setValue(null);
-	}
-
-	public resetRefuge() {
 		this.refugeName.setValue(null);
+		this.country.setValue(null);
+		this.state.setValue(null);
+		this.city.setValue(null);
+		this.zipCode.setValue(null);
+		this.address.setValue(null);
 	}
 
 	public register() {
