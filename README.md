@@ -1,6 +1,6 @@
 ![Banner](https://github.com/No-Country-simulation/c19-42-n-java-react/assets/137783616/9e22a36b-44b7-4056-8bb6-282006d9bb3b)
 
-# 🐾 Proyecto de Adopción de Mascotas
+# 🐾 Adoptify
 
 **Rubro:** Adopción de mascotas
 
