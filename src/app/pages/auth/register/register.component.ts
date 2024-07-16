@@ -89,11 +89,11 @@ export class RegisterComponent {
 			birthDate: [null],
 			codeCountry: ['', Validators.required],
 			phoneNumber: ['', Validators.required],
-			country: [null],
-			state: [null],
-			city: [null],
-			zipCode: [null, [Validators.pattern('^[0-9]{3,6}$')]],
-			address: [null],
+			country: ['', Validators.required],
+			state: ['', Validators.required],
+			city: ['', Validators.required],
+			zipCode: ['', [Validators.pattern('^[0-9]{3,6}$')]],
+			address: ['', Validators.required],
 			terms: ['', [Validators.requiredTrue]],
 		},
 		{ validators: passwordValidator.passwordsMatch }
@@ -104,11 +104,6 @@ export class RegisterComponent {
 		this.lastName.setValue(null);
 		this.birthDate.setValue(null);
 		this.refugeName.setValue(null);
-		this.country.setValue(null);
-		this.state.setValue(null);
-		this.city.setValue(null);
-		this.zipCode.setValue(null);
-		this.address.setValue(null);
 	}
 
 	public register() {
