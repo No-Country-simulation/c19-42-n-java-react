@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { afterNextRender, Component } from '@angular/core';
 import {
 	ReactiveFormsModule,
 	FormBuilder,
 	FormGroup,
-	FormControl,
 	Validators,
 } from '@angular/forms';
 import { passwordValidator } from './password-validator';
@@ -24,11 +23,21 @@ import { passwordValidator } from './password-validator';
 	],
 })
 export class RegisterComponent {
-	constructor(private fb: FormBuilder) {}
+	constructor(private fb: FormBuilder) {
+		afterNextRender(() => {
+			const savedRole = localStorage.getItem('role');
+			if (savedRole) {
+				this.registerForm.get('role')?.setValue(savedRole);
+			}
+			this.registerForm.get('role')?.valueChanges.subscribe((value) => {
+				localStorage.setItem('role', value);
+			});
+		});
+	}
 
 	public registerForm: FormGroup = this.fb.group(
 		{
-			role: ['adopter', Validators.required],
+			role: ['', Validators.required],
 			firstName: [null],
 			lastName: [null],
 			refugeName: [null],
@@ -45,6 +54,7 @@ export class RegisterComponent {
 			],
 			confirmPassword: ['', Validators.required],
 			birthDate: [null],
+			codeCountry: ['', Validators.required],
 			phoneNumber: ['', Validators.required],
 			country: ['', Validators.required],
 			state: ['', Validators.required],
@@ -59,14 +69,6 @@ export class RegisterComponent {
 		{ validators: passwordValidator.passwordsMatch }
 	);
 
-	public register() {
-		if (this.registerForm.valid) {
-			console.log('Formulario válido', this.registerForm.value);
-		} else {
-			console.log('Formulario inválido');
-		}
-	}
-
 	public resetAdopter() {
 		this.registerForm.get('firstName')?.setValue(undefined);
 		this.registerForm.get('lastName')?.setValue(undefined);
@@ -75,5 +77,13 @@ export class RegisterComponent {
 
 	public resetRefuge() {
 		this.registerForm.get('refugeName')?.setValue(null);
+	}
+
+	public register() {
+		if (this.registerForm.valid) {
+			console.log('Formulario válido', this.registerForm.value);
+		} else {
+			console.log('Formulario inválido');
+		}
 	}
 }
