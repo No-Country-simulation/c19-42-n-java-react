@@ -12,15 +12,7 @@ import {
 	standalone: true,
 	imports: [ReactiveFormsModule],
 	templateUrl: './login.component.html',
-	styles: [
-		`
-			@media (width >= 992px) {
-				.container {
-					width: 45%;
-				}
-			}
-		`,
-	],
+	styleUrls: ['../auth.css'],
 })
 export class LoginComponent {
 	constructor(private fb: FormBuilder) {}

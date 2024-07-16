@@ -4,6 +4,7 @@ import {
 	FormBuilder,
 	FormGroup,
 	Validators,
+	FormControl,
 } from '@angular/forms';
 import { passwordValidator } from './password-validator';
 
@@ -12,15 +13,7 @@ import { passwordValidator } from './password-validator';
 	standalone: true,
 	imports: [ReactiveFormsModule],
 	templateUrl: './register.component.html',
-	styles: [
-		`
-			@media (width >= 992px) {
-				.container {
-					width: 45%;
-				}
-			}
-		`,
-	],
+	styleUrls: ['../auth.css'],
 })
 export class RegisterComponent {
 	constructor(private fb: FormBuilder) {
@@ -33,6 +26,26 @@ export class RegisterComponent {
 				localStorage.setItem('role', value);
 			});
 		});
+	}
+
+	get role() {
+		return this.registerForm.get('role') as FormControl;
+	}
+
+	get firstName() {
+		return this.registerForm.get('firstName') as FormControl;
+	}
+
+	get lastName() {
+		return this.registerForm.get('lastName') as FormControl;
+	}
+
+	get birthDate() {
+		return this.registerForm.get('birthDate') as FormControl;
+	}
+
+	get refugeName() {
+		return this.registerForm.get('refugeName') as FormControl;
 	}
 
 	public registerForm: FormGroup = this.fb.group(
@@ -70,13 +83,13 @@ export class RegisterComponent {
 	);
 
 	public resetAdopter() {
-		this.registerForm.get('firstName')?.setValue(undefined);
-		this.registerForm.get('lastName')?.setValue(undefined);
-		this.registerForm.get('birthDate')?.setValue(undefined);
+		this.firstName.setValue(null);
+		this.lastName.setValue(null);
+		this.birthDate.setValue(null);
 	}
 
 	public resetRefuge() {
-		this.registerForm.get('refugeName')?.setValue(null);
+		this.refugeName.setValue(null);
 	}
 
 	public register() {
