@@ -7,8 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/adoptante")
+@RequestMapping("/adoptante")
 @CrossOrigin("*")
 public class AdoptanteController {
 
@@ -23,5 +25,11 @@ public class AdoptanteController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
+    }
+
+    @GetMapping
+    public ResponseEntity<?> listarAdoptantes(){
+        List<Adoptante> adoptantes = adoptanteService.listarAdoptantes();
+        return ResponseEntity.ok(adoptantes);
     }
 }

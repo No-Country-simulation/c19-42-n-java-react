@@ -1,9 +1,6 @@
 package com.adoptify.service;
 
-import com.adoptify.dto.AdoptanteProfileRequest;
-import com.adoptify.dto.AuthResponse;
-import com.adoptify.dto.LoginRequest;
-import com.adoptify.dto.ProtectoraProfileRequest;
+import com.adoptify.dto.*;
 import com.adoptify.model.ERole;
 import com.adoptify.model.Role;
 import com.adoptify.model.User;
@@ -19,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -29,19 +27,20 @@ public class AuthService {
     private final RoleService rolService;
     private final UserRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
-    private final AuthenticationManager authenticationManager;
     private final RoleRepository roleRepository;
     private final AdoptanteClient adoptanteClient;
 
 
 
     public AuthResponse login(LoginRequest request) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(),request.getPassword()));
-        User user = usuarioRepository.findByUsername(request.getUsername()).orElseThrow(null);
-        String token = jwtService.getToken(user);
-        return AuthResponse.builder()
-                .token(token)
-                .build();
+        Optional<User> user = usuarioRepository.findByUsername(request.getUsername());
+        if(!user.isPresent()){
+            return null;
+        }
+        if(passwordEncoder.matches(request.getPassword(),user.get().getPassword())){
+            return new AuthResponse(jwtService.createToken(user.get()));
+        }
+        return null;
     }
 
     public AuthResponse registerAdoptante(AdoptanteProfileRequest request) {
@@ -59,11 +58,22 @@ public class AuthService {
         request.setUsuarioId(user.getId());
         adoptanteClient.createAdoptanteProfile(request);
 
-        String token = jwtService.getToken(user);
+        String token = jwtService.createToken(user);
 
         return AuthResponse.builder()
                 .token(token)
                 .build();
+    }
+
+    public AuthResponse validate(String token, RequestDto requestDto){
+        if(!jwtService.validate(token,requestDto)){
+            return null;
+        }
+        String userName = jwtService.getUserNameFromToken(token);
+        if(!usuarioRepository.findByUsername(userName).isPresent()){
+            return null;
+        }
+        return new AuthResponse(token);
     }
 
     /**public AuthResponse registerProtectora(ProtectoraProfileRequest request) {

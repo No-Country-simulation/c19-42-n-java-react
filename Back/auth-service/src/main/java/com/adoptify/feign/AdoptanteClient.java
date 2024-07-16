@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(name = "adoptante-service")
 public interface AdoptanteClient {
-    @PostMapping("/api/adoptante")
+    @PostMapping("/adoptante")
     void createAdoptanteProfile(@RequestBody AdoptanteProfileRequest request);
 }

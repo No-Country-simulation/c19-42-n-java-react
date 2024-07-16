@@ -20,9 +20,7 @@ spring:
 
 security:
   jwt:
-    secret: your_jwt_secret
-    expirationMs: 86400000 # 24 hours
-
+    secret: secret
 
 eureka:
   client:
@@ -32,3 +30,10 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
   instance:
     prefer-ip-address: true
+
+protectora-paths:
+  paths:
+    - uri: "/adoptante"
+      method: "GET"
+    - uri: "/adoptante"
+      method: "POST"

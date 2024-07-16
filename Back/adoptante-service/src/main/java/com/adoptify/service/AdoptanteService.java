@@ -5,6 +5,8 @@ import com.adoptify.repository.AdoptanteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AdoptanteService {
 
@@ -13,5 +15,9 @@ public class AdoptanteService {
 
     public Adoptante registerAdoptante(Adoptante adoptante) {
         return adoptanteRepository.save(adoptante);
+    }
+
+    public List<Adoptante> listarAdoptantes(){
+        return adoptanteRepository.findAll();
     }
 }

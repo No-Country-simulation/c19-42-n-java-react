@@ -1,52 +1,30 @@
 server:
   port: 8060
 
-logging:
-  level:
-    org.springframework.security: DEBUG
-    org.springframework.cloud.gateway: DEBUG
-
 spring:
-  main:
-    web-application-type: reactive
-    allow-bean-definition-overriding: true
   application:
-    name: api-gateway
+    name: API-GATEWAY
+
   cloud:
     gateway:
       routes:
-        - id: auth-service
-          uri: lb://AUTH-SERVICE
-          predicates:
-            - Path=/auth/**
-          filters:
-            - StripPrefix=1
-        - id: adoptante-service
+        - id: ADOPTANTE-SERVICE
           uri: lb://ADOPTANTE-SERVICE
           predicates:
             - Path=/adoptante/**
           filters:
-            - StripPrefix=1
-        - id: protectora-service
-          uri: lb://PROTECTORA-SERVICE
+            - AuthFilter
+
+        - id: AUTH-SERVICE
+          uri: lb://AUTH-SERVICE
           predicates:
-            - Path=/protectora/**
-          filters:
-            - StripPrefix=1
-        - id: role-based-route
-          uri: lb://SOME-SERVICE
-          predicates:
-            - Path=/protected/**
-          filters:
-            - name: RoleBasedFilter
-              args:
-                role: "ROLE_ADMIN"
+            - Path=/auth/**
 
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
+    fetch-registry: true
+    register-with-eureka: true
     service-url:
-      defaultZone: http://localhost:8761/eureka/
-
-
-jwt:
-  secret: 18ac29eeac37421d6f36dc2ed31976382220f89fbf0706d1497c8362c500517e
+      defaultZone: http://localhost:8761/eureka

@@ -1,9 +1,6 @@
 package com.adoptify.controller;
 
-import com.adoptify.dto.AdoptanteProfileRequest;
-import com.adoptify.dto.AuthResponse;
-import com.adoptify.dto.LoginRequest;
-import com.adoptify.dto.ProtectoraProfileRequest;
+import com.adoptify.dto.*;
 import com.adoptify.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,6 +34,18 @@ public class AuthController {
             // Manejar casos en los que la autenticación falle
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales no válidas");
         }
+    }
+
+    @PostMapping("/validate")
+    public ResponseEntity<?> validate(@RequestParam String token, @RequestBody RequestDto requestDto) {
+        System.out.println("Token: " + token);
+        System.out.println("RequestDto: " + requestDto);
+
+        AuthResponse tokenDto = authService.validate(token, requestDto);
+        if (tokenDto == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Token inválido o solicitud incorrecta");
+        }
+        return ResponseEntity.ok(tokenDto);
     }
 
     @PostMapping("/register/adoptante")

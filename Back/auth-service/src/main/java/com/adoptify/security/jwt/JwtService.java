@@ -1,10 +1,19 @@
 package com.adoptify.security.jwt;
 
+import com.adoptify.dto.RequestDto;
 import com.adoptify.model.User;
+import com.adoptify.security.RouteValidator;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.SignatureAlgorithm;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.security.Key;
+import java.security.SecureRandom;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,67 +26,73 @@ import io.jsonwebtoken.security.Keys;
 import javax.crypto.SecretKey;
 
 
-@Service
+@Component
 public class JwtService {
 
-    private static final String SECRET_KEY = "18ac29eeac37421d6f36dc2ed31976382220f89fbf0706d1497c8362c500517e";
-    public String getToken(User usuario) {
+    private Key secret;
 
-        return getToken(new HashMap<>(),usuario);
+    @Autowired
+    private RouteValidator routeValidator;
+
+    @Value("${security.jwt.secret}")
+    private String jwtSecret;
+
+    @PostConstruct
+    protected void init() {
+        byte[] apiKeySecretBytes = new byte[64]; // 512 bits
+        new SecureRandom().nextBytes(apiKeySecretBytes);
+        secret = Keys.hmacShaKeyFor(apiKeySecretBytes);
     }
 
-    private String getToken(Map<String,Object> extraClaims , User usuario) {
+    public String createToken(User authUser){
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("id", authUser.getId());
+        claims.put("role", authUser.getRoles());
 
-        return Jwts
-                .builder()
-                .claims(extraClaims)
-                .claim("userId",usuario.getId())
-                .claim("rol",usuario.getRoles())
-                .subject(usuario.getUsername())
-                .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis()+ 1000*60*24))
-                .signWith(getKey())
+        Date now = new Date();
+        Date exp = new Date(now.getTime() + 3600000); // 1 hora de validez
+
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(authUser.getUsername())
+                .setIssuedAt(now)
+                .setExpiration(exp)
+                .signWith(secret, SignatureAlgorithm.HS512)
                 .compact();
     }
 
-    private SecretKey getKey() {
+    public boolean validate(String token, RequestDto requestDto){
+        try {
+            Claims claims = Jwts.parser()
+                    .setSigningKey(secret)
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
 
-        byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
-        return Keys.hmacShaKeyFor(keyBytes);
+            // Additional validation logic if required
+            if (!isProtectora(claims) && routeValidator.isProtectora(requestDto)) {
+                return false;
+            }
+            return true;
+        } catch (Exception exception) {
+            return false;
+        }
     }
 
-    public String getUsernameFromToken(String token) {
-        return getClaim(token,Claims::getSubject);
-
+    public String getUserNameFromToken(String token){
+        try {
+            Claims claims = Jwts.parser()
+                    .setSigningKey(secret)
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
+            return claims.getSubject();
+        } catch (Exception exception) {
+            return "Bad token";
+        }
     }
 
-    public boolean isTokenValid(String token, UserDetails userDetails) {
-        final String username = getUsernameFromToken(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
-    }
-
-    private Claims getAllClaims( String token)
-    {
-        return Jwts
-                .parser()
-                .verifyWith(getKey())
-                .build()
-                .parseSignedClaims(token)
-                .getPayload();
-    }
-    public <T> T getClaim(String token, Function<Claims,T> claimsResolver)
-    {
-        final Claims claims = getAllClaims(token);
-        return claimsResolver.apply(claims);
-    }
-
-    private Date getExpiration(String token)
-    {
-        return getClaim(token,Claims::getExpiration);
-    }
-
-    private boolean isTokenExpired(String token)
-    {
-        return getExpiration(token).before(new Date());
+    private boolean isProtectora(Claims claims){
+        return claims.get("role").toString().contains("ROLE_ADMIN");
     }
 }
