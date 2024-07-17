@@ -18,12 +18,12 @@ public class AdoptanteController {
     private AdoptanteService adoptanteService;
 
     @PostMapping
-    public ResponseEntity<Adoptante> registerAdoptante(@RequestBody Adoptante adoptante) {
+    public ResponseEntity<?> registerAdoptante(@RequestBody Adoptante adoptante) {
         try {
             Adoptante createdAdoptante = adoptanteService.registerAdoptante(adoptante);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdAdoptante);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e);
         }
     }
 

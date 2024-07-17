@@ -15,6 +15,7 @@ public class AdoptanteService {
     private AdoptanteRepository adoptanteRepository;
 
     public Adoptante registerAdoptante(Adoptante adoptante) {
+
         return adoptanteRepository.save(adoptante);
     }
 
