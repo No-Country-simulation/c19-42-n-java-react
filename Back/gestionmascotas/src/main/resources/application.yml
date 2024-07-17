@@ -1,9 +1,11 @@
 server:
-  port: 8083
+  port: 8081
 
 spring:
+  application:
+    name: gestionmascotas
   datasource:
-    url: jdbc:mysql://host.docker.internal:3306/adoptapp_adoptante_db
+    url: jdbc:mysql://host.docker.internal:3306/adoptapp_gestionmascota?serverTimezone=UTC
     username: root
     password:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -15,8 +17,6 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
 
-  application:
-    name: ADOPTANTE-SERVICE
 
 eureka:
   client:

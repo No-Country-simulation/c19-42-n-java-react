@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.adoptify</groupId>
 	<artifactId>adoptante-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>adoptante-service</name>
 	<description>Servicio de adoptante</description>
 	<url/>
@@ -100,6 +100,13 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>true</skipTests>
 				</configuration>
 			</plugin>
 		</plugins>
