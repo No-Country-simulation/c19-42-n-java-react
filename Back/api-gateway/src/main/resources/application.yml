@@ -1,0 +1,35 @@
+server:
+  port: 8060
+
+spring:
+  application:
+    name: API-GATEWAY
+
+  cloud:
+    gateway:
+      routes:
+        - id: ADOPTANTE-SERVICE
+          uri: lb://ADOPTANTE-SERVICE
+          predicates:
+            - Path=/adoptante/**
+          filters:
+            - AuthFilter
+
+        - id: AUTH-SERVICE
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
+
+        - id: PROTECTORA-SERVICE
+          uri: lb://PROTECTORA-SERVICE
+          predicates:
+            - Path=/protectora/**
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
