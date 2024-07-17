@@ -32,4 +32,16 @@ public class AdoptanteController {
         List<Adoptante> adoptantes = adoptanteService.listarAdoptantes();
         return ResponseEntity.ok(adoptantes);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> listarAdoptanteporId(@PathVariable Long id) {
+        Adoptante adoptante = adoptanteService.listarAdoptante(id).orElse(null);
+        if (adoptante == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Adoptante no encontrado");
+
+        }else {
+            return ResponseEntity.ok(adoptante);
+        }
+
+    }
 }

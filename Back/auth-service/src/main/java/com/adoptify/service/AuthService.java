@@ -1,6 +1,7 @@
 package com.adoptify.service;
 
 import com.adoptify.dto.*;
+import com.adoptify.feign.ProtectoraClient;
 import com.adoptify.model.ERole;
 import com.adoptify.model.Role;
 import com.adoptify.model.User;
@@ -29,6 +30,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
     private final AdoptanteClient adoptanteClient;
+    private final ProtectoraClient protectoraClient;
 
 
 
@@ -76,27 +78,27 @@ public class AuthService {
         return new AuthResponse(token);
     }
 
-    /**public AuthResponse registerProtectora(ProtectoraProfileRequest request) {
-        if (usuarioRepository.existsByUsername(request.get())) {
+    public AuthResponse registerProtectora(ProtectoraProfileRequest request) {
+        if (usuarioRepository.existsByUsername(request.getUsername())) {
             throw new RuntimeException("Error: Username is already taken!");
         }
 
         User user = new User(request.getUsername(), passwordEncoder.encode(request.getPassword()));
-        Role protectoraRole = roleRepository.findByName("ROLE_PROTECTORA")
+        Role protectoraRole = roleRepository.findByName(ERole.ROLE_PROTECTORA)
                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
         user.setRoles(Set.of(protectoraRole));
-        user = userRepository.save(user);
+        user = usuarioRepository.save(user);
 
         // Register protectora profile
         protectoraClient.createProtectoraProfile(request);
 
-        String token = jwtService.getToken(user);
+        String token = jwtService.createToken(user);
 
         return AuthResponse.builder()
                 .token(token)
                 .build();
     }
-**/
+
 
 
 }

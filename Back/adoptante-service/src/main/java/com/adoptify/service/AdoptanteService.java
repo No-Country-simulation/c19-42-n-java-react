@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdoptanteService {
@@ -19,5 +20,9 @@ public class AdoptanteService {
 
     public List<Adoptante> listarAdoptantes(){
         return adoptanteRepository.findAll();
+    }
+
+    public Optional<Adoptante> listarAdoptante(Long id){
+        return adoptanteRepository.findById(id);
     }
 }
