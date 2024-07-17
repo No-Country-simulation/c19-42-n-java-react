@@ -58,7 +58,7 @@ public class AuthController {
         }
     }
 
-   /** @PostMapping(value = "register/protectora")
+   @PostMapping(value = "register/protectora")
     public ResponseEntity<?> registerProtectora(@RequestBody ProtectoraProfileRequest request) {
         try {
             AuthResponse authResponse = authService.registerProtectora(request);
@@ -67,7 +67,7 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
-**/
+
 
 
 }

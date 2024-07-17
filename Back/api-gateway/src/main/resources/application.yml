@@ -20,6 +20,11 @@ spring:
           predicates:
             - Path=/auth/**
 
+        - id: PROTECTORA-SERVICE
+          uri: lb://PROTECTORA-SERVICE
+          predicates:
+            - Path=/protectora/**
+
 eureka:
   instance:
     prefer-ip-address: true

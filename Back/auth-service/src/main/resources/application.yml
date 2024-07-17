@@ -3,7 +3,11 @@ server:
 
 spring:
   datasource:
+<<<<<<< HEAD
     url: jdbc:mysql://host.docker.internal:3306/adoptapp_auth_db
+=======
+    url: jdbc:mysql://localhost:3306/auth_db?createDatabaseIfNotExist=true
+>>>>>>> cdb50890fd1701c5dc429cec63d1944b51ae7cd0
     username: root
     password:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -35,5 +39,4 @@ protectora-paths:
   paths:
     - uri: "/adoptante"
       method: "GET"
-    - uri: "/adoptante"
-      method: "POST"
+

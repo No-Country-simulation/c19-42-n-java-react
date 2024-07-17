@@ -18,12 +18,12 @@ public class AdoptanteController {
     private AdoptanteService adoptanteService;
 
     @PostMapping
-    public ResponseEntity<Adoptante> registerAdoptante(@RequestBody Adoptante adoptante) {
+    public ResponseEntity<?> registerAdoptante(@RequestBody Adoptante adoptante) {
         try {
             Adoptante createdAdoptante = adoptanteService.registerAdoptante(adoptante);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdAdoptante);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e);
         }
     }
 
@@ -31,5 +31,17 @@ public class AdoptanteController {
     public ResponseEntity<?> listarAdoptantes(){
         List<Adoptante> adoptantes = adoptanteService.listarAdoptantes();
         return ResponseEntity.ok(adoptantes);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> listarAdoptanteporId(@PathVariable Long id) {
+        Adoptante adoptante = adoptanteService.listarAdoptante(id).orElse(null);
+        if (adoptante == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Adoptante no encontrado");
+
+        }else {
+            return ResponseEntity.ok(adoptante);
+        }
+
     }
 }

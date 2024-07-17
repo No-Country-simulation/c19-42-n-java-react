@@ -93,6 +93,6 @@ public class JwtService {
     }
 
     private boolean isProtectora(Claims claims){
-        return claims.get("role").toString().contains("ROLE_ADMIN");
+        return claims.get("role").toString().contains("ROLE_PROTECTORA");
     }
 }

@@ -1,15 +1,11 @@
 server:
-  port: 8083
+  port: 8050
 
 spring:
   datasource:
-<<<<<<< HEAD
-    url: jdbc:mysql://host.docker.internal:3306/adoptapp_adoptante_db
-=======
-    url: jdbc:mysql://localhost:3306/adoptante_db?createDatabaseIfNotExist=true
->>>>>>> cdb50890fd1701c5dc429cec63d1944b51ae7cd0
+    url: jdbc:mysql://localhost:3306/protectora_db?createDatabaseIfNotExist=true
     username: root
-    password:
+    password: naruto12
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -20,13 +16,13 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
 
   application:
-    name: ADOPTANTE-SERVICE
+    name: PROTECTORA-SERVICE
 
 eureka:
   client:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone: http://eureka-sv:8761/eureka
+      defaultZone: http://localhost:8761/eureka/
   instance:
     prefer-ip-address: true
