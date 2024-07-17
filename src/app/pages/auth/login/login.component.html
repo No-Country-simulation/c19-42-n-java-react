@@ -47,7 +47,13 @@
 				La contraseña es requerida
 			</div>
 		</div>
-
+		@if (loginError) {
+		<div class="col-12">
+			<div class="alert alert-danger" role="alert">
+				{{ loginError }}
+			</div>
+		</div>
+		}
 		<div class="col-12">
 			<button
 				type="submit"

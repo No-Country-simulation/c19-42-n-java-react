@@ -1,11 +1,11 @@
-<div class="container mb-4">
-	<h2 class="fw-bold">¡Bienvenido a Adoptify!</h2>
-	<small class="fw-light"
-		>Completa tus datos para formar parte de nuestra familia o si ya tienes
-		una cuenta puedes <a href="">ingresar aquí</a></small
-	>
-</div>
 <div class="container">
+	<div class="row mb-4">
+		<h2 class="fw-bold">¡Bienvenido a Adoptify!</h2>
+		<small class="fw-light"
+			>Completa tus datos para formar parte de nuestra familia o si ya
+			tienes una cuenta puedes <a href="">ingresar aquí</a></small
+		>
+	</div>
 	<form class="row g-3" [formGroup]="registerForm" (submit)="register()">
 		<span class="col-12 user-select-none">¿Cómo te identificas?</span>
 		<div class="col-6">
@@ -39,30 +39,32 @@
 			>
 		</div>
 		@if (role.value === 'adopter'){
-		<div class="col-md-6">
-			<label for="firstName" class="form-label user-select-none"
-				>Nombre(s)</label
-			>
-			<input
-				type="text"
-				class="form-control"
-				id="firstName"
-				autocomplete="name"
-				formControlName="firstName"
-			/>
-		</div>
-		<div class="col-md-6">
-			<label for="lastName" class="form-label user-select-none"
-				>Apellido(s)</label
-			>
-			<input
-				type="text"
-				class="form-control"
-				id="lastName"
-				autocomplete="name"
-				formControlName="lastName"
-			/>
-		</div>
+		<ng-container formGroupName="fullName">
+			<div class="col-md-6">
+				<label for="firstName" class="form-label user-select-none"
+					>Nombre(s)</label
+				>
+				<input
+					type="text"
+					class="form-control"
+					id="firstName"
+					autocomplete="name"
+					formControlName="firstName"
+				/>
+			</div>
+			<div class="col-md-6">
+				<label for="lastName" class="form-label user-select-none"
+					>Apellido(s)</label
+				>
+				<input
+					type="text"
+					class="form-control"
+					id="lastName"
+					autocomplete="name"
+					formControlName="lastName"
+				/>
+			</div>
+		</ng-container>
 		} @else {
 		<div class="col-12">
 			<label for="refugeName" class="form-label user-select-none"
@@ -101,30 +103,32 @@
 				formControlName="userName"
 			/>
 		</div>
-		<div class="col-md-6">
-			<label for="password" class="form-label user-select-none"
-				>Contraseña</label
-			>
-			<input
-				type="password"
-				class="form-control"
-				id="password"
-				autocomplete="new-password"
-				formControlName="password"
-			/>
-		</div>
-		<div class="col-md-6">
-			<label for="confirmPassword" class="form-label user-select-none"
-				>Confirmar contraseña</label
-			>
-			<input
-				type="password"
-				class="form-control"
-				id="confirmPassword"
-				autocomplete="new-password"
-				formControlName="confirmPassword"
-			/>
-		</div>
+		<ng-container formGroupName="fullPassword">
+			<div class="col-md-6">
+				<label for="password" class="form-label user-select-none"
+					>Contraseña</label
+				>
+				<input
+					type="password"
+					class="form-control"
+					id="password"
+					autocomplete="new-password"
+					formControlName="password"
+				/>
+			</div>
+			<div class="col-md-6">
+				<label for="confirmPassword" class="form-label user-select-none"
+					>Confirmar contraseña</label
+				>
+				<input
+					type="password"
+					class="form-control"
+					id="confirmPassword"
+					autocomplete="new-password"
+					formControlName="confirmPassword"
+				/>
+			</div>
+		</ng-container>
 		@if (role.value === 'adopter'){
 		<div class="col-6">
 			<label for="birthDate" class="form-label user-select-none"
@@ -194,74 +198,78 @@
 			/>
 		</div>
 		}
-		<div class="col-6">
-			<label for="country" class="form-label user-select-none"
-				>País</label
-			>
-			<select
-				id="country"
-				class="form-select"
-				autocomplete="country"
-				formControlName="country"
-			>
-				<option value="1">One</option>
-				<option value="2">Two</option>
-				<option value="3">Three</option>
-			</select>
-		</div>
-		<div class="col-6">
-			<label for="state" class="form-label user-select-none"
-				>Provincia</label
-			>
-			<select
-				id="state"
-				class="form-select"
-				autocomplete="off"
-				formControlName="state"
-			>
-				<option value="1">One</option>
-				<option value="2">Two</option>
-				<option value="3">Three</option>
-			</select>
-		</div>
-		<div class="col-6">
-			<label for="city" class="form-label user-select-none">Ciudad</label>
-			<select
-				id="city"
-				class="form-select"
-				autocomplete="off"
-				formControlName="city"
-			>
-				<option value="1">One</option>
-				<option value="2">Two</option>
-				<option value="3">Three</option>
-			</select>
-		</div>
-		<div class="col-6">
-			<label for="zipCode" class="form-label user-select-none"
-				>Código postal</label
-			>
-			<input
-				type="text"
-				id="zipCode"
-				class="form-control"
-				autocomplete="postal-code"
-				formControlName="zipCode"
-			/>
-		</div>
-		<div class="col-12">
-			<label for="address" class="form-label user-select-none"
-				>Domicilio</label
-			>
-			<input
-				type="text"
-				class="form-control"
-				id="address"
-				placeholder="Av. Siempreviva 123"
-				autocomplete="address-line1"
-				formControlName="address"
-			/>
-		</div>
+		<ng-container formGroupName="address">
+			<div class="col-6">
+				<label for="country" class="form-label user-select-none"
+					>País</label
+				>
+				<select
+					id="country"
+					class="form-select"
+					autocomplete="country"
+					formControlName="country"
+				>
+					<option value="1">One</option>
+					<option value="2">Two</option>
+					<option value="3">Three</option>
+				</select>
+			</div>
+			<div class="col-6">
+				<label for="state" class="form-label user-select-none"
+					>Provincia</label
+				>
+				<select
+					id="state"
+					class="form-select"
+					autocomplete="off"
+					formControlName="state"
+				>
+					<option value="1">One</option>
+					<option value="2">Two</option>
+					<option value="3">Three</option>
+				</select>
+			</div>
+			<div class="col-6">
+				<label for="city" class="form-label user-select-none"
+					>Ciudad</label
+				>
+				<select
+					id="city"
+					class="form-select"
+					autocomplete="off"
+					formControlName="city"
+				>
+					<option value="1">One</option>
+					<option value="2">Two</option>
+					<option value="3">Three</option>
+				</select>
+			</div>
+			<div class="col-6">
+				<label for="zipCode" class="form-label user-select-none"
+					>Código postal</label
+				>
+				<input
+					type="text"
+					id="zipCode"
+					class="form-control"
+					autocomplete="postal-code"
+					formControlName="zipCode"
+				/>
+			</div>
+			<div class="col-12">
+				<label for="street" class="form-label user-select-none"
+					>Domicilio</label
+				>
+				<input
+					type="text"
+					class="form-control"
+					id="street"
+					placeholder="Av. Siempreviva 123"
+					autocomplete="address-line1"
+					formControlName="street"
+				/>
+			</div>
+		</ng-container>
 		<div class="col-12">
 			<div class="form-check">
 				<input

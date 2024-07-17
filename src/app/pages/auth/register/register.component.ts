@@ -13,16 +13,16 @@ import { passwordValidator } from './password-validator';
 	standalone: true,
 	imports: [ReactiveFormsModule],
 	templateUrl: './register.component.html',
-	styleUrls: ['../auth.css'],
+	styleUrls: ['/src/app/app.component.scss', '../auth.css'],
 })
 export class RegisterComponent {
 	constructor(private fb: FormBuilder) {
 		afterNextRender(() => {
 			const savedRole = localStorage.getItem('role');
 			if (savedRole) {
-				this.registerForm.get('role')?.setValue(savedRole);
+				this.role.setValue(savedRole);
 			}
-			this.registerForm.get('role')?.valueChanges.subscribe((value) => {
+			this.role.valueChanges.subscribe((value) => {
 				localStorage.setItem('role', value);
 			});
 		});
@@ -33,11 +33,11 @@ export class RegisterComponent {
 	}
 
 	get firstName() {
-		return this.registerForm.get('firstName') as FormControl;
+		return this.registerForm.get('fullName.firstName') as FormControl;
 	}
 
 	get lastName() {
-		return this.registerForm.get('lastName') as FormControl;
+		return this.registerForm.get('fullName.lastName') as FormControl;
 	}
 
 	get birthDate() {
@@ -49,61 +49,67 @@ export class RegisterComponent {
 	}
 
 	get country() {
-		return this.registerForm.get('country') as FormControl;
+		return this.registerForm.get('address.country') as FormControl;
 	}
 
 	get state() {
-		return this.registerForm.get('state') as FormControl;
+		return this.registerForm.get('address.state') as FormControl;
 	}
 
 	get city() {
-		return this.registerForm.get('city') as FormControl;
+		return this.registerForm.get('address.city') as FormControl;
 	}
 
 	get zipCode() {
-		return this.registerForm.get('zipCode') as FormControl;
+		return this.registerForm.get('address.zipCode') as FormControl;
 	}
 
-	get address() {
-		return this.registerForm.get('address') as FormControl;
+	get street() {
+		return this.registerForm.get('address.street') as FormControl;
 	}
 
-	public registerForm: FormGroup = this.fb.group(
-		{
-			role: ['', Validators.required],
-			firstName: [null],
-			lastName: [null],
-			refugeName: [null],
-			email: ['', [Validators.required, Validators.email]],
-			userName: ['', Validators.required],
-			password: [
-				'',
-				[
-					Validators.required,
-					Validators.pattern(
-						'^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*-/])[A-Za-z\\d!@#$%^&*-/]{8,}$'
-					),
+	public registerForm: FormGroup = this.fb.group({
+		role: ['', Validators.required],
+		fullName: this.fb.group({
+			firstName: ['', Validators.required],
+			lastName: ['', Validators.required],
+		}),
+		refugeName: [''],
+		email: ['', [Validators.required, Validators.email]],
+		userName: ['', Validators.required],
+		fullPassword: this.fb.group(
+			{
+				password: [
+					'',
+					[
+						Validators.required,
+						Validators.pattern(
+							'^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*-/])[A-Za-z\\d!@#$%^&*-/]{8,}$'
+						),
+					],
 				],
-			],
-			confirmPassword: ['', Validators.required],
-			birthDate: [null],
-			codeCountry: ['', Validators.required],
-			phoneNumber: ['', Validators.required],
+				confirmPassword: ['', Validators.required],
+			},
+			{ validators: passwordValidator.passwordsMatch }
+		),
+		birthDate: [''],
+		codeCountry: ['', Validators.required],
+		phoneNumber: ['', Validators.required],
+		address: this.fb.group({
 			country: ['', Validators.required],
 			state: ['', Validators.required],
 			city: ['', Validators.required],
-			zipCode: ['', [Validators.pattern('^[0-9]{3,6}$')]],
-			address: ['', Validators.required],
-			terms: ['', [Validators.requiredTrue]],
-		},
-		{ validators: passwordValidator.passwordsMatch }
-	);
+			zipCode: ['', Validators.required],
+			street: ['', Validators.required],
+		}),
+		terms: ['', [Validators.requiredTrue]],
+	});
 
 	public reset() {
-		this.firstName.setValue(null);
-		this.lastName.setValue(null);
-		this.birthDate.setValue(null);
-		this.refugeName.setValue(null);
+		this.firstName.reset();
+		this.lastName.reset();
+		this.birthDate.reset();
+		this.refugeName.reset();
 	}
 
 	public register() {
