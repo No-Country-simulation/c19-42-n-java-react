@@ -1,0 +1,70 @@
+<div class="container mb-4">
+	<h2 class="fw-bold">¡Hola! Bienvenido de nuevo</h2>
+	<small class="fw-light">Inicia sesión con tu cuenta de Adoptify</small>
+</div>
+
+<div class="container">
+	<form class="row g-3" [formGroup]="loginForm" (submit)="login()">
+		<div class="col-12">
+			<label for="userName" class="form-label user-select-none"
+				>Usuario</label
+			>
+			<input
+				name="userName"
+				type="text"
+				class="form-control"
+				id="userName"
+				autocomplete="username"
+				required
+				formControlName="userName"
+			/>
+			<div
+				class="alert alert-warning mt-3"
+				role="alert"
+				[hidden]="userName.valid || userName.pristine"
+			>
+				El nombre de usuario es requerido
+			</div>
+		</div>
+		<div class="col-12">
+			<label for="password" class="form-label user-select-none"
+				>Contraseña</label
+			>
+			<input
+				name="password"
+				type="password"
+				class="form-control"
+				id="password"
+				autocomplete="new-password"
+				required
+				formControlName="password"
+			/>
+			<div
+				class="alert alert-warning mt-3"
+				role="alert"
+				[hidden]="password.valid || password.pristine"
+			>
+				La contraseña es requerida
+			</div>
+		</div>
+		@if (loginError) {
+		<div class="col-12">
+			<div class="alert alert-danger" role="alert">
+				{{ loginError }}
+			</div>
+		</div>
+		}
+		<div class="col-12">
+			<button
+				type="submit"
+				class="btn btn-primary w-100"
+				[disabled]="loginForm.invalid"
+			>
+				Iniciar sesión
+			</button>
+		</div>
+		<span class="col-12 text-center"
+			>¿No tienes una cuenta?<a href="">¡Regístrate!</a></span
+		>
+	</form>
+</div>

@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary mb-5 p-4 gap-2">
+	<a class="navbar-brand p-0" routerLink="/">Adoptify</a>
+	<button
+		class="navbar-toggler"
+		type="button"
+		data-bs-toggle="collapse"
+		data-bs-target="#navbarNavDropdown"
+		aria-controls="navbarNavDropdown"
+		aria-expanded="false"
+		aria-label="Abrir menú de navegación"
+	>
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<ul class="navbar-nav gap-3 align-items-lg-center flex-lg-grow-1">
+			@for (route of headerRoutes; track route) {
+			<li class="nav-item">
+				<a
+					class="nav-link m-0 p-0"
+					routerLink="{{ route.link }}"
+					routerLinkActive="active"
+					ariaCurrentWhenActive="page"
+					>{{ route.title }}</a
+				>
+			</li>
+			}
+			<li class="d-flex gap-2 align-items-center ms-lg-auto">
+				@if (!userLoginOn) {
+				<a
+					type="button"
+					class="btn btn-outline-primary"
+					routerLink="/auth/login"
+					routerLinkActive="active"
+					ariaCurrentWhenActive="page"
+				>
+					Iniciar sesión
+				</a>
+				<a
+					type="button"
+					class="btn btn-primary"
+					routerLink="/auth/register"
+					routerLinkActive="active"
+					ariaCurrentWhenActive="page"
+				>
+					Registrarse
+				</a>
+				} @else {
+				<span>Hola, {{ userData?.firstName }}!</span>
+				<button
+					type="button"
+					class="btn btn-primary"
+					(click)="ngOnDestroy()"
+				>
+					Cerrar sesión
+				</button>
+				}
+			</li>
+		</ul>
+	</div>
+</nav>
