@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://host.docker.internal:3306/adoptapp_estadoadop?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/adoptapp_estadoadop?createDatabaseIfNotExist=true
     username: root
-    password:
+    password: naruto12
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -23,6 +23,6 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone: http://eureka-sv:8761/eureka
+      defaultZone: http://localhost:8761/eureka
   instance:
     prefer-ip-address: true
