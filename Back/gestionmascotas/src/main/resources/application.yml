@@ -1,9 +1,11 @@
 server:
-  port: 8083
+  port: 8081
 
 spring:
+  application:
+    name: gestionmascotas
   datasource:
-    url: jdbc:mysql://localhost:3306/adoptante_db?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/adoptapp_gestionmascota?createDatabaseIfNotExist=true
     username: root
     password: naruto12
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -15,14 +17,12 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
 
-  application:
-    name: ADOPTANTE-SERVICE
 
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
     fetch-registry: true
     register-with-eureka: true
     service-url:
       defaultZone: http://localhost:8761/eureka
-  instance:
-    prefer-ip-address: true

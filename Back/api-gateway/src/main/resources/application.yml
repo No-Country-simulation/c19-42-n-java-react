@@ -25,6 +25,11 @@ spring:
           predicates:
             - Path=/protectora/**
 
+        - id: GESTION-MASCOTA
+          uri: lb://GESTION-MASCOTA
+          predicates:
+            - Path=/mascota/**
+
 eureka:
   instance:
     prefer-ip-address: true

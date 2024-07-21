@@ -1,0 +1,62 @@
+version: '2.1'
+
+services:
+  eureka-sv:
+    build: eureka-sv
+    mem_limit: 512m
+    ports:
+      - "8761:8761"
+    networks:
+      - 'adoptify-network'
+
+  solicitudadopcion:
+    build: solicitudadopcion
+    mem_limit: 512m
+    ports:
+      - "8082:8082"
+    networks:
+      - 'adoptify-network'
+
+  gestionmascotas:
+    build: gestionmascotas
+    mem_limit: 512m
+    ports:
+      - "8081:8081"
+    networks:
+      - 'adoptify-network'
+
+  estadoadopservice:
+    build: estadoadopservice
+    mem_limit: 512m
+    ports:
+      - "8084:8084"
+    networks:
+      - 'adoptify-network'
+
+  auth-service:
+    build: auth-service
+    mem_limit: 512m
+    ports:
+      - "8003:8003"
+    networks:
+      - 'adoptify-network'
+
+  api-gateway:
+    build: api-gateway
+    mem_limit: 512m
+    ports:
+      - "8060:8060"
+    networks:
+      - 'adoptify-network'
+
+  adoptante-service:
+    build: adoptante-service
+    mem_limit: 512m
+    ports:
+      - "8083:8083"
+    networks:
+      - 'adoptify-network'
+
+
+networks:
+  adoptify-network:
