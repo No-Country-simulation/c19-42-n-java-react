@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.noCountry</groupId>
-	<artifactId>estadoadopService</artifactId>
+	<artifactId>solicitudadopcion</artifactId>
 	<version>0.0.1</version>
-	<name>estadoadopService</name>
+	<name>solicitudadopcion</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
