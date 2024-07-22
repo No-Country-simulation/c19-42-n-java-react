@@ -1,0 +1,5 @@
+@media (width >= 992px) {
+	.container {
+		width: 45%;
+	}
+}
