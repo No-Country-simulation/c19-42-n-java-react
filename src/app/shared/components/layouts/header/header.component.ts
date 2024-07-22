@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { title } from 'process';
 
 @Component({
 	selector: 'app-header',
@@ -12,17 +13,14 @@ export class HeaderComponent {
 	constructor() {}
 
 	public headerRoutes = [
+		{ title: 'Inicio', link: '/' },
 		{
-			title: 'Animales',
+			title: 'Cómo Adoptar',
+			link: '/how-to-adopt',
+		},
+		{
+			title: 'Galería',
 			link: '/gallery',
-		},
-		{
-			title: 'Refugios',
-			link: '/refuges',
-		},
-		{
-			title: 'Donaciones',
-			link: '/donations',
 		},
 		{
 			title: 'Contacto',
