@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:4200")
 public class AuthController {
 
     @Autowired
@@ -20,18 +20,15 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
-        // Verificar si el nombre de usuario y la contraseña no están vacíos
         if (request.getUsername() == null || request.getPassword() == null ||
                 request.getUsername().isEmpty() || request.getPassword().isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Nombre de usuario y contraseña son obligatorios");
         }
 
         try {
-            // Realizar la autenticación
             AuthResponse authResponse = authService.login(request);
             return ResponseEntity.ok(authResponse);
         } catch (AuthenticationException e) {
-            // Manejar casos en los que la autenticación falle
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales no válidas");
         }
     }
