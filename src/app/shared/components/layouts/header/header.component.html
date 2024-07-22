@@ -25,7 +25,6 @@
 			</li>
 			}
 			<li class="d-flex gap-2 align-items-center ms-lg-auto">
-				@if (!userLoginOn) {
 				<a
 					type="button"
 					class="btn btn-outline-primary"
@@ -44,16 +43,6 @@
 				>
 					Registrarse
 				</a>
-				} @else {
-				<span>Hola, {{ userData?.firstName }}!</span>
-				<button
-					type="button"
-					class="btn btn-primary"
-					(click)="ngOnDestroy()"
-				>
-					Cerrar sesión
-				</button>
-				}
 			</li>
 		</ul>
 	</div>
