@@ -1,9 +1,7 @@
-$primary: #af1414;
-$secondary: #27158f;
+.ng-valid:not(form).ng-touched {
+	background-color: rgba(0, 128, 0, 0.1);
+}
 
-$theme-colors: (
-	"primary": $primary,
-	"secondary": $secondary,
-);
-
-@import "../../node_modules/bootstrap/scss/bootstrap";
+.ng-invalid:not(form).ng-touched {
+	background-color: rgba(255, 0, 0, 0.1);
+}

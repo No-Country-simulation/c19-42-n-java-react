@@ -9,7 +9,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 	styleUrls: ['./header.component.css', '/src/app/app.component.scss'],
 })
 export class HeaderComponent {
-	public isLogged: boolean = false;
+	constructor() {}
 
 	public headerRoutes = [
 		{
