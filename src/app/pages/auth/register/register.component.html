@@ -1,0 +1,409 @@
+<div class="container">
+	<div class="row mb-4">
+		<h2 class="fw-bold">¡Bienvenido a Adoptify!</h2>
+		<small class="fw-light"
+			>Completa tus datos para formar parte de nuestra familia o si ya
+			tienes una cuenta puedes <a href="">ingresar aquí</a></small
+		>
+	</div>
+	<div class="row mb-4 g-3">
+		<span class="col-12 user-select-none">¿Cómo te identificas?</span>
+		<div class="col-6">
+			<input
+				type="radio"
+				class="btn-check"
+				id="isAdopter"
+				autocomplete="off"
+				[checked]="formRole === 'adopter'"
+				(change)="changeFormRole('adopter')"
+			/>
+			<label class="btn btn-outline-success w-100" for="isAdopter"
+				>Adoptante</label
+			>
+		</div>
+		<div class="col-6">
+			<input
+				type="radio"
+				class="btn-check"
+				id="isShelter"
+				autocomplete="off"
+				[checked]="formRole === 'shelter'"
+				(change)="changeFormRole('shelter')"
+			/>
+			<label class="btn btn-outline-danger w-100" for="isShelter"
+				>Refugio</label
+			>
+		</div>
+	</div>
+	@if (formRole === 'adopter'){
+	<form class="row g-3" [formGroup]="adopterForm" (submit)="register()">
+		<ng-container formGroupName="fullName">
+			<div class="col-md-6">
+				<label for="firstName" class="form-label user-select-none"
+					>Nombre(s)</label
+				>
+				<input
+					type="text"
+					class="form-control"
+					id="firstName"
+					autocomplete="name"
+					formControlName="firstName"
+				/>
+			</div>
+			<div class="col-md-6">
+				<label for="lastName" class="form-label user-select-none"
+					>Apellido(s)</label
+				>
+				<input
+					type="text"
+					class="form-control"
+					id="lastName"
+					autocomplete="name"
+					formControlName="lastName"
+				/>
+			</div>
+		</ng-container>
+		<div class="col-12">
+			<label for="email" class="form-label user-select-none"
+				>Correo electrónico</label
+			>
+			<input
+				type="email"
+				class="form-control"
+				id="email"
+				autocomplete="email"
+				formControlName="email"
+			/>
+		</div>
+		<div class="col-12">
+			<label for="userName" class="form-label user-select-none"
+				>Nombre de usuario</label
+			>
+			<input
+				type="text"
+				class="form-control"
+				id="userName"
+				autocomplete="username"
+				formControlName="username"
+			/>
+		</div>
+		<ng-container formGroupName="fullPassword">
+			<div class="col-md-6">
+				<label for="password" class="form-label user-select-none"
+					>Contraseña</label
+				>
+				<input
+					type="password"
+					class="form-control"
+					id="password"
+					autocomplete="new-password"
+					formControlName="password"
+				/>
+			</div>
+			<div class="col-md-6">
+				<label for="confirmPassword" class="form-label user-select-none"
+					>Confirmar contraseña</label
+				>
+				<input
+					type="password"
+					class="form-control"
+					id="confirmPassword"
+					autocomplete="new-password"
+					formControlName="confirmPassword"
+				/>
+			</div>
+		</ng-container>
+		<div class="col-12 col-md-6">
+			<label for="birthDate" class="form-label user-select-none"
+				>Fecha de nacimiento</label
+			>
+			<input
+				type="date"
+				class="form-control"
+				id="birthDate"
+				autocomplete="bday"
+				formControlName="birthDate"
+			/>
+		</div>
+		<div class="col-12 col-md-6">
+			<label for="phoneNumber" class="form-label user-select-none"
+				>Teléfono celular</label
+			>
+			<input
+				type="tel"
+				class="form-control"
+				id="phoneNumber"
+				placeholder="9 11 6484-4946"
+				autocomplete="mobile"
+				formControlName="phoneNumber"
+			/>
+		</div>
+		<ng-container formGroupName="address">
+			<div class="col-6">
+				<label for="country" class="form-label user-select-none"
+					>País</label
+				>
+				<select
+					id="country"
+					class="form-select"
+					autocomplete="country"
+					formControlName="country"
+				>
+					<option value="1">One</option>
+					<option value="2">Two</option>
+					<option value="3">Three</option>
+				</select>
+			</div>
+			<div class="col-6">
+				<label for="state" class="form-label user-select-none"
+					>Provincia</label
+				>
+				<select
+					id="state"
+					class="form-select"
+					autocomplete="off"
+					formControlName="state"
+				>
+					<option value="1">One</option>
+					<option value="2">Two</option>
+					<option value="3">Three</option>
+				</select>
+			</div>
+			<div class="col-6">
+				<label for="city" class="form-label user-select-none"
+					>Ciudad</label
+				>
+				<select
+					id="city"
+					class="form-select"
+					autocomplete="off"
+					formControlName="city"
+				>
+					<option value="1">One</option>
+					<option value="2">Two</option>
+					<option value="3">Three</option>
+				</select>
+			</div>
+			<div class="col-6">
+				<label for="zipCode" class="form-label user-select-none"
+					>Código postal</label
+				>
+				<input
+					type="text"
+					id="zipCode"
+					class="form-control"
+					autocomplete="postal-code"
+					formControlName="zipCode"
+				/>
+			</div>
+			<div class="col-12">
+				<label for="street" class="form-label user-select-none"
+					>Domicilio</label
+				>
+				<input
+					type="text"
+					class="form-control"
+					id="street"
+					placeholder="Av. Siempreviva 123"
+					autocomplete="address-line1"
+					formControlName="street"
+				/>
+			</div>
+		</ng-container>
+		<div class="col-12">
+			<div class="form-check">
+				<input
+					class="form-check-input"
+					type="checkbox"
+					id="terms"
+					formControlName="terms"
+				/>
+				<label class="form-check-label user-select-none" for="terms">
+					Acepto los términos y condiciones
+				</label>
+			</div>
+		</div>
+		<div class="col-12">
+			<button
+				type="submit"
+				class="btn btn-primary w-100"
+				[disabled]="adopterForm.invalid"
+			>
+				Registrarse
+			</button>
+		</div>
+	</form>
+	} @else{
+	<form class="row g-3" [formGroup]="shelterForm" (submit)="register()">
+		<div class="col-12">
+			<label for="shelterName" class="form-label user-select-none"
+				>Nombre del refugio</label
+			>
+			<input
+				type="text"
+				class="form-control"
+				id="shelterName"
+				autocomplete="name"
+				formControlName="shelterName"
+			/>
+		</div>
+		<div class="col-12">
+			<label for="email" class="form-label user-select-none"
+				>Correo electrónico</label
+			>
+			<input
+				type="email"
+				class="form-control"
+				id="email"
+				autocomplete="email"
+				formControlName="email"
+			/>
+		</div>
+		<div class="col-12">
+			<label for="userName" class="form-label user-select-none"
+				>Nombre de usuario</label
+			>
+			<input
+				type="text"
+				class="form-control"
+				id="userName"
+				autocomplete="username"
+				formControlName="username"
+			/>
+		</div>
+		<ng-container formGroupName="fullPassword">
+			<div class="col-md-6">
+				<label for="password" class="form-label user-select-none"
+					>Contraseña</label
+				>
+				<input
+					type="password"
+					class="form-control"
+					id="password"
+					autocomplete="new-password"
+					formControlName="password"
+				/>
+			</div>
+			<div class="col-md-6">
+				<label for="confirmPassword" class="form-label user-select-none"
+					>Confirmar contraseña</label
+				>
+				<input
+					type="password"
+					class="form-control"
+					id="confirmPassword"
+					autocomplete="new-password"
+					formControlName="confirmPassword"
+				/>
+			</div>
+		</ng-container>
+		<div class="col-12">
+			<label for="phoneNumber" class="form-label user-select-none"
+				>Teléfono celular</label
+			>
+			<input
+				type="tel"
+				class="form-control"
+				id="phoneNumber"
+				placeholder="9 11 6484-4946"
+				autocomplete="mobile"
+				formControlName="phoneNumber"
+			/>
+		</div>
+		<ng-container formGroupName="address">
+			<div class="col-6">
+				<label for="country" class="form-label user-select-none"
+					>País</label
+				>
+				<select
+					id="country"
+					class="form-select"
+					autocomplete="country"
+					formControlName="country"
+				>
+					<option value="1">One</option>
+					<option value="2">Two</option>
+					<option value="3">Three</option>
+				</select>
+			</div>
+			<div class="col-6">
+				<label for="state" class="form-label user-select-none"
+					>Provincia</label
+				>
+				<select
+					id="state"
+					class="form-select"
+					autocomplete="off"
+					formControlName="state"
+				>
+					<option value="1">One</option>
+					<option value="2">Two</option>
+					<option value="3">Three</option>
+				</select>
+			</div>
+			<div class="col-6">
+				<label for="city" class="form-label user-select-none"
+					>Ciudad</label
+				>
+				<select
+					id="city"
+					class="form-select"
+					autocomplete="off"
+					formControlName="city"
+				>
+					<option value="1">One</option>
+					<option value="2">Two</option>
+					<option value="3">Three</option>
+				</select>
+			</div>
+			<div class="col-6">
+				<label for="zipCode" class="form-label user-select-none"
+					>Código postal</label
+				>
+				<input
+					type="text"
+					id="zipCode"
+					class="form-control"
+					autocomplete="postal-code"
+					formControlName="zipCode"
+				/>
+			</div>
+			<div class="col-12">
+				<label for="street" class="form-label user-select-none"
+					>Domicilio</label
+				>
+				<input
+					type="text"
+					class="form-control"
+					id="street"
+					placeholder="Av. Siempreviva 123"
+					autocomplete="address-line1"
+					formControlName="street"
+				/>
+			</div>
+		</ng-container>
+		<div class="col-12">
+			<div class="form-check">
+				<input
+					class="form-check-input"
+					type="checkbox"
+					id="terms"
+					formControlName="terms"
+				/>
+				<label class="form-check-label user-select-none" for="terms">
+					Acepto los términos y condiciones
+				</label>
+			</div>
+		</div>
+		<div class="col-12">
+			<button
+				type="submit"
+				class="btn btn-primary w-100"
+				[disabled]="shelterForm.invalid"
+			>
+				Registrarse
+			</button>
+		</div>
+	</form>
+	}
+</div>
