@@ -1,0 +1,137 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+$custom-primary-palette: (
+	50: #ffe9e9,
+	100: #ffcbcb,
+	200: #f5898c,
+	300: #f20d46,
+	400: #da0036,
+	500: #954500,
+	600: #7a3800,
+	700: #5f2a00,
+	800: #451d00,
+	900: #2a0f00,
+	contrast: (
+		50: #000000,
+		100: #000000,
+		200: #000000,
+		300: #ffffff,
+		400: #ffffff,
+		500: #ffffff,
+		600: #ffffff,
+		700: #ffffff,
+		800: #ffffff,
+		900: #ffffff,
+	),
+);
+
+$custom-neutral-palette: (
+	50: #fcfcfc,
+	100: #f4f4f4,
+	200: #e9e9e9,
+	300: #919191,
+	400: #6b6b6b,
+	500: #4a4a4a,
+	600: #3d3d3d,
+	700: #303030,
+	800: #242424,
+	900: #171717,
+	contrast: (
+		50: #000000,
+		100: #000000,
+		200: #000000,
+		300: #ffffff,
+		400: #ffffff,
+		500: #ffffff,
+		600: #ffffff,
+		700: #ffffff,
+		800: #ffffff,
+		900: #ffffff,
+	),
+);
+
+/* $custom-text-palette: (
+	primary: #212121,
+	secondary: #666666,
+	disabled: #9e9e9e,
+	contrast: #fcfcfc,
+);
+
+$custom-status-palette: (
+	green: #d1e7dd,
+	purple: #dfccfb,
+	lime: #ddffbb,
+	yellow: #fff4e5,
+	pink: #fedeff,
+	fucsia: #ffacc7,
+	gray: #ffe7e7,
+	blue: #d2daff,
+	lightblue: #c1efff,
+); */
+
+$custom-primary: mat.define-palette($custom-primary-palette);
+$custom-neutral: mat.define-palette($custom-neutral-palette);
+$custom-accent: mat.define-palette(mat.$blue-palette);
+/* $custom-text: mat.define-palette($custom-text-palette);
+$custom-status: mat.define-palette($custom-status-palette); */
+
+// Define the theme object.
+$c19-42-n-java-react-theme: mat.define-theme(
+	(
+		color: (
+			theme-type: light,
+			primary: mat.$azure-palette,
+			tertiary: mat.$blue-palette,
+		),
+		density: (
+			scale: 0,
+		),
+	)
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+:root {
+	@include mat.all-component-themes($c19-42-n-java-react-theme);
+}
+
+// Comment out the line below if you want to use the pre-defined typography utility classes.
+// For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
+// @include mat.typography-hierarchy($c19-42-n-java-react-theme);
+
+// Comment out the line below if you want to use the deprecated `color` inputs.
+// @include mat.color-variants-backwards-compatibility($c19-42-n-java-react-theme);
+
+html,
+body {
+	height: 100%;
+}
+body {
+	margin: 0;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+h1 {
+	font-size: 64px;
+}
+
+h2 {
+	font-size: 56px;
+}
+
+h3 {
+	font-size: 48px;
+}
+
+h4 {
+	font-size: 34px;
+}

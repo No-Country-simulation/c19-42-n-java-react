@@ -1,3 +1,366 @@
 <div class="container">
-	<span>Hola!</span>
+	<swiper-container class="mb-4" pagination loop>
+		<swiper-slide
+			><img src="https://picsum.photos/id/237/500/300" />
+			<span>No compres, adopta</span></swiper-slide
+		>
+		<swiper-slide
+			><img src="https://picsum.photos/id/238/500/300" />
+			<span>Encuentra a tu nuevo mejor amigo</span></swiper-slide
+		>
+		<swiper-slide
+			><img src="https://picsum.photos/id/239/500/300" />
+			<span>Dales una segunda oportunidad</span>
+		</swiper-slide>
+	</swiper-container>
+
+	<section class="d-flex flex-column">
+		<app-section-title text="En adopción actualmente" />
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mb-3">
+			<div class="col">
+				<mat-card appearance="outlined">
+					<mat-card-header class="p-3">
+						<mat-card-title>Shiba Inu</mat-card-title>
+						<mat-card-subtitle>Dog Breed</mat-card-subtitle>
+					</mat-card-header>
+					<img
+						mat-card-image
+						src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+						alt="Photo of a Shiba Inu"
+					/>
+					<div class="p-3">
+						<mat-card-content class="p-0 mb-2">
+							<p>
+								The Shiba Inu is the smallest of the six
+								original and distinct spitz breeds of dog from
+								Japan. A small, agile dog that copes very well
+								with mountainous terrain, the Shiba Inu was
+								originally bred for hunting.
+							</p>
+						</mat-card-content>
+						<mat-card-actions class="p-0">
+							<a mat-flat-button routerLink="/gallery">Adoptar</a>
+						</mat-card-actions>
+					</div>
+				</mat-card>
+			</div>
+			<div class="col">
+				<mat-card appearance="outlined">
+					<mat-card-header class="p-3">
+						<mat-card-title>Shiba Inu</mat-card-title>
+						<mat-card-subtitle>Dog Breed</mat-card-subtitle>
+					</mat-card-header>
+					<img
+						mat-card-image
+						src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+						alt="Photo of a Shiba Inu"
+					/>
+					<div class="p-3">
+						<mat-card-content class="p-0 mb-2">
+							<p>
+								The Shiba Inu is the smallest of the six
+								original and distinct spitz breeds of dog from
+								Japan. A small, agile dog that copes very well
+								with mountainous terrain, the Shiba Inu was
+								originally bred for hunting.
+							</p>
+						</mat-card-content>
+						<mat-card-actions class="p-0">
+							<a mat-flat-button routerLink="/gallery">Adoptar</a>
+						</mat-card-actions>
+					</div>
+				</mat-card>
+			</div>
+			<div class="col">
+				<mat-card appearance="outlined">
+					<mat-card-header class="p-3">
+						<mat-card-title>Shiba Inu</mat-card-title>
+						<mat-card-subtitle>Dog Breed</mat-card-subtitle>
+					</mat-card-header>
+					<img
+						mat-card-image
+						src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+						alt="Photo of a Shiba Inu"
+					/>
+					<div class="p-3">
+						<mat-card-content class="p-0 mb-2">
+							<p>
+								The Shiba Inu is the smallest of the six
+								original and distinct spitz breeds of dog from
+								Japan. A small, agile dog that copes very well
+								with mountainous terrain, the Shiba Inu was
+								originally bred for hunting.
+							</p>
+						</mat-card-content>
+						<mat-card-actions class="p-0">
+							<a mat-flat-button routerLink="/gallery">Adoptar</a>
+						</mat-card-actions>
+					</div>
+				</mat-card>
+			</div>
+		</div>
+		<a mat-stroked-button routerLink="/gallery" class="align-self-end"
+			>Ver más</a
+		>
+	</section>
+
+	<section class="d-flex flex-column">
+		<mat-card appearance="outlined">
+			<img
+				mat-card-image
+				src="https://material.angular.io/assets/img/examples/shiba1.jpg"
+				alt="Photo of a Shiba Inu"
+				class="w-100"
+			/>
+			<div class="p-3">
+				<mat-card-content class="p-0 mb-2">
+					<h3>Sobre Nosotros</h3>
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Laboriosam reiciendis, odio dolore suscipit dolorum
+						dignissimos quia minima impedit eligendi repellat sunt
+						corporis id rem est vero laudantium nostrum iure modi
+						hic, mollitia iste tenetur eum. Blanditiis tempora,
+						aspernatur ea eos quam quidem repudiandae autem
+						recusandae dolorum! Fugiat, libero aliquam commodi ea
+						repudiandae.
+					</p>
+				</mat-card-content>
+				<mat-card-actions class="p-0">
+					<a
+						mat-stroked-button
+						routerLink="/gallery"
+						class="align-self-end"
+						>Ver más</a
+					>
+				</mat-card-actions>
+			</div>
+		</mat-card>
+	</section>
+
+	<section>
+		<app-section-title text="Historias de adopción" />
+		<div class="row row-cols-1 row-cols-sm-2 g-4 mb-3">
+			<div class="col">
+				<mat-card appearance="outlined">
+					<img
+						mat-card-image
+						src="https://material.angular.io/assets/img/examples/shiba1.jpg"
+						alt="Photo of a Shiba Inu"
+						class="w-100 h-100"
+					/>
+				</mat-card>
+			</div>
+			<div class="col">
+				<mat-card appearance="outlined">
+					<img
+						mat-card-image
+						src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+						alt="Photo of a Shiba Inu"
+						class="w-100 h-100"
+					/>
+				</mat-card>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<app-section-title text="Nuestros patrocinadores" />
+		<div class="logos">
+			<div class="logo_items">
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+			</div>
+			<div class="logo_items">
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+				<img
+					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
+				/>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<app-section-title text="Nuestro equipo" />
+		<div class="row row-cols-2 row-cols-md-4 g-4 mb-3">
+			@for (teamMember of teamMembers; track teamMember) {
+			<div class="col">
+				<mat-card appearance="outlined" class="h-100">
+					<img
+						mat-card-image
+						src="{{ teamMember.photo }}"
+						alt="Photo of a Shiba Inu"
+						class="card-team_member-photo"
+					/>
+					<div class="d-flex flex-column gap-3 p-2 h-100">
+						<mat-card-content
+							class="d-flex flex-column gap-2 text-center flex-grow-1 h-100"
+						>
+							<span
+								class="card-team_member-name fw-bold flex-grow-1 text-center"
+								>{{ teamMember.name }}</span
+							>
+							<span class="card-team_member-position">{{
+								teamMember.position
+							}}</span>
+						</mat-card-content>
+						<mat-card-actions>
+							<a
+								mat-flat-button
+								href="{{ teamMember.linkedIn }}"
+								class="w-100"
+								target="_blank"
+								>LinkedIn</a
+							>
+						</mat-card-actions>
+					</div>
+				</mat-card>
+			</div>
+			}
+		</div>
+	</section>
 </div>
