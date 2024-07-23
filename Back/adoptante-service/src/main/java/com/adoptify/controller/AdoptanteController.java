@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/adoptante")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("*")
 public class AdoptanteController {
 
     @Autowired
