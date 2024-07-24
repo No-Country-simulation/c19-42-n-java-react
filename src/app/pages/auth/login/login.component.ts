@@ -6,9 +6,9 @@ import {
 	FormControl,
 	Validators,
 } from '@angular/forms';
+import { Login } from '../../../core/interfaces/Login';
+import { LoginService } from '../../../core/services/login.service';
 import { Router } from '@angular/router';
-import { LoginService } from './services/login.service';
-import { loginRequest } from './services/loginRequest';
 
 @Component({
 	selector: 'app-login',
@@ -24,7 +24,7 @@ export class LoginComponent {
 		private loginService: LoginService
 	) {}
 
-	public loginError: string = '';
+	public loginErrorMessage: string = '';
 
 	get userName() {
 		return this.loginForm.get('userName') as FormControl;
@@ -35,31 +35,45 @@ export class LoginComponent {
 	}
 
 	public loginForm: FormGroup = this.fb.group({
-		userName: ['ignacio', Validators.required],
+		userName: ['ignacioadoptante', Validators.required],
 		password: ['', Validators.required],
 	});
 
 	public login() {
 		if (this.loginForm.valid) {
-			this.loginService
-				.login(this.loginForm.value as loginRequest)
-				.subscribe({
-					next: (response) => {
-						console.log('Login exitoso', response);
-					},
-					error: (error) => {
-						console.error('Error en el login', error);
-						this.loginError = error;
-					},
-					complete: () => {
-						console.info('Login completado');
-						this.router.navigateByUrl('/');
-						this.loginForm.reset();
-					},
-				});
+			const login: Login = {
+				username: this.userName.value,
+				password: this.password.value,
+			};
+
+			this.loginService.login(login).subscribe({
+				next: (response) => {
+					if (response.token) {
+						localStorage.setItem('token', response.token);
+					} else {
+						console.log('Usuario o contraseña incorrectos');
+						this.loginErrorMessage =
+							'Usuario o contraseña incorrectos';
+					}
+				},
+				error: (error) => {
+					console.log('Error en la petición', error.message, error);
+					(this.loginErrorMessage = 'Error en la petición'),
+						error.message;
+				},
+				complete: () => {
+					console.log('Petición completada');
+					this.router.navigateByUrl('/');
+					this.loginForm.reset();
+				},
+			});
 		} else {
 			console.log('Formulario inválido');
 			this.loginForm.markAllAsTouched();
 		}
+	}
+
+	public register() {
+		this.router.navigateByUrl('/auth/register');
 	}
 }

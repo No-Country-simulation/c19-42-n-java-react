@@ -1,6 +1,10 @@
 server:
   port: 8060
 
+logging:
+  level:
+    org.springframework.web: DEBUG
+
 spring:
   application:
     name: API-GATEWAY
@@ -12,8 +16,7 @@ spring:
           uri: lb://ADOPTANTE-SERVICE
           predicates:
             - Path=/adoptante/**
-          filters:
-            - AuthFilter
+
 
         - id: AUTH-SERVICE
           uri: lb://AUTH-SERVICE

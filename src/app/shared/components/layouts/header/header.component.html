@@ -25,7 +25,6 @@
 			</li>
 			}
 			<li class="d-flex gap-2 align-items-center ms-lg-auto">
-				@if (!userLoginOn) {
 				<a
 					type="button"
 					class="btn btn-outline-primary"
@@ -44,16 +43,15 @@
 				>
 					Registrarse
 				</a>
-				} @else {
-				<span>Hola, {{ userData?.firstName }}!</span>
-				<button
+				<a
 					type="button"
 					class="btn btn-primary"
-					(click)="ngOnDestroy()"
+					routerLink="/donate"
+					routerLinkActive="active"
+					ariaCurrentWhenActive="page"
 				>
-					Cerrar sesión
-				</button>
-				}
+					Donar
+				</a>
 			</li>
 		</ul>
 	</div>

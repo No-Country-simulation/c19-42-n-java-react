@@ -47,10 +47,10 @@
 				La contraseña es requerida
 			</div>
 		</div>
-		@if (loginError) {
+		@if (loginErrorMessage) {
 		<div class="col-12">
 			<div class="alert alert-danger" role="alert">
-				{{ loginError }}
+				{{ loginErrorMessage }}
 			</div>
 		</div>
 		}

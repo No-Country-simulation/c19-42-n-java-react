@@ -15,6 +15,7 @@ public class ProtectoraProfileRequest {
     private String ciudad;
     private int codigoPostal;
     private String celular;
-    private String username;
+	private Long usuarioId;
+	private String username;
     private String password;
 }
