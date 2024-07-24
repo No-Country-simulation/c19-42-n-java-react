@@ -11,19 +11,47 @@ interface State{
   providedIn: 'root'
 })
 export class PetService {
-  #state = signal<State>({
-    loading: true,
-    pets:[],
-  });
-  private apiUrl = `http://localhost:4200/manage-pet/list`;
-  
-  constructor(private http: HttpClient){
-    console.log('Cargando data');
-  }
+  private baseUrl = 'http://localhost:8081/mascota';
 
-  
+  constructor(private http: HttpClient) { }
 
   getAllPets(): Observable<Pet[]> {
-    return this.http.get<Pet[]>(this.apiUrl);
+    return this.http.get<Pet[]>(`${this.baseUrl}/listar`);
   }
+
+  getPetById(id: number): Observable<Pet> {
+    return this.http.get<Pet>(`${this.baseUrl}/${id}`);
+  }
+
+  createPet(pet: Pet): Observable<Pet> {
+    return this.http.post<Pet>(`${this.baseUrl}/crear`, pet);
+  }
+
+  updatePet(id: number, pet: Pet): Observable<Pet> {
+    return this.http.put<Pet>(`${this.baseUrl}/editar/${id}`, pet);
+  }
+
+  deletePet(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
+  }
+
+ // getAllPets(): Observable<Pet[]> {
+   // return this.http.get<Pet[]>(this.baseUrl);
+ // }
+
+  //getPetById(id: number): Observable<Pet> {
+    //return this.http.get<Pet>(`${this.baseUrl}/${id}`);
+  //}
+
+  //createPet(pet: Pet): Observable<Pet> {
+    //return this.http.post<Pet>(this.baseUrl, pet);
+  //}
+
+  //updatePet(id: number, pet: Pet): Observable<Pet> {
+    //return this.http.put<Pet>(`${this.baseUrl}/${id}`, pet);
+  //}
+
+  //deletePet(id: number): Observable<void> {
+   // return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  //}
 }

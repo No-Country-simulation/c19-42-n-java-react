@@ -1,1 +1,93 @@
-<p>pet-create works!</p>
+<!-- src/app/features/pet/pet-create/pet-create.component.html -->
+<div class="container col-md-6">
+	<h2>Agregar Nueva Mascota</h2>
+	<form class="mt-5" [formGroup]="createPetForm" (ngSubmit)="createPet()">
+		<div class="mb-3">
+			<label for="id" class="form-label">Id:</label>
+			<input id="id" formControlName="id" class="form-control" type="number" required>
+			<div *ngIf="createPetForm.get('id')?.invalid && (createPetForm.get('id')?.dirty || createPetForm.get('id')?.touched)" class="text-danger">
+			<small *ngIf="createPetForm.get('id')?.errors?.['required']">El nombre es obligatorio.</small>
+			</div>
+		</div>
+
+	  <div class="mb-3">
+		<label for="nombre" class="form-label">Nombre:</label>
+		<input id="nombre" formControlName="nombre" class="form-control" required>
+		<div *ngIf="createPetForm.get('nombre')?.invalid && (createPetForm.get('nombre')?.dirty || createPetForm.get('nombre')?.touched)" class="text-danger">
+		  <small *ngIf="createPetForm.get('nombre')?.errors?.['required']">El nombre es obligatorio.</small>
+		</div>
+	  </div>
+  
+	  <div class="mb-3">
+		<label for="raza" class="form-label">Raza:</label>
+		<input id="raza" formControlName="raza" class="form-control" required>
+		<div *ngIf="createPetForm.get('raza')?.invalid && (createPetForm.get('raza')?.dirty || createPetForm.get('raza')?.touched)" class="text-danger">
+		  <small *ngIf="createPetForm.get('raza')?.errors?.['required']">La raza es obligatoria.</small>
+		</div>
+	  </div>
+  
+	  <div class="mb-3">
+		<label for="tipoMascota" class="form-label">Tipo de Mascota:</label>
+		<select id="tipoMascota" formControlName="tipoMascota" class="form-select">
+		  <option value="">Seleccione un tipo de mascota</option>
+		  <option value="gato">Gato</option>
+		  <option value="perro">Perro</option>
+		  <option value="conejo">Conejo</option>
+		  <option value="hamster">Hámster</option>
+		  <option value="tortuga">Tortuga</option>
+		  <option value="ave">Ave</option>
+		</select>
+	  </div>
+  
+	  <div class="mb-3">
+		<label for="peso" class="form-label">Peso:</label>
+		<input id="peso" formControlName="peso" class="form-control" type="number" required>
+		<div *ngIf="createPetForm.get('peso')?.invalid && (createPetForm.get('peso')?.dirty || createPetForm.get('peso')?.touched)" class="text-danger">
+		  <small *ngIf="createPetForm.get('peso')?.errors?.['required']">El peso es obligatorio.</small>
+		  <small *ngIf="createPetForm.get('peso')?.errors?.['min']">El peso debe ser un número positivo.</small>
+		</div>
+	  </div>
+  
+	  <div class="mb-3">
+		<label for="pelaje" class="form-label">Pelaje:</label>
+		<input id="pelaje" formControlName="pelaje" class="form-control">
+	  </div>
+  
+	  <div class="mb-3">
+		<label for="sexo" class="form-label">Sexo:</label>
+		<input id="sexo" formControlName="sexo" class="form-control" required>
+		<div *ngIf="createPetForm.get('sexo')?.invalid && (createPetForm.get('sexo')?.dirty || createPetForm.get('sexo')?.touched)" class="text-danger">
+		  <small *ngIf="createPetForm.get('sexo')?.errors?.['required']">El sexo es obligatorio.</small>
+		</div>
+	  </div>
+  
+	  <div class="mb-3">
+		<label for="nivelActividad" class="form-label">Nivel de Actividad:</label>
+		<select id="nivelActividad" type="select" formControlName="nivelActividad" class="form-select">
+			<option value="alta">Alta</option>
+			<option value="media">Media</option>
+			<option value="baja">Baja</option>
+		</select>
+	  </div>
+  
+	  <div class="mb-3">
+		<label for="protectoraId" class="form-label">ID de Protectora:</label>
+		<input id="protectoraId" formControlName="protectoraId" class="form-control" type="number" required>
+		<div *ngIf="createPetForm.get('protectoraId')?.invalid && (createPetForm.get('protectoraId')?.dirty || createPetForm.get('protectoraId')?.touched)" class="text-danger">
+		  <small *ngIf="createPetForm.get('protectoraId')?.errors?.['required']">El ID de la protectora es obligatorio.</small>
+		</div>
+	  </div>
+  
+	  <div class="mb-3">
+		<label for="edad" class="form-label">Edad:</label>
+		<input id="edad" formControlName="edad" class="form-control" type="number" required>
+		<div *ngIf="createPetForm.get('edad')?.invalid && (createPetForm.get('edad')?.dirty || createPetForm.get('edad')?.touched)" class="text-danger">
+		  <small *ngIf="createPetForm.get('edad')?.errors?.['required']">La edad es obligatoria.</small>
+		  <small *ngIf="createPetForm.get('edad')?.errors?.['min']">La edad debe ser un número positivo.</small>
+		</div>
+	  </div>
+  
+	  <button type="submit" (click) = "createPet()" class="btn btn-primary">Guardar</button>
+	</form>
+  </div>
+  

@@ -1,1 +1,14 @@
-<p>pet-detail works!</p>
+<div class="card" *ngIf="pet">
+    <img [src]="pet.imagenUrl" class="card-img-top" alt="Imagen de {{ pet.nombre }}">
+    <div class="card-body">
+      <h5 class="card-title">{{ pet.nombre }}</h5>
+      <p class="card-text">Raza: {{ pet.raza }}</p>
+      <p class="card-text">Tipo de Mascota: {{ pet.tipoMascota }}</p>
+      <p class="card-text">Peso: {{ pet.peso }} kg</p>
+      <p class="card-text">Pelaje: {{ pet.pelaje }}</p>
+      <p class="card-text">Sexo: {{ pet.sexo }}</p>
+      <p class="card-text">Nivel de Actividad: {{ pet.nivelActividad ? 'Alta' : 'Baja' }}</p>
+      <p class="card-text">ID de Protectora: {{ pet.protectoraId }}</p>
+      <p class="card-text">Edad: {{ pet.edad }} años</p>
+    </div>
+  </div>

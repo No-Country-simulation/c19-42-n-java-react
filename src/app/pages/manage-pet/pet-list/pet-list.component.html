@@ -1,5 +1,40 @@
-<ul>
-    <li *ngFor="let pet of pets">
-      {{ pet.nombre }}
-    </li>
-</ul>
+<!-- src/app/features/pet/pet-list/pet-list.component.html -->
+<div class="container pet-list">
+  <h2>Lista de Mascotas</h2>
+  <button type="submit" class="btn btn-primary mb-5 mt-3" routerLink="/manage-pet/create">Agregar mascota</button>
+    <div class="row g-3">
+      <table class="border table white">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Raza</th>
+            <th>Tipo Mascota</th>
+            <th>Peso</th>
+            <th>Pelaje</th>
+            <th>Sexo</th>
+            <th>Nivel Actividad</th>
+            <th>Protectora ID</th>
+            <th>Edad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pet of pets">
+            <td>{{ pet.id }}</td>
+            <td>{{ pet.nombre }}</td>
+            <td>{{ pet.raza }}</td>
+            <td>{{ pet.tipoMascota ? 'Perro' : 'Gato' }}</td>
+            <td>{{ pet.peso }} kg</td>
+            <td>{{ pet.pelaje }}</td>
+            <td>{{ pet.sexo }}</td>
+            <td>{{ pet.nivelActividad ? 'Activo' : 'Inactivo' }}</td>
+            <td>{{ pet.protectoraId }}</td>
+            <td>{{ pet.edad }} años</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  <button type="submit" class="btn btn-primary d-flex row mt-5" routerLink="/manage-pet/detail/:id">Ver Detalles de mascota</button>
+  <button type="submit" class="btn btn-primary d-flex row mt-2" routerLink="/manage-pet/edit/:id">Editar mascota</button>
+  <button type="submit" class="btn btn-primary d-flex row mt-2" routerLink="/manage-pet/edit/:id">Borrar mascota</button>
+</div>

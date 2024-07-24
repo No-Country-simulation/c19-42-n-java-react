@@ -2,13 +2,15 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Pet } from '../model/pet';
 import { PetService } from '../service/pet.service';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { PetCreateComponent } from '../pet-create/pet-create.component';
 
 
 
 @Component({
   selector: 'app-pet-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule,],
   providers: [PetService],
   templateUrl: './pet-list.component.html',
   styleUrls: ['./pet-list.component.css']
@@ -16,15 +18,15 @@ import { CommonModule } from '@angular/common';
 export class PetListComponent implements OnInit {
   public petService = inject(PetService);
   pets: Pet[] = [];
+  createPetForm: PetCreateComponent | undefined;
+pet: any;
 
   ngOnInit(): void {
     this.loadPets();
   }
 
   loadPets(): void {
-    this.petService.getAllPets().subscribe(data => {
-      this.pets = data;
-    });
+    
   }
 }
   // pets: Pet [] = [];
