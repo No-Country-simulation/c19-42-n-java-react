@@ -1,5 +1,6 @@
 package com.adoptify.controller;
 
+import com.adoptify.dto.ProtectoraDTO;
 import com.adoptify.model.Protectora;
 import com.adoptify.service.ProtectoraService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,12 @@ public class ProtectoraController {
         }else {
             return ResponseEntity.ok(protectora);
         }
-
     }
+
+	@PutMapping("/update/{usuarioId}")
+	public ResponseEntity<Void> updateProtectora(@PathVariable Long usuarioId, @RequestBody ProtectoraDTO protectoraDTO) {
+		service.updateProtectora(usuarioId, protectoraDTO);
+		return ResponseEntity.ok().build();
+	}
+
 }
