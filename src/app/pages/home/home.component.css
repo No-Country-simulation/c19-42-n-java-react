@@ -1,5 +1,6 @@
 swiper-slide {
 	position: relative;
+	height: 50vh;
 }
 
 swiper-slide img {
@@ -85,6 +86,12 @@ section {
 
 .logo_items img {
 	height: 100px;
+}
+
+.card-about-us-photo {
+	width: 100%;
+	object-fit: cover;
+	aspect-ratio: 16/9;
 }
 
 .card-team_member-photo {

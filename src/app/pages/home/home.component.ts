@@ -3,18 +3,12 @@ import { register } from 'swiper/element/bundle';
 register();
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCommonModule } from '@angular/material/core';
 import { SectionTitleComponent } from '../../shared/components/titles/section-title/section-title.component';
 
 @Component({
 	selector: 'app-home',
 	standalone: true,
-	imports: [
-		MatCardModule,
-		MatButtonModule,
-		MatCommonModule,
-		SectionTitleComponent,
-	],
+	imports: [MatCardModule, MatButtonModule, SectionTitleComponent],
 	templateUrl: './home.component.html',
 	styleUrl: './home.component.css',
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
