@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary mb-5 p-4 gap-2">
+<nav class="navbar navbar-expand-lg bg-body-tertiary p-4 px-xl-5 gap-2">
 	<a class="navbar-brand p-0" routerLink="/">Adoptify</a>
 	<button
 		class="navbar-toggler"
@@ -11,23 +11,28 @@
 	>
 		<span class="navbar-toggler-icon"></span>
 	</button>
-	<div class="collapse navbar-collapse" id="navbarNavDropdown">
-		<ul class="navbar-nav gap-3 align-items-lg-center flex-lg-grow-1">
+	<div
+		class="collapse navbar-collapse justify-content-end"
+		id="navbarNavDropdown"
+	>
+		<ul class="navbar-nav gap-3 align-items-lg-center">
 			@for (route of headerRoutes; track route) {
 			<li class="nav-item">
 				<a
 					class="nav-link m-0 p-0"
 					routerLink="{{ route.link }}"
-					routerLinkActive="active"
 					ariaCurrentWhenActive="page"
 					>{{ route.title }}</a
 				>
 			</li>
 			}
-			<li class="d-flex gap-2 align-items-center ms-lg-auto">
+			<li
+				class="d-flex flex-wrap flex-sm-nowrap gap-2 align-items-center ms-lg-auto"
+			>
 				<a
+					mat-stroked-button
 					type="button"
-					class="btn btn-outline-primary"
+					class="flex-grow-1 flex-sm-grow-0"
 					routerLink="/auth/login"
 					routerLinkActive="active"
 					ariaCurrentWhenActive="page"
@@ -35,8 +40,9 @@
 					Iniciar sesión
 				</a>
 				<a
+					mat-flat-button
 					type="button"
-					class="btn btn-primary"
+					class="flex-grow-1 flex-sm-grow-0"
 					routerLink="/auth/register"
 					routerLinkActive="active"
 					ariaCurrentWhenActive="page"
@@ -44,8 +50,9 @@
 					Registrarse
 				</a>
 				<a
+					mat-flat-button
 					type="button"
-					class="btn btn-primary"
+					class="flex-grow-1"
 					routerLink="/donate"
 					routerLinkActive="active"
 					ariaCurrentWhenActive="page"

@@ -1,26 +1,64 @@
-<footer
-	class="d-flex flex-column gap-4 flex-sm-row gap-sm-0 flex-wrap bg-body-secondary justify-content-between align-items-center mt-5 p-4"
->
-	<div class="d-flex align-items-center gap-2">
-		<a href="/" class="">Logo</a>
-		<span class="">&copy; 2024</span>
+<footer class="row mt-4 p-5 pb-3 row-gap-5 g-0 text-white">
+	<div class="row row-gap-4 col-xxl-8 text-center text-xxl-start m-0">
+		<div class="col-sm-4 d-flex flex-column gap-2">
+			<span class="text-uppercase fw-bold">Acerca de nosotros</span>
+			<a routerLink="/donate">Donaciones</a>
+			<a routerLink="/faq">Preguntas frecuentes</a>
+			<a routerLink="/blog">Blog</a>
+		</div>
+		<div class="col-sm-4 d-flex flex-column gap-2">
+			<span class="text-uppercase fw-bold">Política de cookies</span>
+			<a routerLink="/privacy">Privacidad</a>
+			<a routerLink="/terms">Términos y condiciones</a>
+			<a routerLink="/ads">Publicidad</a>
+		</div>
+		<div class="col-sm-4 d-flex flex-column gap-2">
+			<span class="text-uppercase fw-bold">Categorías</span>
+			<a routerLink="/gallery/dogs">Perros</a>
+			<a routerLink="/gallery/cats">Gatos</a>
+			<a routerLink="/gallery/puppies">Cachorros</a>
+			<a routerLink="/gallery/kitties">Gatitos</a>
+		</div>
 	</div>
 
-	<ul class="d-flex gap-2 align-items-center list-unstyled m-0">
-		<li class="">
-			<a class="" href="#">X</a>
-		</li>
-		<li class="">
-			<a class="" href="#">Facebook</a>
-		</li>
-		<li class="">
-			<a class="" href="#">Instagram</a>
-		</li>
-		<li class="">
-			<a class="" href="#">TikTok</a>
-		</li>
-		<li class="">
-			<a class="" href="#">YouTube</a>
-		</li>
-	</ul>
+	<div class="col-xxl-4 d-flex flex-column gap-2">
+		<h5 class="text-uppercase text-center fw-bold">Únete a la comunidad</h5>
+		<ul
+			class="d-flex gap-3 justify-content-center align-items-center list-unstyled"
+		>
+			<li>
+				<a href="#"><mat-icon svgIcon="facebook" /></a>
+			</li>
+			<li>
+				<a href="#"><mat-icon svgIcon="instagram" /></a>
+			</li>
+			<li>
+				<a href="#"><mat-icon svgIcon="twitter" /></a>
+			</li>
+			<li>
+				<a href="#"><mat-icon svgIcon="tiktok" /></a>
+			</li>
+			<li>
+				<a href="#"><mat-icon svgIcon="youtube" /></a>
+			</li>
+		</ul>
+		<div class="footer-phone-mail d-flex flex-column gap-3">
+			<a
+				class="d-flex justify-content-center gap-2 user-select-none"
+				href="#"
+				><mat-icon>phone</mat-icon>123 456 789 / 9912341234</a
+			>
+			<a
+				class="d-flex justify-content-center gap-2 user-select-none"
+				href="mailto:adoptify@adoptify.com"
+				><mat-icon>email</mat-icon>adoptifyadoptify.com</a
+			>
+		</div>
+	</div>
+
+	<div class="copyright border-top text-center pt-3 mt-md-5">
+		<span class="user-select-none"
+			>&copy; 2024 Adoptify - Todos los derechos reservados</span
+		>
+	</div>
 </footer>
