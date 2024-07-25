@@ -50,20 +50,21 @@ export class LoginComponent {
 				next: (response) => {
 					if (response.token) {
 						localStorage.setItem('token', response.token);
+						console.log('Login correcto', response.token);
+						this.router.navigateByUrl('/');
 					} else {
-						console.log('Usuario o contraseña incorrectos');
+						console.error('Usuario o contraseña incorrectos');
 						this.loginErrorMessage =
 							'Usuario o contraseña incorrectos';
 					}
 				},
 				error: (error) => {
-					console.log('Error en la petición', error.message, error);
+					console.error('Error en la petición', error.message, error);
 					(this.loginErrorMessage = 'Error en la petición'),
 						error.message;
 				},
 				complete: () => {
-					console.log('Petición completada');
-					this.router.navigateByUrl('/');
+					console.info('Petición completada');
 					this.loginForm.reset();
 				},
 			});
