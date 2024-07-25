@@ -19,6 +19,8 @@ public class mascotas {
     @Enumerated(EnumType.STRING)
     tipoMascota tipoMascota;
     Long peso;
+	@Column(columnDefinition = "LONGTEXT")
+	private String img;
     String pelaje;
     String sexo;
     @Enumerated(EnumType.STRING)
