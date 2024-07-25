@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { title } from 'process';
 @Component({
 	selector: 'app-header',
 	standalone: true,
@@ -12,12 +13,16 @@ export class HeaderComponent {
 
 	public headerRoutes = [
 		{
-			title: 'Cómo Adoptar',
+			title: 'Galería',
+			link: '/gallery',
+		},
+		{
+			title: 'Adoptar',
 			link: '/how-to-adopt',
 		},
 		{
-			title: 'Galería',
-			link: '/gallery',
+			title: 'Donar',
+			link: '/donate',
 		},
 		{
 			title: 'Contacto',
