@@ -11,6 +11,7 @@ import { JsonPipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { LoginService } from '../../../core/services/login.service';
 import { Shelter, User } from '../../../core/interfaces/User';
+import { Login } from '../../../core/interfaces/Login';
 
 @Component({
 	selector: 'app-register',
@@ -108,14 +109,50 @@ export class RegisterComponent {
 		return this.shelterForm.get('address.street') as FormControl;
 	}
 
+	calculateAge(birthdate: string): number {
+		const birthDate = new Date(birthdate);
+		const today = new Date();
+		let age = today.getFullYear() - birthDate.getFullYear();
+		const monthDiff = today.getMonth() - birthDate.getMonth();
+		const isBeforeBirthDate =
+			monthDiff < 0 ||
+			(monthDiff === 0 && today.getDate() < birthDate.getDate());
+
+		if (isBeforeBirthDate) {
+			age--;
+		}
+		return age;
+	}
+
 	public adopterForm: FormGroup = this.fb.group({
 		role: ['adopter', [Validators.required, Validators.pattern('adopter')]],
 		fullName: this.fb.group({
-			firstName: ['', Validators.required],
-			lastName: ['', Validators.required],
+			firstName: [
+				'',
+				[
+					Validators.required,
+					Validators.minLength(2),
+					Validators.maxLength(40),
+				],
+			],
+			lastName: [
+				'',
+				[
+					Validators.required,
+					Validators.minLength(2),
+					Validators.maxLength(40),
+				],
+			],
 		}),
 		email: ['', [Validators.required, Validators.email]],
-		username: ['', Validators.required],
+		username: [
+			'',
+			[
+				Validators.required,
+				Validators.minLength(3),
+				Validators.maxLength(30),
+			],
+		],
 		fullPassword: this.fb.group(
 			{
 				password: [
@@ -143,26 +180,25 @@ export class RegisterComponent {
 		terms: ['', [Validators.requiredTrue]],
 	});
 
-	calculateAge(birthdate: string): number {
-		const birthDate = new Date(birthdate);
-		const today = new Date();
-		let age = today.getFullYear() - birthDate.getFullYear();
-		const monthDiff = today.getMonth() - birthDate.getMonth();
-		const isBeforeBirthDate =
-			monthDiff < 0 ||
-			(monthDiff === 0 && today.getDate() < birthDate.getDate());
-
-		if (isBeforeBirthDate) {
-			age--;
-		}
-		return age;
-	}
-
 	public shelterForm: FormGroup = this.fb.group({
 		role: ['shelter', [Validators.required, Validators.pattern('shelter')]],
-		shelterName: ['', Validators.required],
+		shelterName: [
+			'',
+			[
+				Validators.required,
+				Validators.minLength(3),
+				Validators.maxLength(30),
+			],
+		],
 		email: ['', [Validators.required, Validators.email]],
-		username: ['', Validators.required],
+		username: [
+			'',
+			[
+				Validators.required,
+				Validators.minLength(3),
+				Validators.maxLength(20),
+			],
+		],
 		fullPassword: this.fb.group(
 			{
 				password: [
@@ -201,6 +237,32 @@ export class RegisterComponent {
 		this.shelterFormRole.setValue('shelter');
 	}
 
+	private loginAfterRegister(login: Login) {
+		this.loginService.login(login).subscribe({
+			next: (response) => {
+				if (response.token) {
+					this.loginService.setToken(response.token, login.username);
+					console.log('Login correcto', response.token);
+					this.router.navigateByUrl('/');
+				} else {
+					console.error('Error en el login después del registro');
+					alert('Error en el login después del registro');
+				}
+			},
+			error: (error) => {
+				console.error(
+					'Error en la petición de login',
+					error.message,
+					error
+				);
+				alert('Error en la petición de login: ' + error.message);
+			},
+			complete: () => {
+				console.info('Petición de login completada');
+			},
+		});
+	}
+
 	public registerAdopter() {
 		if (this.adopterForm.valid) {
 			console.log('Formulario válido', this.adopterForm.value);
@@ -218,15 +280,18 @@ export class RegisterComponent {
 				direccion: this.adopterAddressStreet.value,
 			};
 
-			console.log('Adoptante', adopter);
-
 			this.loginService.registerAdopter(adopter).subscribe({
 				next: (response) => {
-					if (response.token) {
-						console.log('Registro correcto');
-						this.router.navigateByUrl('/');
+					if (response) {
+						console.log('Registro correcto', response);
+						const login: Login = {
+							username: adopter.username,
+							password: adopter.password,
+						};
+						this.loginAfterRegister(login);
 					} else {
 						console.error('Error en el registro');
+						alert('Error en el registro');
 					}
 				},
 				error: (error) => {
@@ -251,21 +316,26 @@ export class RegisterComponent {
 				email: this.shelterEmail.value,
 				username: this.shelterUsername.value,
 				password: this.shelterPassword.value,
-				phoneNumber: this.shelterPhoneNumber.value,
 				pais: this.shelterAddressCountry.value,
 				provincia: this.shelterAddressState.value,
 				ciudad: this.shelterAddressCity.value,
 				codigoPostal: this.shelterAddressZipCode.value,
+				direccion: this.shelterAddressStreet.value,
 				celular: this.shelterPhoneNumber.value,
 			};
 
 			this.loginService.registerShelter(shelter).subscribe({
 				next: (response) => {
-					if (response.token) {
-						console.log('Registro correcto');
-						this.router.navigateByUrl('/');
+					if (response) {
+						console.log('Registro correcto', response);
+						const login: Login = {
+							username: shelter.username,
+							password: shelter.password,
+						};
+						this.loginAfterRegister(login);
 					} else {
 						console.error('Error en el registro');
+						alert('Error en el registro');
 					}
 				},
 				error: (error) => {

@@ -29,7 +29,17 @@
 			<li
 				class="d-flex flex-wrap flex-sm-nowrap gap-2 align-items-center ms-lg-auto"
 			>
-				<a
+				@if (isAuthenticated){
+				<span class="flex-grow-1"> Bienvenido, {{ username }} </span>
+				<button
+					mat-flat-button
+					type="button"
+					class="flex-grow-1"
+					(click)="logout()"
+				>
+					Cerrar sesión
+				</button>
+				}@else{<a
 					mat-stroked-button
 					type="button"
 					class="flex-grow-1"
@@ -47,8 +57,8 @@
 					routerLinkActive="active"
 					ariaCurrentWhenActive="page"
 				>
-					Registrarse
-				</a>
+					Registrarse </a
+				>}
 			</li>
 		</ul>
 	</div>

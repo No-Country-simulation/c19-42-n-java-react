@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { title } from 'process';
+import { LoginService } from '../../../../core/services/login.service';
 @Component({
 	selector: 'app-header',
 	standalone: true,
@@ -9,7 +9,26 @@ import { title } from 'process';
 	templateUrl: './header.component.html',
 })
 export class HeaderComponent {
-	constructor() {}
+	isAuthenticated: boolean = false;
+	username: string | null = null;
+
+	constructor(private loginService: LoginService, private router: Router) {}
+
+	ngOnInit(): void {
+		this.loginService.getAuthStatus().subscribe((status) => {
+			this.isAuthenticated = status;
+			if (status && typeof window !== 'undefined') {
+				this.username = localStorage.getItem('username');
+			} else {
+				this.username = null;
+			}
+		});
+	}
+
+	logout(): void {
+		this.loginService.logout();
+		this.router.navigateByUrl('/');
+	}
 
 	public headerRoutes = [
 		{

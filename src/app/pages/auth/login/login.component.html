@@ -18,13 +18,14 @@
 				required
 				formControlName="userName"
 			/>
-			<div
-				class="alert alert-warning mt-3"
+			<mat-card
+				appearance="outlined"
+				class="bg-warning p-2 mb-3 mt-2"
 				role="alert"
 				[hidden]="userName.valid || userName.pristine"
 			>
 				El nombre de usuario es requerido
-			</div>
+			</mat-card>
 		</div>
 		<div class="col-12">
 			<label for="password" class="form-label user-select-none"
@@ -39,19 +40,24 @@
 				required
 				formControlName="password"
 			/>
-			<div
-				class="alert alert-warning mt-3"
+			<mat-card
+				appearance="outlined"
+				class="bg-warning p-2 mb-3 mt-2"
 				role="alert"
 				[hidden]="password.valid || password.pristine"
 			>
 				La contraseña es requerida
-			</div>
+			</mat-card>
 		</div>
 		@if (loginErrorMessage) {
 		<div class="col-12">
-			<div class="alert alert-danger" role="alert">
+			<mat-card
+				appearance="outlined"
+				class="bg-danger p-2 mb-3 mt-2 text-white"
+				role="alert"
+			>
 				{{ loginErrorMessage }}
-			</div>
+			</mat-card>
 		</div>
 		}
 		<div class="col-12">

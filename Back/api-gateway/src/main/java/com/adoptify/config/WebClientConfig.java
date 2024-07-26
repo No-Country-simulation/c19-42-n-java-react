@@ -30,4 +30,5 @@ public class WebClientConfig implements WebFluxConfigurer {
                 .allowedHeaders("*")
                 .allowCredentials(true);
     }
+
 }
