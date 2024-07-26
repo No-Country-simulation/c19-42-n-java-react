@@ -1,8 +1,10 @@
 package com.adoptify.service;
 
+import com.adoptify.dto.Mascota;
 import com.adoptify.dto.ProtectoraDTO;
 import com.adoptify.dto.UserDTO;
 import com.adoptify.feign.AuthClient;
+import com.adoptify.feign.MascotaClient;
 import com.adoptify.model.Protectora;
 import com.adoptify.repository.ProtectoraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ public class ProtectoraService {
 
     @Autowired
     private ProtectoraRepository repository;
+
+	@Autowired
+	private MascotaClient mascotaClient;
 
 	@Autowired
 	private AuthClient authClient;
@@ -58,6 +63,10 @@ public class ProtectoraService {
 		} else {
 
 		}
+	}
+
+	public List<Mascota> getMascotasByProtectoraID(Long protectoraID) {
+		return mascotaClient.getMascotasByProtectoraID(protectoraID);
 	}
 
 }
