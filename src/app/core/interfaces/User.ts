@@ -14,10 +14,10 @@ export interface Shelter {
 	email: string;
 	username: string;
 	password: string;
-	phoneNumber: string;
 	pais: string;
 	provincia: string;
 	ciudad: string;
 	codigoPostal: number;
+	direccion: string;
 	celular: string;
 }

@@ -9,11 +9,12 @@ import {
 import { Login } from '../../../core/interfaces/Login';
 import { LoginService } from '../../../core/services/login.service';
 import { Router } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
 	selector: 'app-login',
 	standalone: true,
-	imports: [ReactiveFormsModule],
+	imports: [ReactiveFormsModule, MatCardModule],
 	templateUrl: './login.component.html',
 	styleUrls: ['/src/app/app.component.scss', '../auth.css'],
 })
@@ -35,8 +36,8 @@ export class LoginComponent {
 	}
 
 	public loginForm: FormGroup = this.fb.group({
-		userName: ['ignacioadoptante', Validators.required],
-		password: ['', Validators.required],
+		userName: ['protectora', Validators.required],
+		password: ['protectora', Validators.required],
 	});
 
 	public login() {
@@ -46,26 +47,44 @@ export class LoginComponent {
 				password: this.password.value,
 			};
 
+			let loginSuccessful = false;
+
 			this.loginService.login(login).subscribe({
 				next: (response) => {
 					if (response.token) {
 						localStorage.setItem('token', response.token);
 						console.log('Login correcto', response.token);
 						this.router.navigateByUrl('/');
+						this.loginForm.reset();
+						loginSuccessful = true;
 					} else {
 						console.error('Usuario o contraseña incorrectos');
 						this.loginErrorMessage =
 							'Usuario o contraseña incorrectos';
+						alert(this.loginErrorMessage);
 					}
 				},
 				error: (error) => {
-					console.error('Error en la petición', error.message, error);
-					(this.loginErrorMessage = 'Error en la petición'),
-						error.message;
+					if (error.status === 400) {
+						console.error('Usuario no registrado', error);
+						this.loginErrorMessage =
+							'Usuario no registrado o contraseña incorrecta';
+						alert(this.loginErrorMessage);
+					} else {
+						console.error(
+							'Error en la petición',
+							error.message,
+							error
+						);
+						this.loginErrorMessage =
+							'Error en la petición: ' + error.message;
+						alert(this.loginErrorMessage);
+					}
+					loginSuccessful = false;
 				},
 				complete: () => {
 					console.info('Petición completada');
-					this.loginForm.reset();
+					this.loginErrorMessage = 'Usuario o contraseña incorrectos';
 				},
 			});
 		} else {

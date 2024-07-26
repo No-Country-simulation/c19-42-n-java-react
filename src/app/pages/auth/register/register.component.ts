@@ -251,11 +251,11 @@ export class RegisterComponent {
 				email: this.shelterEmail.value,
 				username: this.shelterUsername.value,
 				password: this.shelterPassword.value,
-				phoneNumber: this.shelterPhoneNumber.value,
 				pais: this.shelterAddressCountry.value,
 				provincia: this.shelterAddressState.value,
 				ciudad: this.shelterAddressCity.value,
 				codigoPostal: this.shelterAddressZipCode.value,
+				direccion: this.shelterAddressStreet.value,
 				celular: this.shelterPhoneNumber.value,
 			};
 
