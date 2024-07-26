@@ -92,7 +92,9 @@ public class JwtService {
         }
     }
 
-    private boolean isProtectora(Claims claims){
-        return claims.get("role").toString().contains("ROLE_PROTECTORA");
-    }
+	private boolean isProtectora(Claims claims) {
+		String role = claims.get("role").toString();
+		return role.contains("ROLE_PROTECTORA") || role.contains("ROLE_ADMIN") || role.contains("ROLE_ADOPTANTE");
+	}
+
 }
