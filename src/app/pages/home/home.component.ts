@@ -4,13 +4,21 @@ register();
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { SectionTitleComponent } from '../../shared/components/titles/section-title/section-title.component';
+import { RouterModule } from '@angular/router';
+import { LittleTitleComponent } from '../../shared/components/titles/little-title/little-title.component';
 
 @Component({
 	selector: 'app-home',
 	standalone: true,
-	imports: [MatCardModule, MatButtonModule, SectionTitleComponent],
+	imports: [
+		RouterModule,
+		MatCardModule,
+		MatButtonModule,
+		SectionTitleComponent,
+		LittleTitleComponent,
+	],
 	templateUrl: './home.component.html',
-	styleUrl: './home.component.css',
+	styleUrl: './home.component.scss',
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomeComponent {

@@ -134,6 +134,7 @@ a[mat-stroked-button],
 	font-family: "Poppins";
 	font-weight: 500;
 	border-radius: 0.4rem;
+	width: fit-content;
 }
 
 button[mat-flat-button],
@@ -150,8 +151,8 @@ a[mat-button],
 a[mat-raised-button],
 a[mat-stroked-button],
 .mat-mdc-outlined-button:not(:disabled) {
-	color: map-get($map: $text-palette, $key: primary) !important;
-	border-color: map-get($map: $text-palette, $key: primary) !important;
+	color: map-get($map: $primary-palette, $key: 300) !important;
+	border-color: map-get($map: $text-palette, $key: disabled) !important;
 }
 
 app-header .navbar-brand {

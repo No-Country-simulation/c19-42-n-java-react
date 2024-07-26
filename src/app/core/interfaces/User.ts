@@ -1,10 +1,23 @@
 export interface User {
-	firstName: string;
-	lastName: string;
+	nombres: string;
+	apellidos: string;
 	email: string;
 	username: string;
 	password: string;
-	birthDate: string;
+	edad: number;
+	celular: string;
+	direccion: string;
+}
+
+export interface Shelter {
+	nombre: string;
+	email: string;
+	username: string;
+	password: string;
 	phoneNumber: string;
-	address: string;
+	pais: string;
+	provincia: string;
+	ciudad: string;
+	codigoPostal: number;
+	celular: string;
 }
