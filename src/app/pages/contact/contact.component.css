@@ -1,0 +1,119 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+header {
+    position: relative;
+}
+
+h2 {
+    color: #F20D46;
+}
+
+.principal {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.superposed-images {
+    bottom: -6rem;
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Espacio entre las tarjetas */
+}
+
+.card {
+    padding-inline: 1.25rem;
+    width: 10rem;
+    aspect-ratio: 1 / 1; /* Mantiene la proporción cuadrada */
+    border: none;
+    border-radius: 1.875rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Asegura que el contenido no sobresalga */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombreado */
+}
+
+.card-img-top {
+    width: 70%;
+    height: auto;
+    object-fit: cover;
+}
+
+.card-body {
+    text-align: center;
+}
+
+.en {
+    padding-left: 50px;
+}
+
+.form-control {
+    color: #212121;
+    border: none;
+    border-bottom: solid 1px #212121;
+    padding-bottom: .9375rem;
+}
+
+.form-control::placeholder {
+    color: #F20D46;
+}
+
+.btn-dark {
+    background-color: #F20D46;
+    border-color: #212121;
+    margin-top: 1.25rem;
+}
+
+.social-icon {
+    width: 1.875rem;
+    height: auto;
+}
+
+.gracias {
+    color: #F20D46;
+    text-align: end;
+}
+
+.adopta {
+    padding: 10.5rem .625rem;
+    color: #212121;
+}
+
+.gracias p {
+    text-align: end;
+}
+
+@media (max-width: 768px) {
+    .superposed-images {
+        bottom: 0; /* Ajuste para posicionar las tarjetas justo debajo del contenedor */
+        position: static; /* Cambia la posición para que no sea absoluta */
+        margin-top: 0.6rem; /* Espacio adicional entre el contenedor y las tarjetas */
+        flex-wrap: wrap; /* Asegura que las tarjetas se envuelvan en pantallas pequeñas */
+    }
+
+    .card {
+        width: 35%; /* Ajuste para pantallas más pequeñas, asegurando que dos tarjetas quepan en una fila */
+        margin: 10px 0; /* Espacio adicional entre filas */
+    }
+
+    .card-img-top {
+        width: 60%; /* Ajusta el tamaño de la imagen dentro de la tarjeta para pantallas más pequeñas */
+    }
+
+    .col-md-6 {
+        margin-bottom: 20px; /* Añade un margen inferior entre las columnas */
+    }
+
+    .social-icon {
+        width: 1.25rem;
+    }
+    .adopta{
+        padding: 5rem .625rem;
+    }
+}
