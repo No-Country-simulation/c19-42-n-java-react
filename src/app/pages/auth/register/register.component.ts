@@ -109,14 +109,50 @@ export class RegisterComponent {
 		return this.shelterForm.get('address.street') as FormControl;
 	}
 
+	calculateAge(birthdate: string): number {
+		const birthDate = new Date(birthdate);
+		const today = new Date();
+		let age = today.getFullYear() - birthDate.getFullYear();
+		const monthDiff = today.getMonth() - birthDate.getMonth();
+		const isBeforeBirthDate =
+			monthDiff < 0 ||
+			(monthDiff === 0 && today.getDate() < birthDate.getDate());
+
+		if (isBeforeBirthDate) {
+			age--;
+		}
+		return age;
+	}
+
 	public adopterForm: FormGroup = this.fb.group({
 		role: ['adopter', [Validators.required, Validators.pattern('adopter')]],
 		fullName: this.fb.group({
-			firstName: ['', Validators.required],
-			lastName: ['', Validators.required],
+			firstName: [
+				'',
+				[
+					Validators.required,
+					Validators.minLength(2),
+					Validators.maxLength(40),
+				],
+			],
+			lastName: [
+				'',
+				[
+					Validators.required,
+					Validators.minLength(2),
+					Validators.maxLength(40),
+				],
+			],
 		}),
 		email: ['', [Validators.required, Validators.email]],
-		username: ['', Validators.required],
+		username: [
+			'',
+			[
+				Validators.required,
+				Validators.minLength(3),
+				Validators.maxLength(30),
+			],
+		],
 		fullPassword: this.fb.group(
 			{
 				password: [
@@ -144,26 +180,25 @@ export class RegisterComponent {
 		terms: ['', [Validators.requiredTrue]],
 	});
 
-	calculateAge(birthdate: string): number {
-		const birthDate = new Date(birthdate);
-		const today = new Date();
-		let age = today.getFullYear() - birthDate.getFullYear();
-		const monthDiff = today.getMonth() - birthDate.getMonth();
-		const isBeforeBirthDate =
-			monthDiff < 0 ||
-			(monthDiff === 0 && today.getDate() < birthDate.getDate());
-
-		if (isBeforeBirthDate) {
-			age--;
-		}
-		return age;
-	}
-
 	public shelterForm: FormGroup = this.fb.group({
 		role: ['shelter', [Validators.required, Validators.pattern('shelter')]],
-		shelterName: ['', Validators.required],
+		shelterName: [
+			'',
+			[
+				Validators.required,
+				Validators.minLength(3),
+				Validators.maxLength(30),
+			],
+		],
 		email: ['', [Validators.required, Validators.email]],
-		username: ['', Validators.required],
+		username: [
+			'',
+			[
+				Validators.required,
+				Validators.minLength(3),
+				Validators.maxLength(20),
+			],
+		],
 		fullPassword: this.fb.group(
 			{
 				password: [
@@ -206,7 +241,7 @@ export class RegisterComponent {
 		this.loginService.login(login).subscribe({
 			next: (response) => {
 				if (response.token) {
-					localStorage.setItem('token', response.token);
+					this.loginService.setToken(response.token, login.username);
 					console.log('Login correcto', response.token);
 					this.router.navigateByUrl('/');
 				} else {

@@ -6,7 +6,7 @@ import {
 import { inject, Injectable } from '@angular/core';
 import { AppSettings } from '../settings/AppSettings';
 import { Shelter, User } from '../interfaces/User';
-import { catchError, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
 import { ResponseLogin } from '../interfaces/ResponseLogin';
 import { Login } from '../interfaces/Login';
 
@@ -16,8 +16,17 @@ import { Login } from '../interfaces/Login';
 export class LoginService {
 	private http = inject(HttpClient);
 	private baseUrl: string = AppSettings.apiURL;
+	private authStatus = new BehaviorSubject<boolean>(this.hasToken());
 
 	constructor() {}
+
+	private isBrowser(): boolean {
+		return typeof window !== 'undefined';
+	}
+
+	private hasToken(): boolean {
+		return this.isBrowser() && !!localStorage.getItem('token');
+	}
 
 	registerAdopter(user: User): Observable<ResponseLogin> {
 		const headers = new HttpHeaders({
@@ -69,5 +78,29 @@ export class LoginService {
 		return throwError(
 			'Algo malo ocurrió; por favor intenta de nuevo más tarde.'
 		);
+	}
+
+	setToken(token: string, username: string): void {
+		if (this.isBrowser()) {
+			localStorage.setItem('token', token);
+			localStorage.setItem('username', username);
+			this.setAuthStatus(true);
+		}
+	}
+
+	setAuthStatus(status: boolean): void {
+		this.authStatus.next(status);
+	}
+
+	getAuthStatus(): Observable<boolean> {
+		return this.authStatus.asObservable();
+	}
+
+	logout(): void {
+		if (this.isBrowser()) {
+			localStorage.removeItem('token');
+			localStorage.removeItem('username');
+		}
+		this.setAuthStatus(false);
 	}
 }

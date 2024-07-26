@@ -36,8 +36,8 @@ export class LoginComponent {
 	}
 
 	public loginForm: FormGroup = this.fb.group({
-		userName: ['protectora', Validators.required],
-		password: ['protectora', Validators.required],
+		userName: ['', Validators.required],
+		password: ['', Validators.required],
 	});
 
 	public login() {
@@ -47,16 +47,16 @@ export class LoginComponent {
 				password: this.password.value,
 			};
 
-			let loginSuccessful = false;
-
 			this.loginService.login(login).subscribe({
 				next: (response) => {
 					if (response.token) {
-						localStorage.setItem('token', response.token);
+						this.loginService.setToken(
+							response.token,
+							login.username
+						);
 						console.log('Login correcto', response.token);
 						this.router.navigateByUrl('/');
 						this.loginForm.reset();
-						loginSuccessful = true;
 					} else {
 						console.error('Usuario o contraseña incorrectos');
 						this.loginErrorMessage =
@@ -80,11 +80,9 @@ export class LoginComponent {
 							'Error en la petición: ' + error.message;
 						alert(this.loginErrorMessage);
 					}
-					loginSuccessful = false;
 				},
 				complete: () => {
 					console.info('Petición completada');
-					this.loginErrorMessage = 'Usuario o contraseña incorrectos';
 				},
 			});
 		} else {
