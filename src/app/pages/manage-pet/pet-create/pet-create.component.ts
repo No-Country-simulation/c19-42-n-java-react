@@ -30,17 +30,16 @@ export class PetCreateComponent {
   ) {
     
       this.createPetForm = this.fb.group({
-      id: ['', Validators.required],
+  
       nombre: ['', Validators.required],
       raza: ['', Validators.required],
-      tipoMascota: [''],
+      tipoMascota: ['', Validators.required],
       peso:['', [Validators.required, Validators.min(0)]],
       pelaje:['',Validators.required],
       sexo:['', Validators.required],
-      nivelActividad:[''],
-      protectoraId:['', Validators.required],
+      nivelActividad:['', Validators.required],
+      protectoraID:['', Validators.required],
       edad: ['', [Validators.required, Validators.min(0)]],
-      descripcion: ['']
     });
   }
 
@@ -52,11 +51,11 @@ export class PetCreateComponent {
       const newPet: Pet = this.createPetForm.value;
       console.log('Datos del formulario:', newPet); // Imprimir los datos en la consola
       this.petService.createPet(newPet).subscribe(() => {
-        console.log('Mascota creada:', newPet); // Confirmar que la mascota ha sido creada
-        this.router.navigate(['baseUrl']);
+        console.log('Mascota creada: con exito', newPet); // Confirmar que la mascota ha sido creada
+        this.router.navigate(['manage-pet/list']);
       });
-    } else {
-      console.log('El formulario no es válido');
+    } (error: any) => {
+      console.error('El formulario no es válido', error);
     }
   }
 }

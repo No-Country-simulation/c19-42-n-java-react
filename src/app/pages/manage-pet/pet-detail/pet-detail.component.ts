@@ -13,14 +13,13 @@ import { Pet } from '../model/pet';
   styleUrl: './pet-detail.component.css'
 })
 export class PetDetailComponent implements OnInit {
-  pet: Pet | null = null;
+  pets: Pet | null = null;
 
   constructor(private route: ActivatedRoute, private petService: PetService) { }
 
-  ngOnInit(): void {}
-    //const id = +this.route.snapshot.paramMap.get('id')!;
-    //this.petService.getPetById(id).subscribe((data: any) => {
-      //this.pet = data;
-    //});
-  //}
-}
+  ngOnInit(): void {const id = +this.route.snapshot.paramMap.get('id')!;
+    this.petService.getPetById(id).subscribe((data: any) => {
+      this.pets = data;
+    });}
+    
+  }

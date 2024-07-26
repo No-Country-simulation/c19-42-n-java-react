@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { Pet } from '../model/pet';
 
 interface State{
-  pets: Pet[];
-  loading: boolean;
+  //pets: Pet[];
+  //loading: boolean;
 }
 @Injectable({
   providedIn: 'root'

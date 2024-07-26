@@ -1,21 +1,20 @@
 export class Pet {
-    
-    id: number;
+
+    id?: number;
     nombre: string;
     raza: string;
-    tipoMascota: boolean;
+    tipoMascota: string;
     peso: number;
     pelaje: string;
     sexo: string;
-    nivelActividad: boolean;
-    protectoraId: number;
+    nivelActividad: string;
+    protectoraID: number;
     edad: number;
-    descripcion: string;
-    imagenUrl: string;
+    //descripcion: string;
+    //imagenUrl: string;
 
-    constructor(id: number, nombre: string, raza: string, tipoMascota: boolean, peso: number, pelaje: string, sexo: string, nivelActividad: boolean, protectoraId: number, edad: number, descripcion: string, imagenUrl: string){
+    constructor(nombre: string, raza: string, tipoMascota: string, peso: number, pelaje: string, sexo: string, nivelActividad: string, protectoraID: number, edad: number){ //descripcion: string, imagenUrl: string){
 
-        this.id = id;
         this.nombre = nombre;
         this.raza = raza;
         this.tipoMascota = tipoMascota;
@@ -23,9 +22,9 @@ export class Pet {
         this.pelaje = pelaje;
         this.sexo = sexo;
         this.nivelActividad = nivelActividad;
-        this.protectoraId = protectoraId;
+        this.protectoraID = protectoraID;
         this.edad = edad;
-        this.descripcion = descripcion;
-        this.imagenUrl = imagenUrl;
+        //this.descripcion = descripcion;
+        //this.imagenUrl = imagenUrl;
     }
 }

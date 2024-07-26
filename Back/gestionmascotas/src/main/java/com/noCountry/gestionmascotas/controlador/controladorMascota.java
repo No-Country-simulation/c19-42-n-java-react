@@ -3,6 +3,7 @@ package com.noCountry.gestionmascotas.controlador;
 import com.noCountry.gestionmascotas.entidades.tipoMascota;
 import com.noCountry.gestionmascotas.servicio.IservicioMascota;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.noCountry.gestionmascotas.entidades.mascotas;
 import com.noCountry.gestionmascotas.entidades.vacunaInfo;
@@ -16,9 +17,9 @@ public class controladorMascota {
     private IservicioMascota servMascota;
 
     @PostMapping("/crear")
-    public String crearMascota(@RequestBody mascotas masco){
+    public ResponseEntity<?>  crearMascota(@RequestBody mascotas masco){
         servMascota.saveMascota(masco);
-        return "la mascota se creó con éxito";
+        return ResponseEntity.ok().body(masco);
     }
 
     @GetMapping("/listar")

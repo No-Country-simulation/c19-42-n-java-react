@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PetListComponent } from './pet-list.component';
 
-describe('PetlIstComponent', () => {
+describe('PetListComponent', () => {
   let component: PetListComponent;
   let fixture: ComponentFixture<PetListComponent>;
 

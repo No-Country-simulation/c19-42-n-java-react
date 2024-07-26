@@ -4,6 +4,7 @@ import { PetService } from '../service/pet.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PetCreateComponent } from '../pet-create/pet-create.component';
+import { error } from 'node:console';
 
 
 
@@ -18,15 +19,30 @@ import { PetCreateComponent } from '../pet-create/pet-create.component';
 export class PetListComponent implements OnInit {
   public petService = inject(PetService);
   pets: Pet[] = [];
-  createPetForm: PetCreateComponent | undefined;
-pet: any;
 
   ngOnInit(): void {
     this.loadPets();
+    throw new Error('No se pudieron cargar los datos')
   }
 
   loadPets(): void {
-    
+    this.petService.getAllPets().subscribe(data =>{
+        this.pets = data;
+     }); 
+  }
+
+  deletePet(id: number): void {
+    if (confirm('¿Estás seguro de que deseas eliminar esta mascota?')) {
+      this.petService.deletePet(id).subscribe(() => {
+        this.pets = this.pets.filter(pet => pet.id !== id);
+        this.reloadPage();
+      }, error => {
+        console.error('Error al eliminar la mascota:', error);
+      });
+    }
+  }
+  reloadPage(): void{
+    location.reload();
   }
 }
   // pets: Pet [] = [];

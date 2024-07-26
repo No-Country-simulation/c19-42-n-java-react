@@ -2,13 +2,7 @@
 <div class="container col-md-6">
 	<h2>Agregar Nueva Mascota</h2>
 	<form class="mt-5" [formGroup]="createPetForm" (ngSubmit)="createPet()">
-		<div class="mb-3">
-			<label for="id" class="form-label">Id:</label>
-			<input id="id" formControlName="id" class="form-control" type="number" required>
-			<div *ngIf="createPetForm.get('id')?.invalid && (createPetForm.get('id')?.dirty || createPetForm.get('id')?.touched)" class="text-danger">
-			<small *ngIf="createPetForm.get('id')?.errors?.['required']">El nombre es obligatorio.</small>
-			</div>
-		</div>
+		
 
 	  <div class="mb-3">
 		<label for="nombre" class="form-label">Nombre:</label>
@@ -30,12 +24,12 @@
 		<label for="tipoMascota" class="form-label">Tipo de Mascota:</label>
 		<select id="tipoMascota" formControlName="tipoMascota" class="form-select">
 		  <option value="">Seleccione un tipo de mascota</option>
-		  <option value="gato">Gato</option>
-		  <option value="perro">Perro</option>
-		  <option value="conejo">Conejo</option>
-		  <option value="hamster">Hámster</option>
-		  <option value="tortuga">Tortuga</option>
-		  <option value="ave">Ave</option>
+		  <option value="GATO">GATO</option>
+		  <option value="PERRO">PERRO</option>
+		  <option value="CONEJO">CONEJO</option>
+		  <option value="HAMSTER">HAMSTER</option>
+		  <option value="TORTUGA">TORTUGA</option>
+		  <option value="AVE">AVE</option>
 		</select>
 	  </div>
   
@@ -64,17 +58,17 @@
 	  <div class="mb-3">
 		<label for="nivelActividad" class="form-label">Nivel de Actividad:</label>
 		<select id="nivelActividad" type="select" formControlName="nivelActividad" class="form-select">
-			<option value="alta">Alta</option>
-			<option value="media">Media</option>
-			<option value="baja">Baja</option>
+			<option value="ALTA">ALTA</option>
+			<option value="MEDIA">MEDIA</option>
+			<option value="BAJA">BAJA</option>
 		</select>
 	  </div>
   
 	  <div class="mb-3">
-		<label for="protectoraId" class="form-label">ID de Protectora:</label>
-		<input id="protectoraId" formControlName="protectoraId" class="form-control" type="number" required>
-		<div *ngIf="createPetForm.get('protectoraId')?.invalid && (createPetForm.get('protectoraId')?.dirty || createPetForm.get('protectoraId')?.touched)" class="text-danger">
-		  <small *ngIf="createPetForm.get('protectoraId')?.errors?.['required']">El ID de la protectora es obligatorio.</small>
+		<label for="protectoraID" class="form-label">ID de Protectora:</label>
+		<input id="protectoraID" formControlName="protectoraID" class="form-control" type="number" required>
+		<div *ngIf="createPetForm.get('protectoraID')?.invalid && (createPetForm.get('protectoraID')?.dirty || createPetForm.get('protectoraID')?.touched)" class="text-danger">
+		  <small *ngIf="createPetForm.get('protectoraID')?.errors?.['required']">El ID de la protectora es obligatorio.</small>
 		</div>
 	  </div>
   
