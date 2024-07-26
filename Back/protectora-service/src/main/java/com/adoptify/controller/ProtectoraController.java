@@ -51,4 +51,9 @@ public class ProtectoraController {
 		return ResponseEntity.ok().build();
 	}
 
+	@GetMapping("/mascotas/{protectoraID}")
+	public ResponseEntity<?> getMascotasByProtectoraID(@PathVariable Long protectoraID) {
+		return ResponseEntity.ok().body(service.getMascotasByProtectoraID(protectoraID)) ;
+	}
+
 }
