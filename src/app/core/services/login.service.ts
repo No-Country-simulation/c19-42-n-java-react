@@ -59,16 +59,13 @@ export class LoginService {
 
 	private handleError(error: HttpErrorResponse) {
 		if (error.error instanceof ErrorEvent) {
-			// Error del lado del cliente o de la red
 			console.error('Ocurrió un error:', error.error.message);
 		} else {
-			// El backend devolvió un código de error no exitoso
 			console.error(
 				`El backend retornó el código ${error.status}, ` +
 					`el cuerpo del mensaje de error fue: ${error.error}`
 			);
 		}
-		// Devuelve un observable con un mensaje de error
 		return throwError(
 			'Algo malo ocurrió; por favor intenta de nuevo más tarde.'
 		);

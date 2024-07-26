@@ -11,6 +11,7 @@ import { JsonPipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { LoginService } from '../../../core/services/login.service';
 import { Shelter, User } from '../../../core/interfaces/User';
+import { Login } from '../../../core/interfaces/Login';
 
 @Component({
 	selector: 'app-register',
@@ -201,6 +202,32 @@ export class RegisterComponent {
 		this.shelterFormRole.setValue('shelter');
 	}
 
+	private loginAfterRegister(login: Login) {
+		this.loginService.login(login).subscribe({
+			next: (response) => {
+				if (response.token) {
+					localStorage.setItem('token', response.token);
+					console.log('Login correcto', response.token);
+					this.router.navigateByUrl('/');
+				} else {
+					console.error('Error en el login después del registro');
+					alert('Error en el login después del registro');
+				}
+			},
+			error: (error) => {
+				console.error(
+					'Error en la petición de login',
+					error.message,
+					error
+				);
+				alert('Error en la petición de login: ' + error.message);
+			},
+			complete: () => {
+				console.info('Petición de login completada');
+			},
+		});
+	}
+
 	public registerAdopter() {
 		if (this.adopterForm.valid) {
 			console.log('Formulario válido', this.adopterForm.value);
@@ -218,15 +245,18 @@ export class RegisterComponent {
 				direccion: this.adopterAddressStreet.value,
 			};
 
-			console.log('Adoptante', adopter);
-
 			this.loginService.registerAdopter(adopter).subscribe({
 				next: (response) => {
-					if (response.token) {
-						console.log('Registro correcto');
-						this.router.navigateByUrl('/');
+					if (response) {
+						console.log('Registro correcto', response);
+						const login: Login = {
+							username: adopter.username,
+							password: adopter.password,
+						};
+						this.loginAfterRegister(login);
 					} else {
 						console.error('Error en el registro');
+						alert('Error en el registro');
 					}
 				},
 				error: (error) => {
@@ -261,11 +291,16 @@ export class RegisterComponent {
 
 			this.loginService.registerShelter(shelter).subscribe({
 				next: (response) => {
-					if (response.token) {
-						console.log('Registro correcto');
-						this.router.navigateByUrl('/');
+					if (response) {
+						console.log('Registro correcto', response);
+						const login: Login = {
+							username: shelter.username,
+							password: shelter.password,
+						};
+						this.loginAfterRegister(login);
 					} else {
 						console.error('Error en el registro');
+						alert('Error en el registro');
 					}
 				},
 				error: (error) => {
