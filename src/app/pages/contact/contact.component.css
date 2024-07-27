@@ -111,9 +111,11 @@ h2 {
     }
 
     .social-icon {
-        width: 1.25rem;
-    }
+                width: 1.25rem; 
+                
+            }
+ 
+   }
     .adopta{
         padding: 5rem .625rem;
     }
-}
