@@ -1,0 +1,33 @@
+<div class="container">
+	<a mat-fab extended routerLink="/gallery" class="mb-3"
+		><mat-icon>arrow_back</mat-icon>Volver</a
+	>
+	@if (errorMessage ) {
+	<div>{{ errorMessage }}</div>
+	} @if (shelter$ | async; as shelter) {
+	<mat-card appearance="outlined">
+		<img
+			mat-card-image
+			src="https://picsum.photos/200/200/?blur"
+			alt="{{ shelter.nombre }}"
+			class="w-100 ratio-1x1"
+		/>
+		<mat-card-content class="p-3">
+			<span class="fw-bold">{{ shelter.nombre }}</span>
+			<div class="d-flex flex-column gap-2">
+				<span class="d-flex flex-row align-items-center gap-2"
+					><mat-icon>home</mat-icon>{{ shelter.pais }},
+					{{ shelter.provincia }}, {{ shelter.ciudad }},
+					{{ shelter.direccion }} ({{ shelter.codigoPostal }})</span
+				>
+				<span class="d-flex flex-row align-items-center gap-2"
+					><mat-icon>email</mat-icon>{{ shelter.email }}</span
+				>
+				<span class="d-flex flex-row align-items-center gap-2"
+					><mat-icon>phone</mat-icon>{{ shelter.celular }}</span
+				>
+			</div>
+		</mat-card-content>
+	</mat-card>
+	}
+</div>

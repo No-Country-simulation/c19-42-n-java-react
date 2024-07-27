@@ -1,1 +1,59 @@
-<p>gallery works!</p>
+<div class="container">
+	<app-huge-title text="Nuestros servicios. ¡Explora nuestras opciones!" />
+	@if ( isLoading ) { <mat-spinner></mat-spinner>
+	} @else { @if (errorMessage){
+	<div class="alert alert-danger" role="alert">
+		{{ errorMessage }}
+	</div>
+	} @if (shelters.length > 0) {
+	<ul class="row row-cols-1 row-cols-md-2 g-3 p-0">
+		@for (shelter of shelters; track shelters) {
+		<li class="list-unstyled">
+			<mat-card appearance="outlined" class="d-flex flex-row">
+				<img
+					mat-card-image
+					src="https://picsum.photos/200/200/?blur"
+					alt="{{ shelter.nombre }}"
+					class="user-select-none ratio-1x1"
+				/>
+				<div
+					class="p-4 pb-3 d-flex flex-column flex-grow-1 h-100 gap-3"
+				>
+					<mat-card-content class="p-0">
+						<a
+							[routerLink]="['/shelter', shelter.id]"
+							class="fw-bold"
+							>{{ shelter.nombre }}</a
+						>
+						<div class="d-flex flex-column gap-1">
+							<span
+								class="d-flex flex-row align-items-center gap-2"
+								><mat-icon>home</mat-icon
+								>{{ shelter.provincia }}</span
+							>
+							<span
+								class="d-flex flex-row align-items-center gap-2"
+								><mat-icon>phone</mat-icon
+								>{{ shelter.celular }}</span
+							>
+						</div>
+					</mat-card-content>
+					<mat-card-actions class="p-0 justify-content-end">
+						<button
+							mat-flat-button
+							[routerLink]="['/shelter', shelter.id]"
+						>
+							Ver más
+						</button>
+					</mat-card-actions>
+				</div>
+			</mat-card>
+		</li>
+		}
+	</ul>
+	} @else {
+	<div class="alert alert-warning" role="alert">
+		No hay refugios registrados
+	</div>
+	} }
+</div>

@@ -1,0 +1,10 @@
+@import "../../../../styles.scss";
+
+mat-card-content > span {
+	color: map-get($map: $text-palette, $key: primary);
+	font-size: 1.6rem;
+}
+mat-card-content div span {
+	color: map-get($map: $text-palette, $key: secondary);
+	font-size: 0.7rem;
+}
