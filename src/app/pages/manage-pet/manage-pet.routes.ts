@@ -24,11 +24,11 @@ export const MANAGE_PET_ROUTES: Routes = [
 		component: PetCreateComponent,
 	},
 	{
-		path: ':id',
+		path: 'delete/:id',
 		component: PetDeleteComponent,
 	},
 	{
-		path: ':id',
+		path: 'detail/:id',
 		component: PetDetailComponent,
 	},
 ];

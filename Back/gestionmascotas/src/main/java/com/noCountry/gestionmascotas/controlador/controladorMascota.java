@@ -11,7 +11,7 @@ import com.noCountry.gestionmascotas.entidades.vacunaInfo;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/mascota")
@@ -44,8 +44,13 @@ public class controladorMascota {
 		mascota.setProtectoraID(protectoraID);
 		mascota.setEdad(edad);
 
+		//String base64Image = "data:" + img.getContentType() + ";base64," + Base64.getEncoder().encodeToString(img.getBytes());
+		//mascota.setImg(base64Image);
+		//String base64Image = Base64.getEncoder().encodeToString(img.getBytes());
+		//mascota.setImg(base64Image);
+
 		servMascota.saveMascota(mascota, img);
-		return ResponseEntity.ok().body("la mascota se creó con éxito");
+		return ResponseEntity.ok().body(Collections.singletonMap("message", "la mascota se creó con éxito"));
 	}
 
     @GetMapping("/listar")
@@ -83,13 +88,17 @@ public class controladorMascota {
 		mascota.setEdad(edad);
 
 		servMascota.editMascota(id, mascota, img);
-		return ResponseEntity.ok().body("Mascota editada correctamente");
+		return ResponseEntity.ok().body(Collections.singletonMap("messagge", "Mascota editada correctamente"));
 	}
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?>  eliminarMascota(@PathVariable Long id){
-        servMascota.deleteMascota(id);
-        return ResponseEntity.ok().body("Mascota eliminada correctamente");
+    public ResponseEntity<Object> eliminarMascota(@PathVariable Long id){
+		servMascota.deleteMascota(id);
+		Map<String, String> response = new HashMap<>();
+		response.put("message", "Mascota eliminada correctamente");
+		return ResponseEntity.ok().body(response);
+		//servMascota.deleteMascota(id);
+        //return ResponseEntity.ok().body("Mascota eliminada correctamente");
     }
 
     @PostMapping("/vacunas/{mascotaId}")
