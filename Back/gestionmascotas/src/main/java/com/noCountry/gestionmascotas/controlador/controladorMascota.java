@@ -11,6 +11,7 @@ import com.noCountry.gestionmascotas.entidades.vacunaInfo;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -45,7 +46,7 @@ public class controladorMascota {
 		mascota.setEdad(edad);
 
 		servMascota.saveMascota(mascota, img);
-		return ResponseEntity.ok().body("la mascota se creó con éxito");
+		return ResponseEntity.ok().body(Collections.singletonMap("message", "la mascota se creó con éxito"));
 	}
 
     @GetMapping("/listar")
@@ -53,7 +54,7 @@ public class controladorMascota {
         return ResponseEntity.ok().body(servMascota.listarMascotas()) ;
     }
 
-	@GetMapping
+	@GetMapping("/listar/{id}")
 	public ResponseEntity<?> listarMascotaId(@PathVariable Long id) {
 		return ResponseEntity.ok().body(servMascota.findMascota(id));
 	}

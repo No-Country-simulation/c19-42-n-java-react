@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface IservicioMascota {
     public List<mascotas> listarMascotas();
-    public void saveMascota(mascotas mascotas, MultipartFile img) throws IOException;
+	public String saveMascota(mascotas mascotas, MultipartFile img) throws IOException;
     public void deleteMascota(Long id);
     public mascotas findMascota(Long id);
     public void editMascota(Long id, mascotas updatedMascota, MultipartFile imgFile) throws IOException;
