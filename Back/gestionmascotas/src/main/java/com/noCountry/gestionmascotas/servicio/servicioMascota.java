@@ -107,21 +107,75 @@ public class servicioMascota implements IservicioMascota {
 
     @Override
     public List<mascotas> findMascotaByEdad(Long edad) {
-        return repoMascota.findMascotaByedad(edad);
+		List<mascotas> mascotasList = repoMascota.findMascotaByedad(edad);
+		for (mascotas mascota : mascotasList) {
+			if (mascota.getImg() != null) {
+				byte[] decodedImg = Base64.getDecoder().decode(mascota.getImg());
+				mascota.setImg(new String(decodedImg));
+			}
+		}
+		return mascotasList;
     }
 
     @Override
     public List<mascotas> findMascotasByRaza(String raza) {
-        return repoMascota.findMascotaByRaza(raza);
+
+		List<mascotas> mascotasList = repoMascota.findMascotaByRaza(raza);
+		for (mascotas mascota : mascotasList) {
+			if (mascota.getImg() != null) {
+				byte[] decodedImg = Base64.getDecoder().decode(mascota.getImg());
+				mascota.setImg(new String(decodedImg));
+			}
+		}
+		return mascotasList;
     }
 
     @Override
     public List<mascotas> findMascotasByRazaAndEdad(String raza, Long edad) {
-        return repoMascota.findMascotaByedadAndRaza(raza,edad);
+		List<mascotas> mascotasList = repoMascota.findMascotaByedadAndRaza(raza, edad);
+		for (mascotas mascota : mascotasList) {
+			if (mascota.getImg() != null) {
+				byte[] decodedImg = Base64.getDecoder().decode(mascota.getImg());
+				mascota.setImg(new String(decodedImg));
+			}
+		}
+		return mascotasList;
     }
 
     @Override
     public List<mascotas> findMascotasByTipo(tipoMascota tipoMascota) {
-        return repoMascota.findMascotaByTipo(tipoMascota);
+		List<mascotas> mascotasList = repoMascota.findMascotaByTipo(tipoMascota);
+		for (mascotas mascota : mascotasList) {
+			if (mascota.getImg() != null) {
+				byte[] decodedImg = Base64.getDecoder().decode(mascota.getImg());
+				mascota.setImg(new String(decodedImg));
+			}
+		}
+		return mascotasList;
     }
+
+	@Override
+	public List<mascotas> findMascotasByProtectoraID(Long protectoraID) {
+		List<mascotas> mascotasList = repoMascota.findByProtectoraID(protectoraID);
+		for (mascotas mascota : mascotasList) {
+			if (mascota.getImg() != null) {
+				byte[] decodedImg = Base64.getDecoder().decode(mascota.getImg());
+				mascota.setImg(new String(decodedImg));
+			}
+		}
+		return mascotasList;
+	}
+
+	@Override
+	public List<mascotas> getLastThreeMascotas() {
+		List<mascotas> mascotasList = repoMascota.findTop3ByOrderByIdDesc();
+		for (mascotas mascota : mascotasList) {
+			if (mascota.getImg() != null && !mascota.getImg().isEmpty()) {
+				byte[] decodedBytes = Base64.getDecoder().decode(mascota.getImg());
+				String decodedImg = new String(decodedBytes);
+				mascota.setImg(decodedImg);
+			}
+		}
+		return mascotasList;
+	}
 }

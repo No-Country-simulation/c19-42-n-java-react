@@ -1,0 +1,20 @@
+@import "../../../styles.scss";
+
+img[mat-card-image] {
+	width: 30%;
+	border-radius: 12px;
+}
+
+mat-card-content a {
+	color: map-get($map: $text-palette, $key: primary);
+	font-size: 1.6rem;
+
+	&:hover {
+		color: map-get($map: $text-palette, $key: secondary);
+	}
+}
+
+mat-card-content span {
+	color: map-get($map: $text-palette, $key: secondary);
+	text-wrap: balance;
+}

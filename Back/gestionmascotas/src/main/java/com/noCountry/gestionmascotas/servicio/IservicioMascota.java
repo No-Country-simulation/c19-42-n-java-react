@@ -20,4 +20,8 @@ public interface IservicioMascota {
     public List<mascotas> findMascotasByRazaAndEdad(String raza, Long edad);
     public List<mascotas> findMascotasByTipo(tipoMascota tipoMascota);
 
+	public List<mascotas> getLastThreeMascotas();
+
+	List<mascotas> findMascotasByProtectoraID(Long protectoraID);
+
 }

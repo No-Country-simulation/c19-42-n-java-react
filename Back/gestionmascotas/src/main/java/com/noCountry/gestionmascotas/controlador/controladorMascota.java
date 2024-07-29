@@ -122,4 +122,14 @@ public class controladorMascota {
     public ResponseEntity<?> listarMascotasPorTipo(@PathVariable tipoMascota tipoMascota){
         return ResponseEntity.ok().body(servMascota.findMascotasByTipo(tipoMascota));
     }
+
+	@GetMapping("/buscarPorProtectoraID/{protectoraID}")
+	public ResponseEntity<?> buscarMascotasPorProtectoraID(@PathVariable Long protectoraID) {
+		return ResponseEntity.ok().body(servMascota.findMascotasByProtectoraID(protectoraID));
+	}
+
+	@GetMapping("/ultimas")
+	public ResponseEntity<?> obtenerUltimasTresMascotas() {
+		return ResponseEntity.ok().body(servMascota.getLastThreeMascotas());
+	}
 }

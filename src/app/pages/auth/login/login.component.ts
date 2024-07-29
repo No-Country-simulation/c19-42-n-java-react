@@ -9,11 +9,12 @@ import {
 import { Login } from '../../../core/interfaces/Login';
 import { LoginService } from '../../../core/services/login.service';
 import { Router } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
 	selector: 'app-login',
 	standalone: true,
-	imports: [ReactiveFormsModule],
+	imports: [ReactiveFormsModule, MatCardModule],
 	templateUrl: './login.component.html',
 	styleUrls: ['/src/app/app.component.scss', '../auth.css'],
 })
@@ -35,7 +36,7 @@ export class LoginComponent {
 	}
 
 	public loginForm: FormGroup = this.fb.group({
-		userName: ['ignacioadoptante', Validators.required],
+		userName: ['', Validators.required],
 		password: ['', Validators.required],
 	});
 
@@ -49,22 +50,39 @@ export class LoginComponent {
 			this.loginService.login(login).subscribe({
 				next: (response) => {
 					if (response.token) {
-						localStorage.setItem('token', response.token);
+						this.loginService.setToken(
+							response.token,
+							login.username
+						);
+						console.log('Login correcto', response.token);
+						this.router.navigateByUrl('/');
+						this.loginForm.reset();
 					} else {
-						console.log('Usuario o contraseña incorrectos');
+						console.error('Usuario o contraseña incorrectos');
 						this.loginErrorMessage =
 							'Usuario o contraseña incorrectos';
+						alert(this.loginErrorMessage);
 					}
 				},
 				error: (error) => {
-					console.log('Error en la petición', error.message, error);
-					(this.loginErrorMessage = 'Error en la petición'),
-						error.message;
+					if (error.status === 400) {
+						console.error('Usuario no registrado', error);
+						this.loginErrorMessage =
+							'Usuario no registrado o contraseña incorrecta';
+						alert(this.loginErrorMessage);
+					} else {
+						console.error(
+							'Error en la petición',
+							error.message,
+							error
+						);
+						this.loginErrorMessage =
+							'Error en la petición: ' + error.message;
+						alert(this.loginErrorMessage);
+					}
 				},
 				complete: () => {
-					console.log('Petición completada');
-					this.router.navigateByUrl('/');
-					this.loginForm.reset();
+					console.info('Petición completada');
 				},
 			});
 		} else {

@@ -1,0 +1,148 @@
+@import "../../../styles.scss";
+
+swiper-slide {
+	position: relative;
+	height: 50vh;
+}
+
+swiper-slide img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+swiper-slide::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 5;
+}
+
+swiper-slide div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+	z-index: 10;
+	& span {
+		color: map-get($map: $text-palette, $key: contrast);
+		font-size: 1.8rem;
+		font-weight: bold;
+		text-wrap: balance;
+
+		@media (width >= 992px) {
+			font-size: 2.8rem;
+		}
+	}
+
+	& p {
+		color: map-get($map: $text-palette, $key: contrast);
+		font-size: 0.8rem;
+		text-wrap: balance;
+
+		@media (width >= 992px) {
+			font-size: 1.2rem;
+		}
+	}
+}
+
+swiper-container::part(bullet-active) {
+	background: map-get($map: $primary-palette, $key: 300) !important;
+}
+
+section {
+	margin-bottom: 3rem;
+}
+
+@keyframes slides {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-100%);
+	}
+}
+
+.logos {
+	overflow: hidden;
+	padding: 30px 0px;
+	white-space: nowrap;
+	position: relative;
+}
+
+.logos:before,
+.logos:after {
+	position: absolute;
+	top: 0;
+	content: "";
+	width: 250px;
+	height: 100%;
+	z-index: 2;
+}
+
+.logos:before {
+	left: 0;
+	background: linear-gradient(
+		to left,
+		rgba(255, 255, 255, 0),
+		rgb(255, 255, 255)
+	);
+}
+
+.logos:after {
+	right: 0;
+	background: linear-gradient(
+		to right,
+		rgba(255, 255, 255, 0),
+		rgb(255, 255, 255)
+	);
+}
+
+.logo_items {
+	display: inline-block;
+	animation: 35s slides infinite linear;
+}
+
+.logos:hover .logo_items {
+	animation-play-state: paused;
+}
+
+.logo_items img {
+	height: 100px;
+}
+
+.card-about-us-photo {
+	width: 100%;
+	object-fit: cover;
+	aspect-ratio: 16/9;
+	border-radius: 12px;
+}
+
+.container-card-team-member mat-card {
+	border: none !important;
+}
+
+.card-team_member-photo {
+	width: 100%;
+	object-fit: cover;
+	aspect-ratio: 1/1;
+
+	@media (width >= 992px) {
+		width: 50%;
+	}
+}
+
+.card-team_member-name {
+	font-size: 1rem;
+	text-wrap: balance;
+}
+
+.card-team_member-position {
+	font-size: 0.8rem;
+	text-wrap: balance;
+}

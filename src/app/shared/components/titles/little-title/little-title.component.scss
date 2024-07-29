@@ -1,0 +1,6 @@
+@import "../../../../../styles.scss";
+
+.little-title {
+	color: map-get($map: $primary-palette, $key: 300);
+	font-size: 1.2rem;
+}
