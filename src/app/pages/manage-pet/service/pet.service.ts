@@ -23,11 +23,14 @@ export class PetService {
     return this.http.get<Pet>(`${this.baseUrl}/${id}`);
   }
 
-  createPet(pet: Pet): Observable<Pet> {
+  createPet(pet: FormData): Observable<Pet> {
     return this.http.post<Pet>(`${this.baseUrl}/crear`, pet);
   }
+ // createPet(pet: Pet): Observable<Pet> {
+   // return this.http.post<Pet>(`${this.baseUrl}/crear`, pet);
+  //}
 
-  updatePet(id: number, pet: Pet): Observable<Pet> {
+  updatePet(id: number, pet: FormData): Observable<Pet> {
     return this.http.put<Pet>(`${this.baseUrl}/editar/${id}`, pet);
   }
 

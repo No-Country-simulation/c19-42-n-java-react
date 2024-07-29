@@ -16,6 +16,7 @@
             <th>Nivel Actividad</th>
             <th>Protectora ID</th>
             <th>Edad</th>
+            <th>Imagen</th>
           </tr>
         </thead>
         <tbody>
@@ -30,12 +31,13 @@
             <td>{{ pet.nivelActividad}}</td>
             <td>{{ pet.protectoraID }}</td>
             <td>{{ pet.edad }} años</td>
+            <td> <img *ngIf="pet.img" [src]="pet.img" alt="{{ pet.nombre }}" style="max-width: 100px; max-height: 100px;"></td>
           </tr>
         </tbody>
       </table>
       <div class="d-flex mt-2 my-4 mt-0 mx-1 justify-content-center">
         <button type="submit" class="btn btn-primary size col-sm-3" routerLink="/manage-pet/detail/:id">Detalles</button>
-        <button type="submit" class="btn btn-primary size col-sm-3" routerLink="/manage-pet/edit/:id">Editar</button>
+        <button type="submit" class="btn btn-primary size col-sm-3" [routerLink]="['/manage-pet/edit', pet.id]">Editar</button>
         <button type="submit" class="btn btn-primary size col-sm-3" *ngIf="pet.id !== undefined" (click)="deletePet(pet.id)">Eliminar</button>
       </div>
     </div>

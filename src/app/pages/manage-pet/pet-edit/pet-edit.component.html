@@ -1,1 +1,72 @@
-<p>pet-edit works!</p>
+<div class="container">
+    <h2>Editar Mascota</h2>
+    <form [formGroup]="editPetForm" (ngSubmit)="updatePet()">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" formControlName="nombre" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="raza">Raza</label>
+        <input id="raza" formControlName="raza" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="tipoMascota">Tipo de Mascota</label>
+        <select id="tipoMascota" formControlName="tipoMascota" class="form-control">
+          <option value="">Seleccione un tipo de mascota</option>
+        <option value="GATO">GATO</option>
+        <option value="PERRO">PERRO</option>
+        <option value="CONEJO">CONEJO</option>
+        <option value="HAMSTER">HAMSTER</option>
+        <option value="TORTUGA">TORTUGA</option>
+        <option value="AVE">AVE</option>
+          <!-- Añadir más opciones según sea necesario -->
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="peso">Peso</label>
+        <input id="peso" formControlName="peso" type="number" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="pelaje">Pelaje</label>
+        <input id="pelaje" formControlName="pelaje" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="sexo">Sexo</label>
+        <input id="sexo" formControlName="sexo" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="nivelActividad">Nivel de Actividad</label>
+        <select id="nivelActividad" formControlName="nivelActividad" class="form-control">
+          <option value="">Seleccione un tipo de mascota</option>
+          <option value="BAJA">Baja</option>
+          <option value="MEDIA">Media</option>
+          <option value="ALTA">Alta</option>
+          <!-- Añadir más opciones según sea necesario -->
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="protectoraID">ID de Protectora</label>
+        <input id="protectoraID" formControlName="protectoraID" type="number" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="edad">Edad</label>
+        <input id="edad" formControlName="edad" type="number" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="img">Imagen</label>
+        <input id="img" type="file" (change)="onFileChange($event)" class="form-control" />
+      </div>
+  
+      <button type="submit" class="btn btn-primary" routerLink="/manage-pet/create">Actualizar Mascota</button>
+    </form>
+  </div>
+  

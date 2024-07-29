@@ -26,21 +26,23 @@ public class servicioMascota implements IservicioMascota {
 		List<mascotas> mascotasList = repoMascota.findAll();
 		for (mascotas mascota : mascotasList) {
 			if (mascota.getImg() != null) {
-				byte[] decodedImg = Base64.getDecoder().decode(mascota.getImg());
-				mascota.setImg(new String(decodedImg));
+				mascota.setImg("data:image/jpeg;base64," + mascota.getImg());
+				System.out.println("Imagen obtenida correctamente");
 			}
 		}
         return mascotasList;
     }
 
     @Override
-	public void saveMascota(mascotas mascota, MultipartFile imgFile) throws IOException{
+	public String saveMascota(mascotas mascota, MultipartFile imgFile) throws IOException{
 		// Codificar la imagen en base64 antes de guardar
 		if (imgFile != null && !imgFile.isEmpty()) {
 			String base64Img = Base64.getEncoder().encodeToString(imgFile.getBytes());
 			mascota.setImg(base64Img);
+			System.out.println("Imagen codificada en base64: " + base64Img);
 		}
 		repoMascota.save(mascota);
+		return null;
 	}
 
     @Override

@@ -8,6 +8,7 @@ import { Pet } from '../model/pet';
 import { PetService } from '../service/pet.service';
 import { Router } from '@angular/router';
 import { MockPetService } from '../service/mock-pet.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-pet-create',
@@ -18,15 +19,12 @@ import { MockPetService } from '../service/mock-pet.service';
 })
 export class PetCreateComponent {
   createPetForm: FormGroup;
-  
-  
- 
-  
+  selectedFile: File | null = null;   
  
   constructor(
     private fb: FormBuilder,
     private petService: PetService,
-    private router: Router
+    private router: Router,
   ) {
     
       this.createPetForm = this.fb.group({
@@ -40,22 +38,41 @@ export class PetCreateComponent {
       nivelActividad:['', Validators.required],
       protectoraID:['', Validators.required],
       edad: ['', [Validators.required, Validators.min(0)]],
-    });
+      img: [''],   
+     });
   }
 
   ngOnInit(): void {}
   
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+      console.log('Archivo seleccionado:', file);
+    } else {
+      console.error('Error al guardar la imagen.');
+    }
+  }
+  
+  
 
   createPet(): void {
-    if (this.createPetForm.valid) {
-      const newPet: Pet = this.createPetForm.value;
-      console.log('Datos del formulario:', newPet); // Imprimir los datos en la consola
-      this.petService.createPet(newPet).subscribe(() => {
-        console.log('Mascota creada: con exito', newPet); // Confirmar que la mascota ha sido creada
-        this.router.navigate(['manage-pet/list']);
+    if (this.createPetForm.valid && this.selectedFile) {
+      const newPet = new FormData();
+      for (const [name, control] of Object.entries(this.createPetForm.controls)) {
+        newPet.append(name, control.value);
+      }
+      newPet.append('img', this.selectedFile);
+  
+      this.petService.createPet(newPet).subscribe({
+        next: () => {
+          console.log('Mascota creada con éxito', newPet);
+          this.router.navigate(['manage-pet/list']);
+          this.createPetForm.reset(); // Limpiar el formulario
+          this.selectedFile = null; // Limpiar el archivo seleccionado
+        },
+        
       });
-    } (error: any) => {
-      console.error('El formulario no es válido', error);
-    }
+    } 
   }
 }

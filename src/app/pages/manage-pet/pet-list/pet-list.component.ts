@@ -22,13 +22,12 @@ export class PetListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadPets();
-    throw new Error('No se pudieron cargar los datos')
   }
 
   loadPets(): void {
-    this.petService.getAllPets().subscribe(data =>{
-        this.pets = data;
-     }); 
+    this.petService.getAllPets().subscribe((data: Pet[]) => {
+      this.pets = data;
+    });
   }
 
   deletePet(id: number): void {

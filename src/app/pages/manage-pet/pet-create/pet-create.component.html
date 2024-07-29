@@ -80,6 +80,14 @@
 		  <small *ngIf="createPetForm.get('edad')?.errors?.['min']">La edad debe ser un número positivo.</small>
 		</div>
 	  </div>
+
+	  <div class="mb-3">
+		<label for="img" class="form-label">Imagen:</label>
+		<input id="img" type="file" class="form-control"  required (change)="onFileChange($event)">
+		<div *ngIf="!selectedFile && (createPetForm.dirty || createPetForm.touched)" class="text-danger">
+		  <small>La imagen es obligatoria.</small>
+		</div>
+	  </div>
   
 	  <button type="submit" (click) = "createPet()" class="btn btn-primary">Guardar</button>
 	</form>

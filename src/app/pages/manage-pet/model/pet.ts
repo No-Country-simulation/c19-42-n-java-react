@@ -1,4 +1,7 @@
 export class Pet {
+    append(arg0: string, value: any) {
+      throw new Error('Method not implemented.');
+    }
 
     id?: number;
     nombre: string;
@@ -10,10 +13,11 @@ export class Pet {
     nivelActividad: string;
     protectoraID: number;
     edad: number;
+    img?: string; 
     //descripcion: string;
     //imagenUrl: string;
 
-    constructor(nombre: string, raza: string, tipoMascota: string, peso: number, pelaje: string, sexo: string, nivelActividad: string, protectoraID: number, edad: number){ //descripcion: string, imagenUrl: string){
+    constructor(nombre: string, raza: string, tipoMascota: string, peso: number, pelaje: string, sexo: string, nivelActividad: string, protectoraID: number, edad: number, img?: string){ //descripcion: string, imagenUrl: string){
 
         this.nombre = nombre;
         this.raza = raza;
@@ -24,6 +28,7 @@ export class Pet {
         this.nivelActividad = nivelActividad;
         this.protectoraID = protectoraID;
         this.edad = edad;
+        this.img = img;
         //this.descripcion = descripcion;
         //this.imagenUrl = imagenUrl;
     }
