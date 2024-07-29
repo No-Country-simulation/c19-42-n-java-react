@@ -216,7 +216,7 @@ export class RegisterComponent {
 		),
 		phoneNumber: ['', Validators.required],
 		address: this.fb.group({
-			country: ['', Validators.required],
+			country: ['Perú', Validators.required],
 			state: ['', Validators.required],
 			city: ['', Validators.required],
 			zipCode: ['', Validators.required],

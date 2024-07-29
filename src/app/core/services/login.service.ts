@@ -15,7 +15,7 @@ import { Login } from '../interfaces/Login';
 })
 export class LoginService {
 	private http = inject(HttpClient);
-	private baseUrl: string = AppSettings.apiURL;
+	private baseURL: string = AppSettings.apiURL;
 	private authStatus = new BehaviorSubject<boolean>(this.hasToken());
 
 	constructor() {}
@@ -35,7 +35,7 @@ export class LoginService {
 
 		return this.http
 			.post<ResponseLogin>(
-				`${this.baseUrl}auth/register/adoptante`,
+				`${this.baseURL}auth/register/adoptante`,
 				user,
 				{ headers }
 			)
@@ -49,7 +49,7 @@ export class LoginService {
 
 		return this.http
 			.post<ResponseLogin>(
-				`${this.baseUrl}auth/register/protectora`,
+				`${this.baseURL}auth/register/protectora`,
 				shelter,
 				{ headers }
 			)
@@ -62,7 +62,7 @@ export class LoginService {
 		});
 
 		return this.http
-			.post<ResponseLogin>(`${this.baseUrl}auth/login`, user, { headers })
+			.post<ResponseLogin>(`${this.baseURL}auth/login`, user, { headers })
 			.pipe(catchError(this.handleError));
 	}
 
