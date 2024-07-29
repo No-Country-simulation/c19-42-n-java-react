@@ -18,7 +18,7 @@ import java.util.Arrays;
 public class WebClientConfig implements WebFluxConfigurer {
 
 
-/**
+
     @Bean
     public CustomCorsFilter customCorsFilter() {
         return new CustomCorsFilter();
@@ -33,6 +33,5 @@ public class WebClientConfig implements WebFluxConfigurer {
                 .allowCredentials(true);
     }
 
-	**/
 
 }
