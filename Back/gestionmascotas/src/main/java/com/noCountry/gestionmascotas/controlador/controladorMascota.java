@@ -12,7 +12,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/mascota")
@@ -87,11 +89,15 @@ public class controladorMascota {
 		return ResponseEntity.ok().body("Mascota editada correctamente");
 	}
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?>  eliminarMascota(@PathVariable Long id){
-        servMascota.deleteMascota(id);
-        return ResponseEntity.ok().body("Mascota eliminada correctamente");
-    }
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Object> eliminarMascota(@PathVariable Long id){
+		servMascota.deleteMascota(id);
+		Map<String, String> response = new HashMap<>();
+		response.put("message", "Mascota eliminada correctamente");
+		return ResponseEntity.ok().body(response);
+		//servMascota.deleteMascota(id);
+		//return ResponseEntity.ok().body("Mascota eliminada correctamente");
+	}
 
     @PostMapping("/vacunas/{mascotaId}")
     public ResponseEntity<?> addVacuna(@PathVariable Long mascotaId, @RequestBody vacunaInfo vacunaInfo){
