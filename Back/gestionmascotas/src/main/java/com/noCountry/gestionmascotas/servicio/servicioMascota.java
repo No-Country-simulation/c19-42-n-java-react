@@ -52,17 +52,14 @@ public class servicioMascota implements IservicioMascota {
 
     @Override
     public mascotas findMascota(Long id) {
-		Optional<mascotas> optionalMascota = repoMascota.findById(id);
-
-		if (optionalMascota.isPresent()) {
-			mascotas mascota = optionalMascota.get();
+		mascotas mascota = repoMascota.findById(id).orElse(null);
+		if (mascota != null) {
 			if (mascota.getImg() != null) {
-				byte[] decodedImg = Base64.getDecoder().decode(mascota.getImg());
-				mascota.setImg(new String(decodedImg));
+				mascota.setImg("data:image/jpeg;base64," + mascota.getImg());
+				System.out.println("Imagen obtenida correctamente");
 			}
-			return mascota;
 		}
-		return null;
+		return mascota;
     }
 
     @Override
@@ -110,8 +107,8 @@ public class servicioMascota implements IservicioMascota {
 		List<mascotas> mascotasList = repoMascota.findMascotaByedad(edad);
 		for (mascotas mascota : mascotasList) {
 			if (mascota.getImg() != null) {
-				byte[] decodedImg = Base64.getDecoder().decode(mascota.getImg());
-				mascota.setImg(new String(decodedImg));
+				mascota.setImg("data:image/jpeg;base64," + mascota.getImg());
+				System.out.println("Imagen obtenida correctamente");
 			}
 		}
 		return mascotasList;
@@ -119,12 +116,11 @@ public class servicioMascota implements IservicioMascota {
 
     @Override
     public List<mascotas> findMascotasByRaza(String raza) {
-
 		List<mascotas> mascotasList = repoMascota.findMascotaByRaza(raza);
 		for (mascotas mascota : mascotasList) {
 			if (mascota.getImg() != null) {
-				byte[] decodedImg = Base64.getDecoder().decode(mascota.getImg());
-				mascota.setImg(new String(decodedImg));
+				mascota.setImg("data:image/jpeg;base64," + mascota.getImg());
+				System.out.println("Imagen obtenida correctamente");
 			}
 		}
 		return mascotasList;
@@ -135,8 +131,8 @@ public class servicioMascota implements IservicioMascota {
 		List<mascotas> mascotasList = repoMascota.findMascotaByedadAndRaza(raza, edad);
 		for (mascotas mascota : mascotasList) {
 			if (mascota.getImg() != null) {
-				byte[] decodedImg = Base64.getDecoder().decode(mascota.getImg());
-				mascota.setImg(new String(decodedImg));
+				mascota.setImg("data:image/jpeg;base64," + mascota.getImg());
+				System.out.println("Imagen obtenida correctamente");
 			}
 		}
 		return mascotasList;
@@ -147,8 +143,8 @@ public class servicioMascota implements IservicioMascota {
 		List<mascotas> mascotasList = repoMascota.findMascotaByTipo(tipoMascota);
 		for (mascotas mascota : mascotasList) {
 			if (mascota.getImg() != null) {
-				byte[] decodedImg = Base64.getDecoder().decode(mascota.getImg());
-				mascota.setImg(new String(decodedImg));
+				mascota.setImg("data:image/jpeg;base64," + mascota.getImg());
+				System.out.println("Imagen obtenida correctamente");
 			}
 		}
 		return mascotasList;
@@ -159,8 +155,8 @@ public class servicioMascota implements IservicioMascota {
 		List<mascotas> mascotasList = repoMascota.findByProtectoraID(protectoraID);
 		for (mascotas mascota : mascotasList) {
 			if (mascota.getImg() != null) {
-				byte[] decodedImg = Base64.getDecoder().decode(mascota.getImg());
-				mascota.setImg(new String(decodedImg));
+				mascota.setImg("data:image/jpeg;base64," + mascota.getImg());
+				System.out.println("Imagen obtenida correctamente");
 			}
 		}
 		return mascotasList;
@@ -170,10 +166,9 @@ public class servicioMascota implements IservicioMascota {
 	public List<mascotas> getLastThreeMascotas() {
 		List<mascotas> mascotasList = repoMascota.findTop3ByOrderByIdDesc();
 		for (mascotas mascota : mascotasList) {
-			if (mascota.getImg() != null && !mascota.getImg().isEmpty()) {
-				byte[] decodedBytes = Base64.getDecoder().decode(mascota.getImg());
-				String decodedImg = new String(decodedBytes);
-				mascota.setImg(decodedImg);
+			if (mascota.getImg() != null) {
+				mascota.setImg("data:image/jpeg;base64," + mascota.getImg());
+				System.out.println("Imagen obtenida correctamente");
 			}
 		}
 		return mascotasList;
