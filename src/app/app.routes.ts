@@ -5,6 +5,8 @@ import { HowToAdoptComponent } from './pages/how-to-adopt/how-to-adopt.component
 import { ContactComponent } from './pages/contact/contact.component';
 import { DonateComponent } from './pages/donate/donate.component';
 import { Error404Component } from './pages/error-404/error-404.component';
+import { ShelterProfileComponent } from './pages/profile/shelter-profile/shelter-profile.component';
+import { AdopterProfileComponent } from './pages/profile/adopter-profile/adopter-profile.component';
 
 export const routes: Routes = [
 	{
@@ -58,6 +60,8 @@ export const routes: Routes = [
 				(m) => m.MANAGE_PET_ROUTES
 			),
 	},
+	{ path: 'shelter/:id', component: ShelterProfileComponent },
+	{ path: 'adopter/:id', component: AdopterProfileComponent },
 	{
 		path: '**',
 		component: Error404Component,
