@@ -3,6 +3,7 @@ import { AppSettings } from '../../settings/AppSettings';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Shelter } from '../../interfaces/User';
+import { Pet } from '../../interfaces/Pet';
 
 @Injectable({
 	providedIn: 'root',
@@ -24,5 +25,11 @@ export class GalleryService {
 
 	getShelterById(id: string): Observable<any> {
 		return this.http.get<any>(`${this.baseURL}protectora/${id}`);
+	}
+
+	getPetsByShelterId(shelterId: string): Observable<Pet[]> {
+		return this.http.get<Pet[]>(
+			`${this.baseURL}protectora/mascotas/${shelterId}`
+		);
 	}
 }

@@ -2,7 +2,7 @@
 	<a mat-fab extended routerLink="/gallery" class="mb-3"
 		><mat-icon>arrow_back</mat-icon>Volver</a
 	>
-	@if (errorMessage ) {
+	@if (errorMessage) {
 	<div>{{ errorMessage }}</div>
 	} @if (shelter$ | async; as shelter) {
 	<mat-card appearance="outlined">
@@ -29,5 +29,14 @@
 			</div>
 		</mat-card-content>
 	</mat-card>
+	} @if (pets$ | async; as pets) {
+	<div>
+		<h2>Mascotas del Refugio</h2>
+		<ul>
+			@for (pet of pets; track pet.id) {
+			<li>{{ pet.nombre }}</li>
+			}
+		</ul>
+	</div>
 	}
 </div>

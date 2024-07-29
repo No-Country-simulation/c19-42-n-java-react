@@ -6,6 +6,7 @@ import { AsyncPipe } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { Pet } from '../../../core/interfaces/Pet';
 
 @Component({
 	selector: 'app-shelter-profile',
@@ -22,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ShelterProfileComponent {
 	shelter$: Observable<any> | undefined;
+	pets$: Observable<Pet[]> | undefined;
 	errorMessage: string = '';
 
 	constructor(
@@ -33,12 +35,21 @@ export class ShelterProfileComponent {
 		const shelterId = this.route.snapshot.paramMap.get('id');
 		if (shelterId) {
 			this.shelter$ = this.shelterService.getShelterById(shelterId);
+			this.pets$ = this.shelterService.getPetsByShelterId(shelterId);
 			this.shelter$.subscribe({
 				next: (shelter) => {
 					console.log('Shelter Data:', shelter);
 				},
 				error: (error) => {
-					this.errorMessage = 'No existe el refugio';
+					console.error('Error fetching shelter:', error);
+				},
+			});
+			this.pets$.subscribe({
+				next: (pets) => {
+					console.log('Pets Data:', pets);
+				},
+				error: (error) => {
+					console.error('Error fetching pets:', error);
 				},
 			});
 		} else {
