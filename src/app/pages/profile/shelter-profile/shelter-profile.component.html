@@ -29,13 +29,16 @@
 			</div>
 		</mat-card-content>
 	</mat-card>
-	@if (isOwner$ | async) {
-	<button mat-flat-button color="secondary" (click)="addPet()">
-		Agregar mascota
-	</button>
-	} @if (pets$ | async; as pets) {
+	@if (pets$ | async; as pets) {
 	<div>
 		<h2>Mascotas del Refugio</h2>
+		@if (canEdit() ) {
+		<div>
+			<button mat-raised-button color="primary" (click)="addPet()">
+				Añadir Mascota
+			</button>
+		</div>
+		}
 		<ul>
 			@for (pet of pets; track pet.id) {
 			<li>
@@ -64,13 +67,17 @@
 							>
 						</div>
 					</mat-card-content>
-					@if (isOwner$ | async) {
+					@if (canEdit() ) {
 					<mat-card-actions>
-						<button mat-icon-button (click)="editPet(pet)">
-							<mat-icon>edit</mat-icon>
+						<button mat-button (click)="editPet(pet)">
+							Editar
 						</button>
-						<button mat-icon-button (click)="deletePet(pet)">
-							<mat-icon>delete</mat-icon>
+						<button
+							mat-button
+							color="warn"
+							(click)="deletePet(pet)"
+						>
+							Eliminar
 						</button>
 					</mat-card-actions>
 					}

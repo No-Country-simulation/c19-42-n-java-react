@@ -26,31 +26,36 @@ export class ShelterProfileComponent {
 	shelter$: Observable<any> | undefined;
 	pets$: Observable<Pet[]> | undefined;
 	errorMessage: string = '';
-	isOwner$: Observable<boolean>;
+	currentUserId: number | null = null;
+	shelterUserId: number | null = null;
 
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
 		private shelterService: GalleryService,
 		private loginService: LoginService
-	) {
-		this.isOwner$ = this.loginService.getOwnerStatus();
-	}
+	) {}
 
 	ngOnInit(): void {
+		this.currentUserId = this.loginService.getUserPayload()?.id ?? null;
 		const shelterId = this.route.snapshot.paramMap.get('shelterId');
+		console.log('Shelter ID:', shelterId);
+
 		if (shelterId) {
 			this.shelter$ = this.shelterService.getShelterById(shelterId);
 			this.pets$ = this.shelterService.getPetsByShelterId(shelterId);
+
 			this.shelter$.subscribe({
 				next: (shelter) => {
 					console.log('Shelter Data:', shelter);
+					this.shelterUserId = shelter.usuarioId;
 				},
 				error: (error) => {
 					console.error('Error fetching shelter:', error);
 					this.errorMessage = 'Error fetching shelter data';
 				},
 			});
+
 			this.pets$.subscribe({
 				next: (pets) => {
 					console.log('Pets Data:', pets);
@@ -67,6 +72,10 @@ export class ShelterProfileComponent {
 
 	goToAnimalProfile(shelterId: string, petId: string): void {
 		this.router.navigateByUrl(`/shelter/${shelterId}/pet/${petId}`);
+	}
+
+	canEdit(): boolean {
+		return this.currentUserId === this.shelterUserId;
 	}
 
 	addPet(): void {
