@@ -57,8 +57,8 @@ public class servicioMascota implements IservicioMascota {
 		if (optionalMascota.isPresent()) {
 			mascotas mascota = optionalMascota.get();
 			if (mascota.getImg() != null) {
-				byte[] decodedImg = Base64.getDecoder().decode(mascota.getImg());
-				mascota.setImg(new String(decodedImg));
+				mascota.setImg("data:image/jpeg;base64," + mascota.getImg());
+				System.out.println("Imagen obtenida correctamente");
 			}
 			return mascota;
 		}

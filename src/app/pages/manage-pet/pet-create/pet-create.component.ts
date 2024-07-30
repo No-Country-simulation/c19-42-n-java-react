@@ -1,14 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder,
   FormGroup, 
   ReactiveFormsModule, 
   Validators } from '@angular/forms';
-import { Pet } from '../model/pet';
 import { PetService } from '../service/pet.service';
 import { Router } from '@angular/router';
-import { MockPetService } from '../service/mock-pet.service';
-import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-pet-create',

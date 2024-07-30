@@ -58,7 +58,7 @@ public class controladorMascota {
         return ResponseEntity.ok().body(servMascota.listarMascotas()) ;
     }
 
-	@GetMapping
+	@GetMapping("/listar/{id}")
 	public ResponseEntity<?> listarMascotaId(@PathVariable Long id) {
 		return ResponseEntity.ok().body(servMascota.findMascota(id));
 	}
