@@ -114,15 +114,30 @@
 								</div>
 								@if (canEdit()) {
 								<div class="d-flex flex-row gap-2 mt-3">
-									<button mat-mini-fab (click)="editPet(pet)">
-										<mat-icon fontIcon="edit" />
-									</button>
-									<button
+									<a
 										mat-mini-fab
-										(click)="deletePet(pet)"
+										[routerLink]="[
+											'/shelter',
+											shelter.id,
+											'pet',
+											pet.id,
+											'edit'
+										]"
+									>
+										<mat-icon fontIcon="edit" />
+									</a>
+									<a
+										mat-mini-fab
+										[routerLink]="[
+											'/shelter',
+											shelter.id,
+											'pet',
+											pet.id,
+											'delete'
+										]"
 									>
 										<mat-icon fontIcon="delete" />
-									</button>
+									</a>
 								</div>
 								}
 							</div>
