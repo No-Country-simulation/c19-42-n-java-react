@@ -49,20 +49,27 @@
 							"budgets": [
 								{
 									"type": "initial",
-									"maximumWarning": "1MB",
-									"maximumError": "2MB"
+									"maximumWarning": "2MB",
+									"maximumError": "5MB"
 								},
 								{
 									"type": "anyComponentStyle",
-									"maximumWarning": "2kB",
-									"maximumError": "4kB"
+									"maximumWarning": "2MB",
+									"maximumError": "5MB"
 								}
 							],
 							"outputHashing": "all",
 							"optimization": true
 						},
 						"development": {
-							"optimization": false,
+							"optimization": {
+								"scripts": true,
+								"styles": {
+									"minify": true,
+									"inlineCritical": false
+								},
+								"fonts": true
+							},
 							"extractLicenses": false,
 							"sourceMap": true
 						}
@@ -105,8 +112,15 @@
 				}
 			}
 		}
+<<<<<<< HEAD
   },
   "cli": {
     "analytics": "ddbc5354-f9c5-468a-9f85-96fe4c1b5cb3"
   }
+=======
+	},
+	"cli": {
+		"analytics": "26a9356c-d06b-42e5-8ffc-25bbbbc09c35"
+	}
+>>>>>>> front/develop
 }

@@ -29,14 +29,62 @@
 			</div>
 		</mat-card-content>
 	</mat-card>
-	} @if (pets$ | async; as pets) {
+	@if (pets$ | async; as pets) {
 	<div>
 		<h2>Mascotas del Refugio</h2>
+		@if (canEdit() ) {
+		<div>
+			<button mat-raised-button color="primary" (click)="addPet()">
+				Añadir Mascota
+			</button>
+		</div>
+		}
 		<ul>
 			@for (pet of pets; track pet.id) {
-			<li>{{ pet.nombre }}</li>
+			<li>
+				<mat-card appearance="outlined">
+					<mat-card-content>
+						<img
+							mat-card-image
+							src="https://picsum.photos/200/200/?blur"
+							alt="{{ pet.nombre }}"
+							class="ratio-1x1"
+							(click)="goToAnimalProfile(shelter.id, pet.id)"
+						/>
+						<span class="fw-bold">{{ pet.nombre }}</span>
+						<div class="d-flex flex-column gap-2">
+							<span
+								class="d-flex flex-row align-items-center gap-2"
+								><mat-icon>home</mat-icon>{{ pet.raza }}</span
+							>
+							<span
+								class="d-flex flex-row align-items-center gap-2"
+								><mat-icon>email</mat-icon>{{ pet.edad }}</span
+							>
+							<span
+								class="d-flex flex-row align-items-center gap-2"
+								><mat-icon>phone</mat-icon>{{ pet.sexo }}</span
+							>
+						</div>
+					</mat-card-content>
+					@if (canEdit() ) {
+					<mat-card-actions>
+						<button mat-button (click)="editPet(pet)">
+							Editar
+						</button>
+						<button
+							mat-button
+							color="warn"
+							(click)="deletePet(pet)"
+						>
+							Eliminar
+						</button>
+					</mat-card-actions>
+					}
+				</mat-card>
+			</li>
 			}
 		</ul>
 	</div>
-	}
+	} }
 </div>

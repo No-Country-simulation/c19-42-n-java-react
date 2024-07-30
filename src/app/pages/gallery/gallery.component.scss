@@ -1,20 +1,52 @@
 @import "../../../styles.scss";
 
-img[mat-card-image] {
-	width: 30%;
-	border-radius: 12px;
+h2 {
+	color: map-get($map: $text-palette, $key: secondary);
 }
 
-mat-card-content a {
-	color: map-get($map: $text-palette, $key: primary);
-	font-size: 1.6rem;
+p {
+	color: map-get($map: $text-palette, $key: secondary);
+}
 
-	&:hover {
-		color: map-get($map: $text-palette, $key: secondary);
+img[mat-card-image] {
+	width: 150px;
+	height: 150px;
+	border-radius: 12px;
+
+	@media (width >= 768px) {
+		width: 200px;
+		height: 200px;
+	}
+}
+
+mat-card {
+	border-inline: none;
+	border-radius: 0;
+}
+
+mat-card-content h4 {
+	font-size: 1.2rem;
+
+	@media (width >= 768px) {
+		font-size: 2rem;
 	}
 }
 
 mat-card-content span {
 	color: map-get($map: $text-palette, $key: secondary);
 	text-wrap: balance;
+	font-size: 0.8rem;
+
+	@media (width >= 768px) {
+		font-size: 1.2rem;
+	}
+}
+
+mat-card-actions button {
+	border-radius: 2rem;
+	font-size: 0.7rem;
+
+	@media (width >= 768px) {
+		font-size: initial;
+	}
 }

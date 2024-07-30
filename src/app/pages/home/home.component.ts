@@ -6,6 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { SectionTitleComponent } from '../../shared/components/titles/section-title/section-title.component';
 import { RouterModule } from '@angular/router';
 import { LittleTitleComponent } from '../../shared/components/titles/little-title/little-title.component';
+import { Pet } from '../../core/interfaces/Pet';
+import { HomeService } from '../../core/services/home/home.service';
 
 @Component({
 	selector: 'app-home',
@@ -22,6 +24,23 @@ import { LittleTitleComponent } from '../../shared/components/titles/little-titl
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomeComponent {
+	recentPets: Pet[] = [];
+	errorMessage: string = '';
+
+	constructor(private homeService: HomeService) {}
+
+	ngOnInit(): void {
+		this.homeService.getRecentPets().subscribe({
+			next: (pets) => {
+				this.recentPets = pets;
+			},
+			error: (error) => {
+				console.error('Error fetching recent pets:', error);
+				this.errorMessage = 'Error fetching recent pets';
+			},
+		});
+	}
+
 	public teamMembers = [
 		{
 			name: 'Diego Díaz',
