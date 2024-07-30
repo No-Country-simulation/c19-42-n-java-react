@@ -33,6 +33,11 @@ spring:
           predicates:
             - Path=/mascota/**
 
+        - id: CONTACTANOS
+          uri: lb://CONTACTANOS
+          predicates:
+            - Path=/email/**
+
 
 
 eureka:
