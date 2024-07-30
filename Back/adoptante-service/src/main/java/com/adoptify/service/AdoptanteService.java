@@ -58,4 +58,8 @@ public class AdoptanteService {
 
 		}
 	}
+
+	public Adoptante getAdoptanteByUserId(Long userId) {
+		return adoptanteRepository.findByUsuarioId(userId).orElse(null);
+	}
 }

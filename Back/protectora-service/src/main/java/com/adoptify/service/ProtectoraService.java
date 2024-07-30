@@ -69,4 +69,8 @@ public class ProtectoraService {
 		return mascotaClient.getMascotasByProtectoraID(protectoraID);
 	}
 
+	public Protectora getProtectoraByUserId(Long userId) {
+		return repository.findByUsuarioId(userId).orElse(null);
+	}
+
 }
