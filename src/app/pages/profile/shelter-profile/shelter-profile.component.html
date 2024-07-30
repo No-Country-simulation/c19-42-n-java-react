@@ -1,90 +1,138 @@
 <div class="container">
-	<a mat-fab extended routerLink="/gallery" class="mb-3"
-		><mat-icon>arrow_back</mat-icon>Volver</a
-	>
+	<div class="d-flex flex-row align-items-center mb-3">
+		<a routerLink="/">Inicio</a><mat-icon fontIcon="arrow_right" /><a
+			routerLink="/gallery"
+			>Refugios</a
+		>
+	</div>
 	@if (errorMessage) {
 	<div>{{ errorMessage }}</div>
 	} @if (shelter$ | async; as shelter) {
 	<mat-card appearance="outlined">
-		<img
-			mat-card-image
-			src="https://picsum.photos/200/200/?blur"
-			alt="{{ shelter.nombre }}"
-			class="w-100 ratio-1x1"
-		/>
-		<mat-card-content class="p-3">
-			<span class="fw-bold">{{ shelter.nombre }}</span>
-			<div class="d-flex flex-column gap-2">
-				<span class="d-flex flex-row align-items-center gap-2"
-					><mat-icon>home</mat-icon>{{ shelter.pais }},
-					{{ shelter.provincia }}, {{ shelter.ciudad }},
-					{{ shelter.direccion }} ({{ shelter.codigoPostal }})</span
-				>
-				<span class="d-flex flex-row align-items-center gap-2"
-					><mat-icon>email</mat-icon>{{ shelter.email }}</span
-				>
-				<span class="d-flex flex-row align-items-center gap-2"
-					><mat-icon>phone</mat-icon>{{ shelter.celular }}</span
-				>
+		<div class="d-flex flex-column align-items-center mt-5 mb-2">
+			<img
+				mat-card-image
+				src="https://picsum.photos/200/200/?blur"
+				alt="{{ shelter.nombre }}"
+				class="ratio-1x1 rounded-circle"
+			/>
+		</div>
+		<mat-card-content class="p-4">
+			<h1 class="fw-bold text-center">{{ shelter.nombre }}</h1>
+			<span>Información</span>
+			<div class="shelter-details row row-cols-2 mt-2">
+				<div class="col d-flex flex-column gap-2">
+					<div class="d-flex flex-row align-items-center gap-2">
+						<mat-icon fontIcon="home" />
+						<span
+							><span class="fw-bold">Dirección:</span>
+							{{ shelter.direccion }}</span
+						>
+					</div>
+					<div class="d-flex flex-row align-items-center gap-2">
+						<mat-icon fontIcon="phone" />
+						<span
+							><span class="fw-bold"> Celular:</span>
+							{{ shelter.celular }}</span
+						>
+					</div>
+				</div>
+				<div class="col d-flex flex-column gap-2">
+					<div class="d-flex flex-row align-items-center gap-2">
+						<mat-icon fontIcon="location_on" />
+						<span
+							><span class="fw-bold"> Ciudad:</span>
+							{{ shelter.ciudad }}</span
+						>
+					</div>
+					<div class="d-flex flex-row align-items-center gap-2">
+						<mat-icon fontIcon="location_on" />
+						<span
+							><span class="fw-bold"> Provincia:</span>
+							{{ shelter.provincia }}</span
+						>
+					</div>
+					<div class="d-flex flex-row align-items-center gap-2">
+						<mat-icon fontIcon="location_on" />
+						<span
+							><span class="fw-bold">País:</span>
+							{{ shelter.pais }}</span
+						>
+					</div>
+				</div>
 			</div>
 		</mat-card-content>
-	</mat-card>
-	@if (pets$ | async; as pets) {
-	<div>
-		<h2>Mascotas del Refugio</h2>
-		@if (canEdit() ) {
-		<div>
-			<button mat-raised-button color="primary" (click)="addPet()">
+		@if (pets$ | async; as pets) {
+		<div class="d-flex flex-column gap-4">
+			<h2 class="fw-bold text-center">
+				Listado de mascotas de
+				<span>
+					{{ shelter.nombre }}
+				</span>
+			</h2>
+			@if (canEdit()) {
+			<a
+				mat-flat-button
+				class="w-50 align-self-center"
+				[routerLink]="['/shelter', shelter.id, 'create']"
+			>
 				Añadir Mascota
-			</button>
-		</div>
-		}
-		<ul>
-			@for (pet of pets; track pet.id) {
-			<li>
-				<mat-card appearance="outlined">
-					<mat-card-content>
-						<img
-							mat-card-image
-							src="https://picsum.photos/200/200/?blur"
-							alt="{{ pet.nombre }}"
-							class="ratio-1x1"
-							(click)="goToAnimalProfile(shelter.id, pet.id)"
-						/>
-						<span class="fw-bold">{{ pet.nombre }}</span>
-						<div class="d-flex flex-column gap-2">
-							<span
-								class="d-flex flex-row align-items-center gap-2"
-								><mat-icon>home</mat-icon>{{ pet.raza }}</span
-							>
-							<span
-								class="d-flex flex-row align-items-center gap-2"
-								><mat-icon>email</mat-icon>{{ pet.edad }}</span
-							>
-							<span
-								class="d-flex flex-row align-items-center gap-2"
-								><mat-icon>phone</mat-icon>{{ pet.sexo }}</span
-							>
-						</div>
-					</mat-card-content>
-					@if (canEdit() ) {
-					<mat-card-actions>
-						<button mat-button (click)="editPet(pet)">
-							Editar
-						</button>
-						<button
-							mat-button
-							color="warn"
-							(click)="deletePet(pet)"
-						>
-							Eliminar
-						</button>
-					</mat-card-actions>
-					}
-				</mat-card>
-			</li>
+			</a>
 			}
-		</ul>
-	</div>
-	} }
+			<ul
+				class="list-unstyled row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5 g-3 p-2"
+			>
+				@for (pet of pets; track pet.id) {
+				<li class="col">
+					<mat-card appearance="outlined" class="pet-card border-0">
+						<mat-card-content
+							class="d-flex flex-row align-items-start p-0 flex-md-column"
+						>
+							<img
+								mat-card-image
+								src="https://picsum.photos/200/200/?blur"
+								alt="{{ pet.nombre }}"
+								class="pet-img ratio-1x1"
+							/>
+							<div
+								class="d-flex flex-column px-4 align-items-start p-3 w-100"
+							>
+								<div
+									class="d-flex flex-column flex-md-row justify-content-md-between w-100"
+								>
+									<h3 class="fw-bold">{{ pet.nombre }}</h3>
+									<a
+										mat-stroked-button
+										[routerLink]="[
+											'/shelter',
+											shelter.id,
+											'pet',
+											pet.id
+										]"
+										>Ver perfil</a
+									>
+								</div>
+								@if (canEdit()) {
+								<div class="d-flex flex-row gap-2 mt-3">
+									<button mat-mini-fab (click)="editPet(pet)">
+										<mat-icon fontIcon="edit" />
+									</button>
+									<button
+										mat-mini-fab
+										(click)="deletePet(pet)"
+									>
+										<mat-icon fontIcon="delete" />
+									</button>
+								</div>
+								}
+							</div>
+						</mat-card-content>
+					</mat-card>
+				</li>
+				}
+			</ul>
+		</div>
+		}</mat-card
+	>
+	}
 </div>
