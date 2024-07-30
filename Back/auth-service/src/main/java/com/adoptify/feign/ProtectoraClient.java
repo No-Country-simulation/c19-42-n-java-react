@@ -15,7 +15,7 @@ public interface ProtectoraClient {
     @PostMapping("/protectora")
     void createProtectoraProfile(@RequestBody ProtectoraProfileRequest request);
 
-	@GetMapping("/protectoras/user/{userId}")
+	@GetMapping("/protectora/user/{userId}")
 	ResponseEntity<ProtectoraResponse> getProtectoraByUserId(@PathVariable Long userId);
 
 }

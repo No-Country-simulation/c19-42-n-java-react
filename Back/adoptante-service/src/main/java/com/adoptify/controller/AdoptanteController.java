@@ -50,4 +50,10 @@ public class AdoptanteController {
 		adoptanteService.updateAdoptante(usuarioId, adoptanteDTO);
 		return ResponseEntity.ok().build();
 	}
+
+	@GetMapping("/user/{userId}")
+	public ResponseEntity<?> getAdoptanteByUserId(@PathVariable Long userId) {
+		Adoptante adoptante = adoptanteService.getAdoptanteByUserId(userId);
+		return ResponseEntity.ok(adoptante);
+	}
 }

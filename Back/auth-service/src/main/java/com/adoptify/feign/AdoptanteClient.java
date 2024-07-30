@@ -14,6 +14,6 @@ public interface AdoptanteClient {
     @PostMapping("/adoptante")
     void createAdoptanteProfile(@RequestBody AdoptanteProfileRequest request);
 
-	@GetMapping("/adoptantes/user/{userId}")
+	@GetMapping("/adoptante/user/{userId}")
 	ResponseEntity<AdoptanteResponse> getAdoptanteByUserId(@PathVariable Long userId);
 }
