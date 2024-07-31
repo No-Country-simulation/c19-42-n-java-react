@@ -26,6 +26,27 @@ import { MatIconModule } from '@angular/material/icon';
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomeComponent {
+	placeholderPets = [
+		{
+			id: 1,
+			name: 'Rocky',
+			image: 'https://www.purina.es/sites/default/files/styles/ttt_image_510/public/2024-02/sitesdefaultfilesstylessquare_medium_440x440public2022-09golden20retriever.jpg?itok=48StbVfe',
+			shelter: 'Huellitas',
+		},
+		{
+			id: 2,
+			name: 'Luna',
+			image: 'https://www.aon.es/personales/seguro-perro-gato/wp-content/uploads/sites/2/2021/04/bichon-maltes.jpg',
+			shelter: 'Pata Amiga',
+		},
+		{
+			id: 3,
+			name: 'Max',
+			image: 'https://upload.wikimedia.org/wikipedia/commons/2/24/Stray_calico_cat_near_Sagami_River-01.jpg',
+			shelter: 'Manchitas',
+		},
+	];
+
 	recentPets: Pet[] = [];
 	errorMessage: string = '';
 

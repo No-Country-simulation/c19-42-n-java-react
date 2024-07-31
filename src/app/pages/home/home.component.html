@@ -1,10 +1,10 @@
-<swiper-container class="mb-5" pagination loop>
+<swiper-container class="mb-5" autoplay pagination loop>
 	<swiper-slide>
 		<img src="/assets/home/slider/slider-1.webp" />
 		<div
 			class="d-flex flex-column align-items-center align-items-md-start gap-2 text-white text-center text-md-start"
 		>
-			<h2 class="user-select-none fw-bold">Adopción de mascotas</h2>
+			<h3 class="user-select-none fw-bold">Adopción de mascotas</h3>
 			<p>
 				Encuentra perros y gatos en busca de un hogar amoroso con
 				perfiles detallados y filtros para facilitar la búsqueda del
@@ -18,7 +18,7 @@
 		<div
 			class="d-flex flex-column align-items-center align-items-md-end gap-2 text-white text-center text-md-end"
 		>
-			<h2 class="user-select-none fw-bold">Donaciones</h2>
+			<h3 class="user-select-none fw-bold">Donaciones</h3>
 			<p>
 				Apoya a los albergues y organizaciones de rescate de animales
 				con donaciones monetarias o en especie.
@@ -31,7 +31,7 @@
 		<div
 			class="d-flex flex-column align-items-center align-items-md-start gap-2 text-white text-center text-md-start"
 		>
-			<h2 class="user-select-none fw-bold">Entidades de refugio</h2>
+			<h3 class="user-select-none fw-bold">Entidades de refugio</h3>
 			<p>
 				Encuentra albergues y organizaciones de rescate de animales
 				cercanos a ti.
@@ -44,9 +44,9 @@
 		<div
 			class="d-flex flex-column align-items-center align-items-md-start gap-2 text-white text-center text-md-start"
 		>
-			<h2 class="user-select-none fw-bold">
+			<h3 class="user-select-none fw-bold">
 				Alojamientos y nuevas asociaciones
-			</h2>
+			</h3>
 			<p>
 				Registra tu albergue o asociación de rescate de animales para
 				que más personas puedan encontrar y apoyar tu causa.
@@ -66,21 +66,26 @@
 					<mat-card-content
 						class="d-flex flex-row align-items-start p-0 flex-md-column"
 					>
-						<img
-							mat-card-image
-							src="https://picsum.photos/200/200/?blur"
-							alt="{{ pet.nombre }}"
-							class="pet-img ratio-1x1"
-						/>
+						<div class="div-pet-img">
+							<img
+								mat-card-image
+								src="{{ pet.img }}"
+								alt="{{ pet.nombre }}"
+								class="pet-img ratio-1x1"
+							/>
+						</div>
 						<div
 							class="d-flex flex-column px-4 align-items-start p-3 w-100"
 						>
 							<div
 								class="d-flex flex-column flex-md-row justify-content-md-between w-100"
 							>
-								<h3 class="fw-bold">
-									{{ pet.nombre }}
-								</h3>
+								<div>
+									<h3 class="fw-bold">
+										{{ pet.nombre }}
+									</h3>
+									<h4>{{ pet.sexo }}</h4>
+								</div>
 								<!-- <a
 									mat-stroked-button
 									[routerLink]="[
@@ -98,11 +103,11 @@
 				</mat-card>
 			</div>
 			}
-			<mat-card appearance="outlined" class="border-0 text-center">
+			<mat-card appearance="outlined" class="text-center">
 				<a
 					mat-stroked-button
 					routerLink="/gallery"
-					class="view-more-button col flex-grow-1 w-100"
+					class="view-more-button col flex-grow-1 w-100 border-0"
 				>
 					<div
 						class="d-flex flex-column align-items-center gap-3 p-4 p-md-0"
@@ -135,7 +140,7 @@
 				un mejor futuro a los animales.
 			</p>
 			<mat-card-actions class="p-0">
-				<a mat-flat-button routerLink="/gallery" class="align-self-end"
+				<a mat-flat-button routerLink="/about" class="align-self-end"
 					>Ver más</a
 				>
 			</mat-card-actions>
@@ -271,7 +276,7 @@
 			<div class="col container-card-team-member">
 				<mat-card
 					appearance="outlined"
-					class="h-100 d-flex flex-column align-items-center"
+					class="h-100 d-flex flex-column align-items-center py-3"
 				>
 					<img
 						mat-card-image
@@ -283,7 +288,7 @@
 						class="d-flex flex-column align-items-center gap-2 p-2 h-100"
 					>
 						<mat-card-content
-							class="d-flex flex-column text-center flex-grow-1 h-100"
+							class="d-flex flex-column text-center flex-grow-1 h-100 p-0"
 						>
 							<span
 								class="card-team_member-name fw-bold flex-grow-1 text-center"

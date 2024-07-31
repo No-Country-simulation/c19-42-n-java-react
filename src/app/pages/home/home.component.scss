@@ -51,12 +51,8 @@ swiper-container::part(bullet-active) {
 	background: map-get($map: $primary-palette, $key: 300) !important;
 }
 
-section {
-	margin-bottom: 3rem;
-}
-
 mat-card.pet-card {
-	background-color: map-get($map: $neutral-palette, $key: 200);
+	background-color: map-get($map: $neutral-palette, $key: 300);
 }
 
 img[mat-card-image].pet-img {
@@ -64,16 +60,28 @@ img[mat-card-image].pet-img {
 	height: 200px;
 	border: none;
 	border-radius: 12px 0 0 12px;
+	object-fit: cover;
+	object-position: top;
 
 	@media (width >= 768px) {
 		width: 100%;
-		height: 100%;
+
 		border-radius: 12px 12px 0 0;
+	}
+}
+
+@media (width >= 768px) {
+	.div-pet-img {
+		width: 100%;
 	}
 }
 
 div h3 {
 	font-size: map-get($map: $font-size, $key: body1);
+}
+
+div h4 {
+	font-size: map-get($map: $font-size, $key: body2);
 }
 
 .icon-arrow {
@@ -102,13 +110,6 @@ div h3 {
 	@media (width >= 768px) {
 		width: 50%;
 	}
-}
-
-.subtitle-red {
-	color: map-get($map: $primary-palette, $key: 300);
-	text-transform: uppercase;
-	font-weight: 700;
-	letter-spacing: 2px;
 }
 
 video {
@@ -146,7 +147,7 @@ video {
 	background: linear-gradient(
 		to left,
 		rgba(255, 255, 255, 0),
-		rgb(255, 255, 255)
+		map-get($map: $neutral-palette, $key: 50)
 	);
 }
 
@@ -155,7 +156,7 @@ video {
 	background: linear-gradient(
 		to right,
 		rgba(255, 255, 255, 0),
-		rgb(255, 255, 255)
+		map-get($map: $neutral-palette, $key: 50)
 	);
 }
 
@@ -170,6 +171,7 @@ video {
 
 .logo_items img {
 	height: 200px;
+	margin-right: 50px;
 }
 
 .container-card-team-member mat-card {

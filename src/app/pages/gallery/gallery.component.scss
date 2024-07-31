@@ -12,6 +12,8 @@ img[mat-card-image] {
 	width: 150px;
 	height: 150px;
 	border-radius: 12px;
+	object-fit: cover;
+	object-position: center;
 
 	@media (width >= 768px) {
 		width: 200px;

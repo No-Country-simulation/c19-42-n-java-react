@@ -1,0 +1,67 @@
+@import "../../../styles.scss";
+
+div.banner {
+	position: relative;
+	height: 50vh;
+}
+
+.about-banner-img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+
+	@media (width >= 992px) {
+		object-position: top 20% right 50%;
+	}
+}
+
+div.banner::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.4);
+	z-index: 5;
+}
+
+.about-banner-title {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+	z-index: 10;
+	color: map-get($map: $text-palette, $key: contrast);
+	font-size: 4rem;
+
+	@media (width >= 992px) {
+		font-size: 5rem;
+	}
+}
+
+.about-about-img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+.mission-card {
+	position: relative;
+	background-color: map-get($map: $neutral-palette, $key: 200);
+	border-radius: 12px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+	display: flex;
+	flex-direction: column;
+	margin-top: 4rem;
+	padding: 5rem 2rem 2rem 2rem;
+}
+
+.about-img-mission {
+	position: absolute;
+	top: -25%;
+	left: 6%;
+}

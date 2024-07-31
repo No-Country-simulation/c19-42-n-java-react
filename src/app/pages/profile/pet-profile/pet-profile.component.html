@@ -4,28 +4,28 @@
 	<mat-card
 		appearance="outlined"
 		class="border-0 d-flex flex-column flex-md-row"
-	>
-		<img
-			mat-card-image
-			src="https://picsum.photos/200/200/?blur"
-			[alt]="pet.nombre"
-			class="mb-3"
-		/>
+		><div>
+			<img
+				mat-card-image
+				[src]="pet.img"
+				[alt]="pet.nombre"
+				class="pet-img mb-3"
+			/>
+		</div>
 		<mat-card-content class="d-flex flex-column flex-grow-1">
 			<div class="flex-grow-1 w-100">
 				<h2 class="fw-bold">{{ pet.nombre }}</h2>
 				<div class="d-flex flex-column gap-2">
 					<ul>
 						<li><strong>Raza:</strong> {{ pet.raza }}</li>
-						<li><strong>Edad:</strong> {{ pet.edad }}</li>
-						<li><strong>Peso:</strong> {{ pet.peso }}</li>
+						<li><strong>Edad:</strong> {{ pet.edad }} año(s)</li>
+						<li><strong>Peso:</strong> {{ pet.peso }} kg</li>
 						<li><strong>Pelaje:</strong> {{ pet.pelaje }}</li>
 						<li><strong>Sexo:</strong> {{ pet.sexo }}</li>
 						<li>
 							<strong>Nivel de Actividad:</strong>
 							{{ pet.nivelActividad }}
 						</li>
-						<li><strong>Edad:</strong> {{ pet.edad }}</li>
 					</ul>
 				</div>
 			</div>

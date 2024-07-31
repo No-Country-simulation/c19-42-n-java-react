@@ -9,6 +9,7 @@ import { ShelterProfileComponent } from './pages/profile/shelter-profile/shelter
 import { PetProfileComponent } from './pages/profile/pet-profile/pet-profile.component';
 import { PetEditComponent } from './pages/manage-pet/pet-edit/pet-edit.component';
 import { PetCreateComponent } from './pages/manage-pet/pet-create/pet-create.component';
+import { AboutComponent } from './pages/about/about.component';
 
 export const routes: Routes = [
 	{
@@ -61,6 +62,10 @@ export const routes: Routes = [
 			import('./pages/manage-pet/manage-pet.routes').then(
 				(m) => m.MANAGE_PET_ROUTES
 			),
+	},
+	{
+		path: 'about',
+		component: AboutComponent,
 	},
 	{ path: 'shelter/:shelterId', component: ShelterProfileComponent },
 	{
