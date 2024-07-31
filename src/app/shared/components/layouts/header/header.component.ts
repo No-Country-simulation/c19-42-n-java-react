@@ -56,10 +56,6 @@ export class HeaderComponent {
 			link: '/how-to-adopt',
 		},
 		{
-			title: 'Donar',
-			link: '/donate',
-		},
-		{
 			title: 'Contacto',
 			link: '/contact',
 		},

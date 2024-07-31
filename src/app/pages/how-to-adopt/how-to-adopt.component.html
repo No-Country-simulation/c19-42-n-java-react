@@ -1,1 +1,41 @@
-<p>how-to-adopt works!</p>
+<div class="container">
+	<h1 class="text-center">Guía para adoptar</h1>
+	<div class="row row-cols-1 row-cols-lg-2">
+		<div class="col col-xl-4 order-lg-1">
+			<div class="how-to-adopt-img-div mb-4">
+				<img
+					src="/assets/how-to-adopt/how-to-adopt.webp"
+					alt="how-to-adopt"
+					class="how-to-adopt-img w-100"
+				/>
+			</div>
+		</div>
+		<div class="col col-xl-8">
+			<div>
+				<h2 class="fw-bold text-uppercase">Cómo adoptar en Adoptify</h2>
+				<h3>Requisitos para adoptar una mascota</h3>
+			</div>
+			<div class="d-flex flex-column">
+				<ul class="list list-unstyled">
+					@for (listItem of listItems; track listItem.id) {
+					<li>
+						<div class="list-circle-number">
+							<span>{{ listItem.id }}</span>
+						</div>
+						<div>
+							<p>{{ listItem.text }}</p>
+						</div>
+					</li>
+					}
+				</ul>
+			</div>
+			<div>
+				<p class="fw-bold text-center text-lg-start">
+					Adoptify: Esta plataforma no participa en el proceso de
+					adopción, sino que facilita la comunicación entre albergues
+					y adoptantes
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
