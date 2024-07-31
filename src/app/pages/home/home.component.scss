@@ -2,13 +2,14 @@
 
 swiper-slide {
 	position: relative;
-	height: 50vh;
+	height: 60vh;
 }
 
 swiper-slide img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	object-position: top;
 }
 
 swiper-slide::after {
@@ -18,7 +19,7 @@ swiper-slide::after {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.5);
+	background: rgba(0, 0, 0, 0.4);
 	z-index: 5;
 }
 
@@ -29,24 +30,19 @@ swiper-slide div {
 	transform: translate(-50%, -50%);
 	text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 	z-index: 10;
-	& span {
+	& h2 {
 		color: map-get($map: $text-palette, $key: contrast);
-		font-size: 1.8rem;
-		font-weight: bold;
-		text-wrap: balance;
 
 		@media (width >= 992px) {
-			font-size: 2.8rem;
+			font-size: 3.2rem;
 		}
 	}
 
 	& p {
 		color: map-get($map: $text-palette, $key: contrast);
-		font-size: 0.8rem;
-		text-wrap: balance;
 
 		@media (width >= 992px) {
-			font-size: 1.2rem;
+			font-size: 1.8rem;
 		}
 	}
 }
@@ -57,6 +53,66 @@ swiper-container::part(bullet-active) {
 
 section {
 	margin-bottom: 3rem;
+}
+
+mat-card.pet-card {
+	background-color: map-get($map: $neutral-palette, $key: 200);
+}
+
+img[mat-card-image].pet-img {
+	width: 200px;
+	height: 200px;
+	border: none;
+	border-radius: 12px 0 0 12px;
+
+	@media (width >= 768px) {
+		width: 100%;
+		height: 100%;
+		border-radius: 12px 12px 0 0;
+	}
+}
+
+div h3 {
+	font-size: map-get($map: $font-size, $key: body1);
+}
+
+.icon-arrow {
+	position: relative;
+	background-color: map-get($map: $primary-palette, $key: 300);
+	border-radius: 100%;
+	width: 70px;
+	height: 70px;
+}
+
+.icon-arrow * {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: map-get($map: $text-palette, $key: contrast);
+}
+
+.icon-arrow *::before {
+	font-size: 3rem;
+}
+
+.about-us-photo {
+	@media (width >= 768px) {
+		width: 50%;
+	}
+}
+
+.subtitle-red {
+	color: map-get($map: $primary-palette, $key: 300);
+	text-transform: uppercase;
+	font-weight: 700;
+	letter-spacing: 2px;
+}
+
+video {
+	border-radius: 12px;
 }
 
 @keyframes slides {
@@ -113,18 +169,15 @@ section {
 }
 
 .logo_items img {
-	height: 100px;
-}
-
-.card-about-us-photo {
-	width: 100%;
-	object-fit: cover;
-	aspect-ratio: 16/9;
-	border-radius: 12px;
+	height: 200px;
 }
 
 .container-card-team-member mat-card {
 	border: none !important;
+}
+
+.join-us-photo:nth-child(1) {
+	width: 150px;
 }
 
 .card-team_member-photo {

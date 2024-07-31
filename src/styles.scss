@@ -143,18 +143,22 @@ body {
 
 h1 {
 	font-size: map-get($map: $font-size, $key: h1-mobile);
+	margin-bottom: 1.6rem;
 }
 
 h2 {
 	font-size: map-get($map: $font-size, $key: h2-mobile);
+	margin-bottom: 1.4rem;
 }
 
 h3 {
 	font-size: map-get($map: $font-size, $key: h3-mobile);
+	margin-bottom: 1rem;
 }
 
 h4 {
 	font-size: map-get($map: $font-size, $key: h4-mobile);
+	margin-bottom: 1rem;
 }
 
 p,
@@ -234,11 +238,7 @@ app-header .navbar-brand {
 }
 
 app-footer footer {
-	background-color: map-get($map: $primary-palette, $key: 300);
-}
-
-app-footer a[mat-mini-fab] {
-	background-color: map-get($map: $neutral-palette, $key: 200);
+	background-color: map-get($map: $text-palette, $key: primary);
 	color: map-get($map: $text-palette, $key: primary);
 }
 

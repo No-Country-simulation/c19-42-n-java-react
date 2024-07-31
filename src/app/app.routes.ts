@@ -6,7 +6,6 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { DonateComponent } from './pages/donate/donate.component';
 import { Error404Component } from './pages/error-404/error-404.component';
 import { ShelterProfileComponent } from './pages/profile/shelter-profile/shelter-profile.component';
-import { AdopterProfileComponent } from './pages/profile/adopter-profile/adopter-profile.component';
 import { PetProfileComponent } from './pages/profile/pet-profile/pet-profile.component';
 import { PetEditComponent } from './pages/manage-pet/pet-edit/pet-edit.component';
 import { PetCreateComponent } from './pages/manage-pet/pet-create/pet-create.component';
@@ -76,7 +75,6 @@ export const routes: Routes = [
 		path: 'shelter/:shelterId/create',
 		component: PetCreateComponent,
 	},
-	{ path: 'adopter/:adopterId', component: AdopterProfileComponent },
 	{
 		path: '**',
 		component: Error404Component,
