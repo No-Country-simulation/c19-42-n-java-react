@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { LoginService } from '../../../../core/services/login.service';
+import { LoginService } from '../../../../core/services/auth/login.service';
 import { MatIconModule } from '@angular/material/icon';
 @Component({
 	selector: 'app-header',

@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { Pet } from '../../../core/interfaces/Pet';
-import { LoginService } from '../../../core/services/login.service';
+import { LoginService } from '../../../core/services/auth/login.service';
 import { FormGroup } from '@angular/forms';
 
 @Component({

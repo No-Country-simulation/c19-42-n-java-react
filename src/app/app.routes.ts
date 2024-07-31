@@ -3,7 +3,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
 import { HowToAdoptComponent } from './pages/how-to-adopt/how-to-adopt.component';
 import { ContactComponent } from './pages/contact/contact.component';
-import { DonateComponent } from './pages/donate/donate.component';
 import { Error404Component } from './pages/error-404/error-404.component';
 import { ShelterProfileComponent } from './pages/profile/shelter-profile/shelter-profile.component';
 import { PetProfileComponent } from './pages/profile/pet-profile/pet-profile.component';
@@ -42,19 +41,9 @@ export const routes: Routes = [
 		data: { title: 'Contact - Adopción de Mascotas' },
 	},
 	{
-		path: 'donate',
-		component: DonateComponent,
-		data: { title: 'Donate - Adopción de Mascotas' },
-	},
-	{
 		path: 'auth',
 		loadChildren: () =>
 			import('./pages/auth/auth.routes').then((m) => m.ROUTES_AUTH),
-	},
-	{
-		path: 'admin',
-		loadChildren: () =>
-			import('./pages/admin/admin.routes').then((m) => m.ROUTES_ADMIN),
 	},
 	{
 		path: 'manage-pet',

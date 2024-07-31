@@ -4,11 +4,11 @@ import {
 	HttpErrorResponse,
 } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { AppSettings } from '../settings/AppSettings';
-import { Shelter, User } from '../interfaces/User';
+import { AppSettings } from '../../settings/AppSettings';
+import { Shelter, User } from '../../interfaces/User';
 import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
-import { ResponseLogin } from '../interfaces/ResponseLogin';
-import { Login } from '../interfaces/Login';
+import { ResponseLogin } from '../../interfaces/ResponseLogin';
+import { Login } from '../../interfaces/Login';
 import { jwtDecode } from 'jwt-decode';
 
 interface JwtPayload {
