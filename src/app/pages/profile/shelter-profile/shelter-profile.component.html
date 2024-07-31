@@ -34,7 +34,7 @@
 		<h2>Mascotas del Refugio</h2>
 		@if (canEdit() ) {
 		<div>
-			<button mat-raised-button color="primary" (click)="addPet()">
+			<button mat-raised-button color="primary" (click)="addPet(shelter)">
 				Añadir Mascota
 			</button>
 		</div>
@@ -69,9 +69,10 @@
 					</mat-card-content>
 					@if (canEdit() ) {
 					<mat-card-actions>
-						<button mat-button (click)="editPet(pet)">
+						<a mat-mini-fab [routerLink]="['/shelter',shelter.id,'pet',pet.id,'edit']">
 							Editar
-						</button>
+							<mat-icon fontIcon="edit" />
+						</a>
 						<button
 							mat-button
 							color="warn"

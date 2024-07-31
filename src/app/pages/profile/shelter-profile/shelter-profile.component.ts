@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Pet } from '../../../core/interfaces/Pet';
 import { LoginService } from '../../../core/services/login.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
 	selector: 'app-shelter-profile',
@@ -29,7 +30,13 @@ export class ShelterProfileComponent {
 	currentUserId: number | null = null;
 	shelterUserId: number | null = null;
 
+	shelterId: any | undefined;
+  petId: any | undefined;
+  selectedFile: File | null = null;
+	
+
 	constructor(
+		
 		private route: ActivatedRoute,
 		private router: Router,
 		private shelterService: GalleryService,
@@ -68,7 +75,17 @@ export class ShelterProfileComponent {
 		} else {
 			this.errorMessage = 'Refugio no encontrado';
 		}
-	}
+
+		this.route.paramMap.subscribe(params => {
+			const shelterId = params.get('shelterId');
+			const petId = params.get('id');
+			this.shelterId = shelterId ? Number(shelterId) : null;
+			this.petId = petId ? Number(petId) : null;
+			console.log('ID del refugio:', this.shelterId);
+			console.log('ID de la mascota:', this.petId);
+		  });
+		}
+	
 
 	goToAnimalProfile(shelterId: string, petId: string): void {
 		this.router.navigateByUrl(`/shelter/${shelterId}/pet/${petId}`);
@@ -78,12 +95,14 @@ export class ShelterProfileComponent {
 		return this.currentUserId === this.shelterUserId;
 	}
 
-	addPet(): void {
-		alert('Add Pet');
+	addPet(shelterId: number): void {
+		this.router.navigateByUrl(`/shelter/${shelterId}/create`);
+		//alert('Add Pet');
 	}
 
-	editPet(pet: Pet): void {
-		alert('Edit Pet');
+	editPet(shelterId: string, petId: string): void {
+		this.router.navigateByUrl(`/shelter/${shelterId}/pet/${petId}/edit`);
+		
 	}
 
 	deletePet(pet: Pet): void {
