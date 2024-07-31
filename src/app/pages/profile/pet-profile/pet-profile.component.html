@@ -1,0 +1,40 @@
+<div class="container">
+	@if (pet) {
+	<h1 class="text-uppercase fw-bold text-center mb-4">Perfil de mascota</h1>
+	<mat-card
+		appearance="outlined"
+		class="border-0 d-flex flex-column flex-md-row"
+		><div>
+			<img
+				mat-card-image
+				[src]="pet.img"
+				[alt]="pet.nombre"
+				class="pet-img mb-3"
+			/>
+		</div>
+		<mat-card-content class="d-flex flex-column flex-grow-1">
+			<div class="flex-grow-1 w-100">
+				<h2 class="fw-bold">{{ pet.nombre }}</h2>
+				<div class="d-flex flex-column gap-2">
+					<ul>
+						<li><strong>Raza:</strong> {{ pet.raza }}</li>
+						<li><strong>Edad:</strong> {{ pet.edad }} año(s)</li>
+						<li><strong>Peso:</strong> {{ pet.peso }} kg</li>
+						<li><strong>Pelaje:</strong> {{ pet.pelaje }}</li>
+						<li><strong>Sexo:</strong> {{ pet.sexo }}</li>
+						<li>
+							<strong>Nivel de Actividad:</strong>
+							{{ pet.nivelActividad }}
+						</li>
+					</ul>
+				</div>
+			</div>
+			<a mat-flat-button routerLink="/adopt" class="adopt-button"
+				>Adoptar</a
+			>
+		</mat-card-content>
+	</mat-card>
+	} @if (errorMessage ) {
+	{{ errorMessage }}
+	}
+</div>

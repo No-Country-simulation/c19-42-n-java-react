@@ -62,7 +62,7 @@ $neutral-palette: (
 	50: #fcfcfc,
 	100: #f4f4f4,
 	200: #e9e9e9,
-	300: #919191,
+	300: #e4e4e4,
 	400: #6b6b6b,
 	500: #4a4a4a,
 	600: #3d3d3d,
@@ -102,6 +102,24 @@ $status-palette: (
 	lightblue: #c1efff,
 );
 
+$font-size: (
+	h1-web: 2.8rem,
+	h1-mobile: 2.6rem,
+	h2-web: 2.4rem,
+	h2-mobile: 2.2rem,
+	h3-web: 2rem,
+	h3-mobile: 1.8rem,
+	h4-web: 1.8rem,
+	h4-mobile: 1.6rem,
+	subtitle1: 24px,
+	subtitle2: 20px,
+	body1: 1rem,
+	body2: 0.8rem,
+	body3: 0.6rem,
+	button: 18px,
+	link: 16px,
+);
+
 html,
 body {
 	height: 100%;
@@ -120,6 +138,61 @@ body {
 body {
 	margin: 0;
 	font-family: "Poppins" !important;
+	text-wrap: balance;
+}
+
+h1 {
+	font-size: map-get($map: $font-size, $key: h1-mobile);
+	margin-bottom: 1.6rem;
+}
+
+h2 {
+	font-size: map-get($map: $font-size, $key: h2-mobile);
+	margin-bottom: 1.4rem;
+}
+
+h3 {
+	font-size: map-get($map: $font-size, $key: h3-mobile);
+	margin-bottom: 1rem;
+}
+
+h4 {
+	font-size: map-get($map: $font-size, $key: h4-mobile);
+	margin-bottom: 1rem;
+}
+
+p,
+label {
+	font-size: map-get($map: $font-size, $key: body1);
+}
+
+@media (width >= 768px) {
+	h1 {
+		font-size: map-get($map: $font-size, $key: h1-web);
+	}
+
+	h2 {
+		font-size: map-get($map: $font-size, $key: h2-web);
+	}
+
+	h3 {
+		font-size: map-get($map: $font-size, $key: h3-web);
+	}
+
+	h4 {
+		font-size: map-get($map: $font-size, $key: h4-web);
+	}
+}
+
+.subtitle-red {
+	color: map-get($map: $primary-palette, $key: 300);
+	text-transform: uppercase;
+	font-weight: 700;
+	letter-spacing: 2px;
+}
+
+section {
+	margin-bottom: 3rem;
 }
 
 button[mat-button],
@@ -155,6 +228,18 @@ a[mat-stroked-button],
 	border-color: map-get($map: $text-palette, $key: disabled) !important;
 }
 
+.mdc-button__label {
+	font-size: map-get($map: $font-size, $key: body3);
+}
+
+.ng-valid:not(form).ng-touched {
+	background-color: rgba(0, 128, 0, 0.1);
+}
+
+.ng-invalid:not(form).ng-touched {
+	background-color: rgba(255, 0, 0, 0.1);
+}
+
 app-header .navbar-brand {
 	font-family: "Poppins";
 	font-weight: 700;
@@ -167,11 +252,7 @@ app-header .navbar-brand {
 }
 
 app-footer footer {
-	background-color: map-get($map: $primary-palette, $key: 300);
-}
-
-app-footer a[mat-mini-fab] {
-	background-color: map-get($map: $neutral-palette, $key: 200);
+	background-color: map-get($map: $text-palette, $key: primary);
 	color: map-get($map: $text-palette, $key: primary);
 }
 

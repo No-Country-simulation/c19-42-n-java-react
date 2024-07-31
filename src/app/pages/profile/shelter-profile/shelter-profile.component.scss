@@ -1,10 +1,49 @@
 @import "../../../../styles.scss";
 
-mat-card-content > span {
-	color: map-get($map: $text-palette, $key: primary);
-	font-size: 1.6rem;
-}
-mat-card-content div span {
+div.container div a:not(a[mat-flat-button]) {
+	text-decoration: none;
 	color: map-get($map: $text-palette, $key: secondary);
-	font-size: 0.7rem;
+}
+
+h2 span {
+	font-size: inherit;
+	color: map-get($map: $primary-palette, $key: 300);
+}
+
+.shelter-details span {
+	font-size: map-get($map: $font-size, $key: body2);
+}
+
+img[mat-card-image] {
+	width: 150px;
+	height: 150px;
+	border: 4px solid map-get($map: $text-palette, $key: secondary);
+	object-fit: cover;
+	object-position: center;
+}
+
+ul {
+	max-width: initial;
+}
+
+mat-card.pet-card {
+	background-color: map-get($map: $neutral-palette, $key: 200);
+}
+
+img[mat-card-image].pet-img {
+	height: 200px;
+	border: none;
+	border-radius: 12px 0 0 12px;
+	object-fit: cover;
+	object-position: center;
+
+	@media (width >= 768px) {
+		width: 100%;
+		height: 100%;
+		border-radius: 12px 12px 0 0;
+	}
+}
+
+div h3 {
+	font-size: map-get($map: $font-size, $key: body1);
 }

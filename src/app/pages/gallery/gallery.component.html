@@ -1,18 +1,44 @@
 <div class="container">
-	<app-huge-title text="Nuestros servicios. ¡Explora nuestras opciones!" />
-	@if ( isLoading ) { <mat-spinner></mat-spinner>
-	} @else { @if (errorMessage){
+	<div class="mb-3">
+		<div class="mb-3">
+			<h1 class="fw-bold text-center mb-4">Refugios de adopción</h1>
+			<h2 class="fw-bold mb-3">Tu nuevo amigo te está esperando</h2>
+			<p>
+				Listado de refugios. Puedes filtrar por categoría o puedes
+				buscar según tu preferencia.
+			</p>
+		</div>
+		<div>
+			<span class="me-3 user-select-none">Ordenar por:</span>
+			<mat-form-field appearance="fill">
+				<mat-select
+					(selectionChange)="sortShelters($event.value)"
+					[value]="'default'"
+				>
+					<mat-option value="default">Sin ordenar</mat-option>
+					<mat-option value="az">A-Z</mat-option>
+					<mat-option value="za">Z-A</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+	</div>
+	@if ( isLoading ) {
+	<mat-spinner />
+	} @else { @if (errorMessage) {
 	<div class="alert alert-danger" role="alert">
 		{{ errorMessage }}
 	</div>
 	} @if (shelters.length > 0) {
-	<ul class="row row-cols-1 row-cols-md-2 g-3 p-0">
+	<ul class="row g-3 p-0">
 		@for (shelter of shelters; track shelters) {
 		<li class="list-unstyled">
-			<mat-card appearance="outlined" class="d-flex flex-row">
+			<mat-card
+				appearance="outlined"
+				class="d-flex flex-row align-items-center py-3 h-100"
+			>
 				<img
 					mat-card-image
-					src="https://picsum.photos/200/200/?blur"
+					src="https://www.hogarmania.com/archivos/202011/cosas-donar-refugio-animales-portada-668x400x80xX-1.jpg"
 					alt="{{ shelter.nombre }}"
 					class="user-select-none ratio-1x1"
 				/>
@@ -20,16 +46,13 @@
 					class="p-4 pb-3 d-flex flex-column flex-grow-1 h-100 gap-3"
 				>
 					<mat-card-content class="p-0">
-						<a
-							[routerLink]="['/shelter', shelter.id]"
-							class="fw-bold"
-							>{{ shelter.nombre }}</a
-						>
+						<h4>{{ shelter.nombre }}</h4>
 						<div class="d-flex flex-column gap-1">
 							<span
 								class="d-flex flex-row align-items-center gap-2"
 								><mat-icon>home</mat-icon
-								>{{ shelter.provincia }}</span
+								>{{ shelter.direccion }},
+								{{ shelter.provincia }}</span
 							>
 							<span
 								class="d-flex flex-row align-items-center gap-2"
@@ -39,12 +62,12 @@
 						</div>
 					</mat-card-content>
 					<mat-card-actions class="p-0 justify-content-end">
-						<button
-							mat-flat-button
+						<a
+							mat-stroked-button
 							[routerLink]="['/shelter', shelter.id]"
 						>
-							Ver más
-						</button>
+							Ver detalles
+						</a>
 					</mat-card-actions>
 				</div>
 			</mat-card>

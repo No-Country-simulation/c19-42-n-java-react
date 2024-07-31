@@ -47,6 +47,11 @@ public class controladorMascota {
 		mascota.setProtectoraID(protectoraID);
 		mascota.setEdad(edad);
 
+		//String base64Image = "data:" + img.getContentType() + ";base64," + Base64.getEncoder().encodeToString(img.getBytes());
+		//mascota.setImg(base64Image);
+		//String base64Image = Base64.getEncoder().encodeToString(img.getBytes());
+		//mascota.setImg(base64Image);
+
 		servMascota.saveMascota(mascota, img);
 		return ResponseEntity.ok().body(Collections.singletonMap("message", "la mascota se creó con éxito"));
 	}
@@ -86,7 +91,7 @@ public class controladorMascota {
 		mascota.setEdad(edad);
 
 		servMascota.editMascota(id, mascota, img);
-		return ResponseEntity.ok().body("Mascota editada correctamente");
+		return ResponseEntity.ok().body(Collections.singletonMap("messagge", "Mascota editada correctamente"));
 	}
 
 	@DeleteMapping("/delete/{id}")
