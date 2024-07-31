@@ -63,7 +63,7 @@ export class ShelterProfileComponent implements OnInit {
 					this.errorMessage = 'Error fetching shelter data';
 				},
 			});
-
+			
 			this.pets$.subscribe({
 				next: (pets) => {
 					this.sortedPets = pets;
@@ -77,6 +77,14 @@ export class ShelterProfileComponent implements OnInit {
 		} else {
 			this.errorMessage = 'Refugio no encontrado';
 		}
+		this.route.paramMap.subscribe(params => {
+			const shelterId = params.get('shelterId');
+			const petId = params.get('id');
+			this.shelterId = shelterId ? Number(shelterId) : null;
+			this.petId = petId ? Number(petId) : null;
+			console.log('ID del refugio:', this.shelterId);
+			console.log('ID de la mascota:', this.petId);
+		  });
 	}
 
 	sortPets(order: string): void {
@@ -104,16 +112,6 @@ export class ShelterProfileComponent implements OnInit {
 
 	canEdit(): boolean {
 		return this.currentUserId === this.shelterUserId;
-	}
-
-	addPet(shelterId: number): void {
-		this.router.navigateByUrl(`/shelter/${shelterId}/create`);
-		//alert('Add Pet');
-	}
-
-	editPet(shelterId: string, petId: string): void {
-		this.router.navigateByUrl(`/shelter/${shelterId}/pet/${petId}/edit`);
-		
 	}
 
 	deletePet(pet: Pet): void {
