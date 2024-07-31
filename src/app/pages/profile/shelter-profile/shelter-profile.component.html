@@ -22,8 +22,7 @@
 			<div
 				class="shelter-details row row-cols-2 justify-content-md-center mt-2"
 			>
-				<span class="col-12 mb-2">Información</span>
-				<div class="col col-md-3 d-flex flex-column gap-2">
+				<div class="col col-lg-4 d-flex flex-column gap-2">
 					<div class="d-flex flex-row align-items-center gap-2">
 						<mat-icon fontIcon="home" />
 						<span
@@ -39,7 +38,7 @@
 						>
 					</div>
 				</div>
-				<div class="col col-md-3 d-flex flex-column gap-2">
+				<div class="col col-lg-4 d-flex flex-column gap-2">
 					<div class="d-flex flex-row align-items-center gap-2">
 						<mat-icon fontIcon="location_on" />
 						<span
@@ -65,7 +64,7 @@
 			</div>
 		</mat-card-content>
 		@if (pets$ | async; as pets) {
-		<div class="d-flex flex-column gap-4">
+		<div class="d-flex flex-column align-items-center gap-2">
 			<h2 class="fw-bold text-center">
 				Listado de mascotas de
 				<span>
@@ -73,7 +72,7 @@
 				</span>
 			</h2>
 			@if (canEdit()) {
-			<div>
+			<div class="mb-4">
 				<a
 					mat-flat-button
 					[routerLink]="['/shelter', shelter.id, 'create']"
@@ -82,10 +81,10 @@
 				</a>
 			</div>
 			}
-			<div class="row row-cols-1 row-cols-md-2 g-2">
-				<div class="col col-12 col-md-2">
-					<span class="mb-3 user-select-none">Ordenar por:</span>
-					<mat-form-field appearance="fill">
+			<div class="row row-cols-1 row-cols-xl-2 g-2 m-0 p-4">
+				<div class="col col-12 col-xl-3 d-flex flex-column gap-1">
+					<span class="user-select-none">Ordenar por:</span>
+					<mat-form-field appearance="fill" class="w-100">
 						<mat-select
 							(selectionChange)="sortPets($event.value)"
 							value="default"
@@ -124,7 +123,7 @@
 					</mat-form-field>
 				</div>
 				<ul
-					class="col col-12 col-md-10 list-unstyled row row-cols-1 row-cols-md-2 row-cols-lg-3 flex-grow-1"
+					class="col col-12 col-xl-9 list-unstyled row row-cols-1 row-cols-md-2 row-cols-lg-3 flex-grow-1 g-3"
 				>
 					@for (pet of sortedPets; track pet.id) {
 					<li class="col">

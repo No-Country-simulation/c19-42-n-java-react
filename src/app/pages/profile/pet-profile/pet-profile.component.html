@@ -1,15 +1,40 @@
-@if (pet) {
-<mat-card appearance="outlined">
-	<mat-card-header>
-		<mat-card-title>{{ pet.nombre }}</mat-card-title>
-		<mat-card-subtitle>{{ pet.edad }} years old</mat-card-subtitle>
-	</mat-card-header>
-	<mat-card-content>
-		<button mat-raised-button color="primary" (click)="adoptPet()">
-			Adopt
-		</button>
-	</mat-card-content>
-</mat-card>
-} @if (errorMessage ) {
-{{ errorMessage }}
-}
+<div class="container">
+	@if (pet) {
+	<h1 class="text-uppercase fw-bold text-center mb-4">Perfil de mascota</h1>
+	<mat-card
+		appearance="outlined"
+		class="border-0 d-flex flex-column flex-md-row"
+	>
+		<img
+			mat-card-image
+			src="https://picsum.photos/200/200/?blur"
+			[alt]="pet.nombre"
+			class="mb-3"
+		/>
+		<mat-card-content class="d-flex flex-column flex-grow-1">
+			<div class="flex-grow-1 w-100">
+				<h2 class="fw-bold">{{ pet.nombre }}</h2>
+				<div class="d-flex flex-column gap-2">
+					<ul>
+						<li><strong>Raza:</strong> {{ pet.raza }}</li>
+						<li><strong>Edad:</strong> {{ pet.edad }}</li>
+						<li><strong>Peso:</strong> {{ pet.peso }}</li>
+						<li><strong>Pelaje:</strong> {{ pet.pelaje }}</li>
+						<li><strong>Sexo:</strong> {{ pet.sexo }}</li>
+						<li>
+							<strong>Nivel de Actividad:</strong>
+							{{ pet.nivelActividad }}
+						</li>
+						<li><strong>Edad:</strong> {{ pet.edad }}</li>
+					</ul>
+				</div>
+			</div>
+			<a mat-flat-button routerLink="/adopt" class="adopt-button"
+				>Adoptar</a
+			>
+		</mat-card-content>
+	</mat-card>
+	} @if (errorMessage ) {
+	{{ errorMessage }}
+	}
+</div>

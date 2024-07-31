@@ -35,12 +35,10 @@ export class ShelterProfileComponent implements OnInit {
 	shelterUserId: number | null = null;
 
 	shelterId: any | undefined;
-  petId: any | undefined;
-  selectedFile: File | null = null;
-	
+	petId: any | undefined;
+	selectedFile: File | null = null;
 
 	constructor(
-		
 		private route: ActivatedRoute,
 		private shelterService: GalleryService,
 		private loginService: LoginService
@@ -63,7 +61,7 @@ export class ShelterProfileComponent implements OnInit {
 					this.errorMessage = 'Error fetching shelter data';
 				},
 			});
-			
+
 			this.pets$.subscribe({
 				next: (pets) => {
 					this.sortedPets = pets;
@@ -77,14 +75,14 @@ export class ShelterProfileComponent implements OnInit {
 		} else {
 			this.errorMessage = 'Refugio no encontrado';
 		}
-		this.route.paramMap.subscribe(params => {
+		this.route.paramMap.subscribe((params) => {
 			const shelterId = params.get('shelterId');
 			const petId = params.get('id');
 			this.shelterId = shelterId ? Number(shelterId) : null;
 			this.petId = petId ? Number(petId) : null;
 			console.log('ID del refugio:', this.shelterId);
 			console.log('ID de la mascota:', this.petId);
-		  });
+		});
 	}
 
 	sortPets(order: string): void {
@@ -100,7 +98,7 @@ export class ShelterProfileComponent implements OnInit {
 			'coat-desc': (a, b) => b.pelaje.localeCompare(a.pelaje),
 			'weight-asc': (a, b) => a.peso - b.peso,
 			'weight-desc': (a, b) => b.peso - a.peso,
-			type: (a, b) => a.tipo_mascota.localeCompare(b.tipo_mascota),
+			type: (a, b) => a.tipoMascota.localeCompare(b.tipoMascota),
 		};
 
 		const sortFunction = sortFunctions[order] || sortFunctions['default'];

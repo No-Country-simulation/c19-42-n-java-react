@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { Pet } from '../../../core/interfaces/Pet';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { GalleryService } from '../../../core/services/gallery/gallery.service';
 import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
 	selector: 'app-pet-profile',
 	standalone: true,
-	imports: [MatCardModule],
+	imports: [RouterModule, MatCardModule, MatButtonModule],
 	templateUrl: './pet-profile.component.html',
-	styleUrls: ['./pet-profile.component.css'],
+	styleUrls: ['./pet-profile.component.scss'],
 })
 export class PetProfileComponent {
 	pet: Pet | undefined;

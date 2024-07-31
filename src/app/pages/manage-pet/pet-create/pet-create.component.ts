@@ -1,78 +1,74 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { FormBuilder,
-  FormGroup, 
-  ReactiveFormsModule, 
-  Validators } from '@angular/forms';
-import { Pet } from '../model/pet';
+import { Component } from '@angular/core';
+import {
+	FormBuilder,
+	FormGroup,
+	ReactiveFormsModule,
+	Validators,
+} from '@angular/forms';
 import { PetService } from '../service/pet.service';
 import { Router } from '@angular/router';
-import { MockPetService } from '../service/mock-pet.service';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-pet-create',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './pet-create.component.html',
-  styleUrl: './pet-create.component.css'
+	selector: 'app-pet-create',
+	standalone: true,
+	imports: [CommonModule, ReactiveFormsModule],
+	templateUrl: './pet-create.component.html',
+	styleUrl: './pet-create.component.css',
 })
 export class PetCreateComponent {
-  createPetForm: FormGroup;
-  selectedFile: File | null = null;   
- 
-  constructor(
-    private fb: FormBuilder,
-    private petService: PetService,
-    private router: Router,
-  ) {
-    
-      this.createPetForm = this.fb.group({
-  
-      nombre: ['', Validators.required],
-      raza: ['', Validators.required],
-      tipoMascota: ['', Validators.required],
-      peso:['', [Validators.required, Validators.min(0)]],
-      pelaje:['',Validators.required],
-      sexo:['', Validators.required],
-      nivelActividad:['', Validators.required],
-      protectoraID:['', Validators.required],
-      edad: ['', [Validators.required, Validators.min(0)]],
-      img: [''],   
-     });
-  }
+	createPetForm: FormGroup;
+	selectedFile: File | null = null;
 
-  ngOnInit(): void {}
-  
-  onFileChange(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      this.selectedFile = file;
-      console.log('Archivo seleccionado:', file);
-    } else {
-      console.error('Error al guardar la imagen.');
-    }
-  }
-  
-  
+	constructor(
+		private fb: FormBuilder,
+		private petService: PetService,
+		private router: Router
+	) {
+		this.createPetForm = this.fb.group({
+			nombre: ['', Validators.required],
+			raza: ['', Validators.required],
+			tipoMascota: ['', Validators.required],
+			peso: ['', [Validators.required, Validators.min(0)]],
+			pelaje: ['', Validators.required],
+			sexo: ['', Validators.required],
+			nivelActividad: ['', Validators.required],
+			protectoraID: ['', Validators.required],
+			edad: ['', [Validators.required, Validators.min(0)]],
+			img: [''],
+		});
+	}
 
-  createPet(): void {
-    if (this.createPetForm.valid && this.selectedFile) {
-      const newPet = new FormData();
-      for (const [name, control] of Object.entries(this.createPetForm.controls)) {
-        newPet.append(name, control.value);
-      }
-      newPet.append('img', this.selectedFile);
-  
-      this.petService.createPet(newPet).subscribe({
-        next: () => {
-          console.log('Mascota creada con éxito', newPet);
-          this.router.navigate(['manage-pet/list']);
-          this.createPetForm.reset(); // Limpiar el formulario
-          this.selectedFile = null; // Limpiar el archivo seleccionado
-        },
-        
-      });
-    } 
-  }
+	ngOnInit(): void {}
+
+	onFileChange(event: any) {
+		const file = event.target.files[0];
+		if (file) {
+			this.selectedFile = file;
+			console.log('Archivo seleccionado:', file);
+		} else {
+			console.error('Error al guardar la imagen.');
+		}
+	}
+
+	createPet(): void {
+		if (this.createPetForm.valid && this.selectedFile) {
+			const newPet = new FormData();
+			for (const [name, control] of Object.entries(
+				this.createPetForm.controls
+			)) {
+				newPet.append(name, control.value);
+			}
+			newPet.append('img', this.selectedFile);
+
+			this.petService.createPet(newPet).subscribe({
+				next: () => {
+					console.log('Mascota creada con éxito', newPet);
+					this.router.navigate(['manage-pet/list']);
+					this.createPetForm.reset();
+					this.selectedFile = null;
+				},
+			});
+		}
+	}
 }

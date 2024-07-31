@@ -20,6 +20,10 @@ img[mat-card-image] {
 	border: 4px solid map-get($map: $text-palette, $key: secondary);
 }
 
+ul {
+	max-width: initial;
+}
+
 mat-card.pet-card {
 	background-color: map-get($map: $neutral-palette, $key: 200);
 }
