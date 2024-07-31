@@ -48,7 +48,7 @@ export class HeaderComponent {
 
 	public headerRoutes = [
 		{
-			title: 'Galería',
+			title: 'Refugios',
 			link: '/gallery',
 		},
 		{
