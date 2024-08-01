@@ -228,18 +228,6 @@ a[mat-stroked-button],
 	border-color: map-get($map: $text-palette, $key: disabled) !important;
 }
 
-.mdc-button__label {
-	font-size: map-get($map: $font-size, $key: body3);
-}
-
-.ng-valid:not(form).ng-touched {
-	background-color: rgba(0, 128, 0, 0.1);
-}
-
-.ng-invalid:not(form).ng-touched {
-	background-color: rgba(255, 0, 0, 0.1);
-}
-
 app-header .navbar-brand {
 	font-family: "Poppins";
 	font-weight: 700;

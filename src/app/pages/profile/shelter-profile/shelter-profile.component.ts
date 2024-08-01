@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { GalleryService } from '../../../core/services/gallery/gallery.service';
 import { AsyncPipe } from '@angular/common';
@@ -9,7 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { Pet } from '../../../core/interfaces/Pet';
 import { LoginService } from '../../../core/services/auth/login.service';
-import { FormGroup } from '@angular/forms';
 
 @Component({
 	selector: 'app-shelter-profile',

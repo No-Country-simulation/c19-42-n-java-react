@@ -1,0 +1,60 @@
+<div class="container">
+	<h1 class="text-center">
+		Formulario de adopción para
+		<strong class="fw-bold">{{ pet?.nombre }}</strong>
+	</h1>
+	<div class="row row-cols-1 row-cols-md-2">
+		<div class="col-12 col-md-4 mb-3">
+			<img
+				[src]="pet?.img"
+				[alt]="pet?.nombre"
+				class="w-100 h-100 object-fit-cover rounded-4"
+			/>
+		</div>
+
+		<div class="col-12 col-md-8">
+			<h3 class="subtitle-red">Tus datos:</h3>
+			<form
+				class="row row-cols-1"
+				[formGroup]="adoptForm"
+				(submit)="onSubmit()"
+			>
+				<mat-form-field class="col-12">
+					<mat-label>Nombre completo</mat-label>
+					<input matInput formControlName="fullName" />
+				</mat-form-field>
+				<mat-form-field class="col-12">
+					<mat-label>Correo electrónico</mat-label>
+					<input matInput formControlName="email" />
+				</mat-form-field>
+				<mat-form-field class="col-12">
+					<mat-label>Celular</mat-label>
+					<input matInput formControlName="phone" />
+				</mat-form-field>
+				<mat-form-field class="col-12">
+					<mat-label>Mensaje (opcional)</mat-label>
+					<textarea
+						matInput
+						formControlName="message"
+						rows="6"
+					></textarea>
+				</mat-form-field>
+				<div class="col-12">
+					<button
+						class="w-100"
+						mat-flat-button
+						type="submit"
+						[hidden]="adoptForm.invalid"
+					>
+						Enviar
+					</button>
+				</div>
+			</form>
+			@if (successMessage) {
+			<div class="col-12 alert alert-success mt-3">
+				{{ successMessage }}
+			</div>
+			}
+		</div>
+	</div>
+</div>

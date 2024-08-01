@@ -9,6 +9,7 @@ import { PetProfileComponent } from './pages/profile/pet-profile/pet-profile.com
 import { PetEditComponent } from './pages/manage-pet/pet-edit/pet-edit.component';
 import { PetCreateComponent } from './pages/manage-pet/pet-create/pet-create.component';
 import { AboutComponent } from './pages/about/about.component';
+import { AdoptFormComponent } from './pages/adopt-form/adopt-form.component';
 
 export const routes: Routes = [
 	{
@@ -68,6 +69,10 @@ export const routes: Routes = [
 	{
 		path: 'shelter/:shelterId/create',
 		component: PetCreateComponent,
+	},
+	{
+		path: 'pet/:petId/adopt',
+		component: AdoptFormComponent,
 	},
 	{
 		path: '**',

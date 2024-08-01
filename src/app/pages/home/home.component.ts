@@ -47,6 +47,7 @@ export class HomeComponent {
 		this.homeService.getRecentPets().subscribe({
 			next: (pets) => {
 				this.recentPets = pets;
+				console.log('Recent pets:', pets);
 			},
 			error: (error) => {
 				console.error('Error fetching recent pets:', error);

@@ -9,4 +9,5 @@ export interface Pet {
 	raza: string;
 	sexo: string;
 	tipoMascota: string;
+	protectoraId: string;
 }
