@@ -2,19 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { GalleryService } from '../../../core/services/gallery/gallery.service';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { Pet } from '../../../core/interfaces/Pet';
 import { LoginService } from '../../../core/services/login.service';
-import { FormGroup } from '@angular/forms';
+
 
 @Component({
 	selector: 'app-shelter-profile',
 	standalone: true,
 	imports: [
+		CommonModule,
 		RouterModule,
 		AsyncPipe,
 		MatCardModule,
@@ -37,6 +38,8 @@ export class ShelterProfileComponent implements OnInit {
 	shelterId: any | undefined;
   petId: any | undefined;
   selectedFile: File | null = null;
+	petService: any;
+	editPetForm: any;
 	
 
 	constructor(
@@ -78,14 +81,32 @@ export class ShelterProfileComponent implements OnInit {
 			this.errorMessage = 'Refugio no encontrado';
 		}
 		this.route.paramMap.subscribe(params => {
-			const shelterId = params.get('shelterId');
-			const petId = params.get('id');
-			this.shelterId = shelterId ? Number(shelterId) : null;
-			this.petId = petId ? Number(petId) : null;
+			console.log('Parámetros de la ruta:', params);
+			const shelterid = params.get('shelterId');
+			const petid = params.get('petId');
+			this.shelterId = shelterid ? Number(shelterid) : null;
+			this.petId = petid ? Number(petid) : null;
 			console.log('ID del refugio:', this.shelterId);
 			console.log('ID de la mascota:', this.petId);
-		  });
-	}
+
+			if (this.petId) {
+				// Cargar la información de la mascota
+				this.petService.getPetById(this.petId).subscribe((pet: Pet) => {
+				  this.editPetForm.patchValue({
+					nombre: pet.nombre,
+					raza: pet.raza,
+					tipoMascota: pet.tipoMascota,
+					peso: pet.peso,
+					pelaje: pet.pelaje,
+					sexo: pet.sexo,
+					nivelActividad: pet.nivelActividad, 
+					protectoraID: pet.protectoraID,
+					edad: pet.edad
+				});
+			}	
+		)} 
+	})
+}
 
 	sortPets(order: string): void {
 		const sortFunctions: { [key: string]: (a: Pet, b: Pet) => number } = {

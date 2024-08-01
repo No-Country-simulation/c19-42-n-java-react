@@ -30,7 +30,8 @@
 				class="d-flex flex-wrap flex-sm-nowrap gap-2 align-items-center ms-lg-auto"
 			>
 				@if (isAuthenticated){
-				<span class="flex-grow-1"> Bienvenido, {{ username }} </span>
+					routerLink
+				<a [routerLink]="['/shelter', shelter.id]" class="flex-grow-1" >Bienvenido, {{ username }}</a>
 				<!-- @if (isShelter ) {
 				<button mat-mini-fab (click)="goToProfile()"><mat-icon>user</mat-icon></button>
 				} -->

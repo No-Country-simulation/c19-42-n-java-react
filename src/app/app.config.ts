@@ -16,13 +16,9 @@ export const appConfig: ApplicationConfig = {
 		provideRouter(routes),
 		provideClientHydration(),
 		provideHttpClient(withFetch()),
-<<<<<<< HEAD
-		importProvidersFrom(HttpClient), provideAnimationsAsync(),
-=======
 		importProvidersFrom(HttpClient),
 		provideAnimationsAsync(),
 		provideAnimationsAsync(),
 		provideAnimationsAsync(),
->>>>>>> front/develop
 	],
 };

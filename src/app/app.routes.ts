@@ -63,7 +63,8 @@ export const routes: Routes = [
 				(m) => m.MANAGE_PET_ROUTES
 			),
 	},
-	{ path: 'shelter/:shelterId', component: ShelterProfileComponent },
+	{ path: 'shelter/:shelterId', 
+		component: ShelterProfileComponent },
 	{
 		path: 'shelter/:shelterId/pet/:petId',
 		component: PetProfileComponent,
@@ -76,7 +77,8 @@ export const routes: Routes = [
 		path: 'shelter/:shelterId/create',
 		component: PetCreateComponent,
 	},
-	{ path: 'adopter/:adopterId', component: AdopterProfileComponent },
+	{ path: 'adopter/:adopterId', 
+		component: AdopterProfileComponent },
 	{
 		path: '**',
 		component: Error404Component,

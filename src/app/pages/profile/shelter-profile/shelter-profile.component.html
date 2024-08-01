@@ -137,10 +137,12 @@
 							>
 								<img
 									mat-card-image
-									src="https://picsum.photos/200/200/?blur"
-									alt="{{ pet.nombre }}"
+									*ngIf="pet.img" 
+									[src]="pet.img" 
+									alt="{{ pet.nombre }}" 
 									class="pet-img ratio-1x1"
 								/>
+								
 								<div
 									class="d-flex flex-column px-4 align-items-start p-3 w-100"
 								>
