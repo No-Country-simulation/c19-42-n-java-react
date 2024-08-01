@@ -20,7 +20,8 @@ export class PetService {
   }
 
   getPetById(id: number): Observable<Pet> {
-    return this.http.get<Pet>(`${this.baseUrl}/${id}`);
+    const url = `${this.baseUrl}/listar/${id}`;
+    return this.http.get<Pet>(url);
   }
 
   createPet(pet: FormData): Observable<Pet> {

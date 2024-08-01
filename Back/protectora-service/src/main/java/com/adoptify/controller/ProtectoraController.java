@@ -56,4 +56,10 @@ public class ProtectoraController {
 		return ResponseEntity.ok().body(service.getMascotasByProtectoraID(protectoraID)) ;
 	}
 
+	@GetMapping("/user/{userId}")
+	public ResponseEntity<?> getProtectoraByUserId(@PathVariable Long userId) {
+		Protectora protectora = service.getProtectoraByUserId(userId);
+		return ResponseEntity.ok(protectora);
+	}
+
 }

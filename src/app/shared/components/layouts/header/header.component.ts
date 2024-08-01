@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { LoginService } from '../../../../core/services/auth/login.service';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,6 +13,7 @@ export class HeaderComponent {
 	isAuthenticated: boolean = false;
 	username: string | null = null;
 	isShelter: boolean = false;
+	shelter: any;
 
 	constructor(private loginService: LoginService, private router: Router) {}
 

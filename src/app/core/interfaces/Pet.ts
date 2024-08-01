@@ -1,4 +1,7 @@
 export interface Pet {
+	tipoMascota: any;
+	nivelActividad: any;
+	protectoraID: any;
 	id: string;
 	edad: number;
 	img: string;

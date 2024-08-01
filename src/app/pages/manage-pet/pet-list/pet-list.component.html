@@ -36,10 +36,27 @@
         </tbody>
       </table>
       <div class="d-flex mt-2 my-4 mt-0 mx-1 justify-content-center">
-        <button type="submit" class="btn btn-primary size col-sm-3" routerLink="/manage-pet/detail/:id">Detalles</button>
+        <button type="submit" class="btn btn-primary size col-sm-3" [routerLink]="['/manage-pet/detail/', pet.id]">Detalles</button>
         <button type="submit" class="btn btn-primary size col-sm-3" [routerLink]="['/manage-pet/edit', pet.id]">Editar</button>
         <button type="submit" class="btn btn-primary size col-sm-3" *ngIf="pet.id !== undefined" (click)="deletePet(pet.id)">Eliminar</button>
       </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3" *ngFor="let pet of pets">
+          <mat-card>
+            <img mat-card-image [src]="pet.img" alt="{{pet.nombre}}">
+            <mat-card-content>
+              <h3>{{pet.nombre}}</h3>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button [routerLink]="['/manage-pet/detail/', pet.id]">Ver Perfil</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+      <!--<mat-paginator [length]="totalMascotas" [pageSize]="10"></mat-paginator>-->
     </div>
 </div>
 
