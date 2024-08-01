@@ -1,234 +1,172 @@
 <swiper-container class="mb-5" autoplay pagination loop>
 	<swiper-slide>
-		<img src="https://picsum.photos/id/237/500/300" />
+		<img src="/assets/home/slider/slider-1.webp" />
 		<div
 			class="d-flex flex-column align-items-center align-items-md-start gap-2 text-white text-center text-md-start"
 		>
-			<span class="user-select-none">No compres, adopta</span>
+			<h3 class="user-select-none fw-bold">Adopción de mascotas</h3>
 			<p>
-				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni,
-				similique.
+				Encuentra perros y gatos en busca de un hogar amoroso con
+				perfiles detallados y filtros para facilitar la búsqueda del
+				compañero ideal.
 			</p>
-			<a mat-flat-button routerLink="/">Explorar</a>
+			<a mat-flat-button routerLink="/gallery">Explorar</a>
 		</div>
 	</swiper-slide>
 	<swiper-slide>
-		<img src="https://picsum.photos/id/238/500/300" />
+		<img src="/assets/home/slider/slider-2.webp" />
 		<div
 			class="d-flex flex-column align-items-center align-items-md-end gap-2 text-white text-center text-md-end"
 		>
-			<span class="user-select-none"
-				>Encuentra a tu nuevo mejor amigo</span
-			>
+			<h3 class="user-select-none fw-bold">Donaciones</h3>
 			<p>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
-				accusamus recusandae sed tenetur quae qui.
+				Apoya a los albergues y organizaciones de rescate de animales
+				con donaciones monetarias o en especie.
 			</p>
-			<a mat-flat-button routerLink="/">Explorar</a>
+			<a mat-flat-button routerLink="/donate">Descubre cómo</a>
 		</div>
 	</swiper-slide>
 	<swiper-slide>
-		<img src="https://picsum.photos/id/239/500/300" />
+		<img src="/assets/home/slider/slider-3.webp" />
 		<div
 			class="d-flex flex-column align-items-center align-items-md-start gap-2 text-white text-center text-md-start"
 		>
-			<span class="user-select-none">Dales una segunda oportunidad</span>
-			<p>Lorem ipsum dolor sit amet consectetur.</p>
-			<a mat-flat-button routerLink="/">Explorar</a>
+			<h3 class="user-select-none fw-bold">Entidades de refugio</h3>
+			<p>
+				Encuentra albergues y organizaciones de rescate de animales
+				cercanos a ti.
+			</p>
+			<a mat-flat-button routerLink="/gallery">Explorar</a>
+		</div>
+	</swiper-slide>
+	<swiper-slide>
+		<img src="/assets/home/slider/slider-4.webp" />
+		<div
+			class="d-flex flex-column align-items-center align-items-md-start gap-2 text-white text-center text-md-start"
+		>
+			<h3 class="user-select-none fw-bold">
+				Alojamientos y nuevas asociaciones
+			</h3>
+			<p>
+				Registra tu albergue o asociación de rescate de animales para
+				que más personas puedan encontrar y apoyar tu causa.
+			</p>
+			<a mat-flat-button routerLink="/contact">Explorar</a>
 		</div>
 	</swiper-slide>
 </swiper-container>
 <div class="container">
 	<section class="d-flex flex-column">
-		<app-section-title text="En adopción actualmente" />
-		<div class="row row-cols-1 row-cols-sm-3 g-4 mb-3">
+		<span class="subtitle-red">Nuevos amigos</span>
+		<h2 class="fw-bold">En adopción actualmente</h2>
+		<div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 mb-3">
+			@for (pet of recentPets; track pet.id) {
 			<div class="col">
-				<mat-card appearance="outlined">
-					<mat-card-header class="p-3">
-						<mat-card-title>Shiba Inu</mat-card-title>
-						<mat-card-subtitle>Dog Breed</mat-card-subtitle>
-					</mat-card-header>
-					<img
-						mat-card-image
-						src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-						alt="Photo of a Shiba Inu"
-					/>
-					<div class="p-3">
-						<mat-card-content class="p-0 mb-2">
-							<p>
-								The Shiba Inu is the smallest of the six
-								original and distinct spitz breeds of dog from
-								Japan.
-							</p>
-						</mat-card-content>
-					</div>
+				<mat-card appearance="outlined" class="pet-card border-0">
+					<mat-card-content
+						class="d-flex flex-row align-items-start p-0 flex-md-column"
+					>
+						<div class="div-pet-img">
+							<img
+								mat-card-image
+								src="{{ pet.img }}"
+								alt="{{ pet.nombre }}"
+								class="pet-img ratio-1x1"
+							/>
+						</div>
+						<div
+							class="d-flex flex-column px-4 align-items-start p-3 w-100"
+						>
+							<div
+								class="d-flex flex-column flex-md-row justify-content-md-between w-100"
+							>
+								<div>
+									<h3 class="fw-bold">
+										{{ pet.nombre }}
+									</h3>
+									<h4>{{ pet.sexo }}</h4>
+								</div>
+								<!-- <a
+									mat-stroked-button
+									[routerLink]="[
+										'/shelter',
+										shelter.id,
+										'pet',
+										pet.id
+									]"
+									>Ver perfil</a
+								> -->
+								<a mat-stroked-button>Ver perfil</a>
+							</div>
+						</div>
+					</mat-card-content>
 				</mat-card>
 			</div>
-			<div class="col">
-				<mat-card appearance="outlined">
-					<mat-card-header class="p-3">
-						<mat-card-title>Shiba Inu</mat-card-title>
-						<mat-card-subtitle>Dog Breed</mat-card-subtitle>
-					</mat-card-header>
-					<img
-						mat-card-image
-						src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-						alt="Photo of a Shiba Inu"
-					/>
-					<div class="p-3">
-						<mat-card-content class="p-0 mb-2">
-							<p>
-								The Shiba Inu is the smallest of the six
-								original and distinct spitz breeds of dog from
-								Japan.
-							</p>
-						</mat-card-content>
+			}
+			<mat-card appearance="outlined" class="text-center">
+				<a
+					mat-stroked-button
+					routerLink="/gallery"
+					class="view-more-button col flex-grow-1 w-100 border-0"
+				>
+					<div
+						class="d-flex flex-column align-items-center gap-3 p-4 p-md-0"
+					>
+						<span class="fw-bold">
+							Quiero ver todos los animales
+						</span>
+						<div class="rounded-circle icon-arrow">
+							<mat-icon fontIcon="arrow_right" />
+						</div>
 					</div>
-				</mat-card>
-			</div>
-			<div class="col">
-				<mat-card appearance="outlined">
-					<mat-card-header class="p-3">
-						<mat-card-title>Shiba Inu</mat-card-title>
-						<mat-card-subtitle>Dog Breed</mat-card-subtitle>
-					</mat-card-header>
-					<img
-						mat-card-image
-						src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-						alt="Photo of a Shiba Inu"
-					/>
-					<div class="p-3">
-						<mat-card-content class="p-0 mb-2">
-							<p>
-								The Shiba Inu is the smallest of the six
-								original and distinct spitz breeds of dog from
-								Japan.
-							</p>
-						</mat-card-content>
-					</div>
-				</mat-card>
-			</div>
+				</a>
+			</mat-card>
 		</div>
-		<a mat-stroked-button routerLink="/gallery" class="align-self-end"
-			>Ver más</a
-		>
 	</section>
 
-	<section class="d-flex flex-column">
-		<app-section-title text="Sobre Nosotros"></app-section-title>
-		<mat-card appearance="outlined" class="d-flex flex-column flex-lg-row">
-			<img
-				mat-card-image
-				src="https://material.angular.io/assets/img/examples/shiba1.jpg"
-				alt="Photo of a Shiba Inu"
-				class="card-about-us-photo"
-			/>
-			<div class="d-flex flex-column p-3">
-				<mat-card-content class="flex-grow-1 p-0 mb-2">
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Laboriosam reiciendis, odio dolore suscipit dolorum
-						dignissimos quia minima impedit eligendi repellat sunt
-						corporis id rem est vero laudantium nostrum iure modi
-						hic, mollitia iste tenetur eum. Blanditiis tempora,
-						aspernatur ea eos quam quidem repudiandae autem
-						recusandae dolorum! Fugiat, libero aliquam commodi ea
-						repudiandae.
-					</p>
-				</mat-card-content>
-				<mat-card-actions class="p-0">
-					<a
-						mat-flat-button
-						routerLink="/gallery"
-						class="align-self-end"
-						>Contáctanos</a
-					>
-				</mat-card-actions>
-			</div>
-		</mat-card>
+	<section class="d-flex flex-column flex-md-row align-items-md-center gap-3">
+		<img
+			src="/assets/home/about/about.webp"
+			alt="sobre nosotros"
+			class="about-us-photo"
+		/>
+		<div class="d-flex flex-column">
+			<span class="subtitle-red">Conócenos</span>
+			<h2 class="fw-bold">Sobre nosotros</h2>
+			<p>
+				En Adoptify, conectamos refugios de perros y gatos con
+				adoptantes amorosos, facilitando el proceso de adopción.
+				Colaboramos con albergues, voluntarios y donantes para ofrecer
+				un mejor futuro a los animales.
+			</p>
+			<mat-card-actions class="p-0">
+				<a mat-flat-button routerLink="/about" class="align-self-end"
+					>Ver más</a
+				>
+			</mat-card-actions>
+		</div>
 	</section>
 
 	<section>
-		<app-section-title text="Historias de adopción" />
+		<span class="subtitle-red">Nuevos amigos</span>
+		<h2 class="fw-bold">Historias de adopción</h2>
 		<div class="row row-cols-1 row-cols-sm-2 g-4 mb-3">
 			<div class="col">
-				<mat-card appearance="outlined">
-					<img
-						mat-card-image
-						src="https://material.angular.io/assets/img/examples/shiba1.jpg"
-						alt="Photo of a Shiba Inu"
-						class="w-100 h-100"
-					/>
-				</mat-card>
+				<div>
+					<video
+						class="w-100"
+						src="/assets/home/stories/ADOPTIFY GATO AUDIO MUSICA.mp4"
+						controls
+					></video>
+				</div>
 			</div>
 			<div class="col">
-				<mat-card appearance="outlined">
-					<img
-						mat-card-image
-						src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-						alt="Photo of a Shiba Inu"
-						class="w-100 h-100"
-					/>
-				</mat-card>
-			</div>
-		</div>
-	</section>
-
-	<section>
-		<app-little-title
-			text="Participa y contribuye"
-			class="text-sm-center"
-		/>
-		<app-section-title
-			text="Todo lo que necesitas saber para unirte y apoyar nuestra misión"
-			class="text-sm-center"
-		/>
-		<div class="row row-cols-md-3 row-gap-4 row-gap-xl-5">
-			<div class="col d-flex flex-column h-100">
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-					alt=""
-					class="flex-grow-1"
-				/>
 				<div>
-					<span class="fw-bold"> ¿Cómo inscribo mi albergue? </span>
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Quisquam, quidem.
-					</p>
-					<a mat-flat-button routerLink="/auth/register">Ver</a>
-				</div>
-			</div>
-			<div
-				class="col d-flex flex-column flex-md-column-reverse text-sm-end text-md-start"
-			>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-					alt=""
-					class="flex-grow-1"
-				/>
-				<div>
-					<span class="fw-bold"> ¿Cómo se sostiene? </span>
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Quisquam, quidem.
-					</p>
-					<a mat-flat-button routerLink="/auth/register">Ver</a>
-				</div>
-			</div>
-			<div class="col d-flex flex-column text-md-end">
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-					alt=""
-					class="flex-grow-1"
-				/>
-				<div>
-					<span class="fw-bold"> ¿Cómo donar? </span>
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Quisquam, quidem.
-					</p>
-					<a mat-flat-button routerLink="/auth/register">Ver</a>
+					<video
+						src="/assets/home/stories/ADOPTIFY PERRO AUDIO MUSICA.mp4"
+						class="w-100"
+						controls
+					></video>
 				</div>
 			</div>
 		</div>
@@ -238,190 +176,119 @@
 		<app-section-title text="Nuestros patrocinadores" />
 		<div class="logos">
 			<div class="logo_items">
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
+				<img src="/assets/home/sponsors/sponsor-1.webp" />
+				<img src="/assets/home/sponsors/sponsor-2.webp" />
+				<img src="/assets/home/sponsors/sponsor-3.webp" />
+				<img src="/assets/home/sponsors/sponsor-1.webp" />
+				<img src="/assets/home/sponsors/sponsor-2.webp" />
+				<img src="/assets/home/sponsors/sponsor-3.webp" />
+				<img src="/assets/home/sponsors/sponsor-1.webp" />
+				<img src="/assets/home/sponsors/sponsor-2.webp" />
+				<img src="/assets/home/sponsors/sponsor-3.webp" />
+				<img src="/assets/home/sponsors/sponsor-1.webp" />
+				<img src="/assets/home/sponsors/sponsor-2.webp" />
+				<img src="/assets/home/sponsors/sponsor-3.webp" />
 			</div>
 			<div class="logo_items">
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
-				<img
-					src="https://navneetdwivedi.github.io/Logo_Slider/logo.png"
-				/>
+				<img src="/assets/home/sponsors/sponsor-1.webp" />
+				<img src="/assets/home/sponsors/sponsor-2.webp" />
+				<img src="/assets/home/sponsors/sponsor-3.webp" />
+				<img src="/assets/home/sponsors/sponsor-1.webp" />
+				<img src="/assets/home/sponsors/sponsor-2.webp" />
+				<img src="/assets/home/sponsors/sponsor-3.webp" />
+				<img src="/assets/home/sponsors/sponsor-1.webp" />
+				<img src="/assets/home/sponsors/sponsor-2.webp" />
+				<img src="/assets/home/sponsors/sponsor-3.webp" />
+				<img src="/assets/home/sponsors/sponsor-1.webp" />
+				<img src="/assets/home/sponsors/sponsor-2.webp" />
+				<img src="/assets/home/sponsors/sponsor-3.webp" />
 			</div>
 		</div>
 	</section>
 
 	<section>
-		<app-little-title
-			style="letter-spacing: 4px"
-			class="text-sm-center"
-			text="Nuestro equipo"
-		/>
-		<app-section-title
-			class="text-sm-center"
-			text="El equipo que hace la diferencia"
-		/>
+		<h3 class="subtitle-red text-sm-center">Participa y contribuye</h3>
+		<h2 class="fw-bold text-sm-center">
+			Todo lo que necesitas saber para unirte y apoyar nuestra misión
+		</h2>
+		<div class="row row-cols-md-3 row-gap-xl-5 h-100">
+			<div class="col d-flex flex-column align-items-center">
+				<div
+					class="w-100 flex-grow-1 mb-3 d-flex justify-content-center align-items-center"
+				>
+					<img
+						src="/assets/home/join/join-1.webp"
+						alt="join-us-2"
+						class="join-us-photo d-none d-md-flex"
+					/>
+				</div>
+				<div>
+					<span class="fw-bold"> ¿Cómo inscribo mi albergue? </span>
+					<p>
+						Inscriba su albergue fácilmente y únase a nuestra red
+						para encontrar hogares amorosos para sus animales.
+					</p>
+					<a mat-flat-button routerLink="/auth/register"
+						>Registrarse</a
+					>
+				</div>
+			</div>
+			<div
+				class="col d-flex flex-column flex-md-column-reverse text-sm-end text-md-start"
+			>
+				<img
+					src="/assets/home/join/join-2.webp"
+					alt="join-us-2"
+					class="join-us-photo d-none d-md-flex flex-grow w-100"
+				/>
+				<div class="flex-grow-1">
+					<span class="fw-bold"> ¿Cómo se sostiene? </span>
+					<p>
+						Descubra cómo mantenemos nuestra plataforma gracias a
+						los patrocinadores y donaciones.
+					</p>
+					<a mat-flat-button routerLink="/about">Ver más</a>
+				</div>
+			</div>
+			<div class="col d-flex flex-column text-md-end align-items-end">
+				<img
+					src="/assets/home/join/join-3.webp"
+					alt="join-us-3"
+					class="join-us-photo mb-3 flex-grow-1 w-100"
+				/>
+				<div class="flex-grow-1">
+					<span class="fw-bold"> ¿Cómo donar? </span>
+					<p>
+						Ayude a los refugios de animales con su donación. Su
+						apoyo marca la diferencia.
+					</p>
+					<a mat-flat-button routerLink="/donate">Ver más</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<h3 class="subtitle-red text-sm-center">Nuestro equipo</h3>
+		<h2 class="text-sm-center">El equipo que hace la diferencia</h2>
 		<div class="row row-cols-2 row-cols-sm-4 g-3 mb-3">
 			@for (teamMember of teamMembers; track teamMember) {
 			<div class="col container-card-team-member">
 				<mat-card
 					appearance="outlined"
-					class="h-100 d-flex flex-column align-items-center"
+					class="h-100 d-flex flex-column align-items-center py-3"
 				>
 					<img
 						mat-card-image
-						src="{{ teamMember.photo }}"
-						alt="Photo of a Shiba Inu"
+						[src]="teamMember.photo"
+						[alt]="teamMember.name"
 						class="card-team_member-photo rounded-circle"
 					/>
 					<div
 						class="d-flex flex-column align-items-center gap-2 p-2 h-100"
 					>
 						<mat-card-content
-							class="d-flex flex-column text-center flex-grow-1 h-100"
+							class="d-flex flex-column text-center flex-grow-1 h-100 p-0"
 						>
 							<span
 								class="card-team_member-name fw-bold flex-grow-1 text-center"

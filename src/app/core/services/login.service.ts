@@ -9,6 +9,13 @@ import { Shelter, User } from '../interfaces/User';
 import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
 import { ResponseLogin } from '../interfaces/ResponseLogin';
 import { Login } from '../interfaces/Login';
+import { jwtDecode } from 'jwt-decode';
+
+interface JwtPayload {
+	username: string;
+	role: Array<{ id: number; name: string }>;
+	id: number;
+}
 
 @Injectable({
 	providedIn: 'root',
@@ -26,6 +33,14 @@ export class LoginService {
 
 	private hasToken(): boolean {
 		return this.isBrowser() && !!localStorage.getItem('token');
+	}
+
+	getUserPayload(): JwtPayload | null {
+		const token = localStorage.getItem('token');
+		if (token) {
+			return jwtDecode(token);
+		}
+		return null;
 	}
 
 	registerAdopter(user: User): Observable<ResponseLogin> {

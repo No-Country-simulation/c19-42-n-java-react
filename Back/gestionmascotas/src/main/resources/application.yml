@@ -5,17 +5,18 @@ spring:
   application:
     name: gestionmascotas
   datasource:
-    url: jdbc:postgresql://dpg-cqcm4riju9rs7393qvd0-a.oregon-postgres.render.com:5432/adoptify_authdb
-    username: sebastian
-    password: r6JTUz2moYagP458znlcuwRe8Gj3PhFt
-    driver-class-name: org.postgresql.Driver
+
+    url: jdbc:mysql://localhost:3306/adoptapp_gestionmascota?createDatabaseIfNotExist=true
+    username: root
+    password: naruto12
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
 
 
 eureka:

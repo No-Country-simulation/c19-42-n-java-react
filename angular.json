@@ -51,20 +51,27 @@
 							"budgets": [
 								{
 									"type": "initial",
-									"maximumWarning": "1MB",
-									"maximumError": "2MB"
+									"maximumWarning": "2MB",
+									"maximumError": "5MB"
 								},
 								{
 									"type": "anyComponentStyle",
-									"maximumWarning": "2kB",
-									"maximumError": "4kB"
+									"maximumWarning": "2MB",
+									"maximumError": "5MB"
 								}
 							],
 							"outputHashing": "all",
 							"optimization": true
 						},
 						"development": {
-							"optimization": false,
+							"optimization": {
+								"scripts": true,
+								"styles": {
+									"minify": true,
+									"inlineCritical": false
+								},
+								"fonts": true
+							},
 							"extractLicenses": false,
 							"sourceMap": true
 						}
@@ -110,8 +117,8 @@
 				}
 			}
 		}
-  },
-  "cli": {
-    "analytics": false
-  }
+	},
+	"cli": {
+		"analytics": "26a9356c-d06b-42e5-8ffc-25bbbbc09c35"
+	}
 }

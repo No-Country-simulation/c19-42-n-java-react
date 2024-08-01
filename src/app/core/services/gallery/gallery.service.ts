@@ -23,13 +23,29 @@ export class GalleryService {
 		});
 	}
 
-	getShelterById(id: string): Observable<any> {
-		return this.http.get<any>(`${this.baseURL}protectora/${id}`);
+	getShelterById(id: string): Observable<Shelter> {
+		const headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+		});
+
+		return this.http.get<Shelter>(`${this.baseURL}protectora/${id}`, {
+			headers,
+		});
 	}
 
 	getPetsByShelterId(shelterId: string): Observable<Pet[]> {
 		return this.http.get<Pet[]>(
 			`${this.baseURL}protectora/mascotas/${shelterId}`
 		);
+	}
+
+	getPetById(id: string): Observable<Pet> {
+		const headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+		});
+
+		return this.http.get<Pet>(`${this.baseURL}mascota/listar/${id}`, {
+			headers,
+		});
 	}
 }
