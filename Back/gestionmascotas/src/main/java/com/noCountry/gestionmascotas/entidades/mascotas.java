@@ -10,6 +10,7 @@ import java.util.List;
 @AllArgsConstructor @NoArgsConstructor
 @Setter @Getter
 @Data
+@Table(name = "mascotas")
 public class mascotas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +20,7 @@ public class mascotas {
     @Enumerated(EnumType.STRING)
     tipoMascota tipoMascota;
     Long peso;
-	@Column(columnDefinition = "LONGTEXT")
+	@Column(columnDefinition = "TEXT")
 	private String img;
     String pelaje;
     String sexo;

@@ -88,7 +88,6 @@ public class servicioMascota implements IservicioMascota {
 
 			repoMascota.save(existingMascota);
 		} else {
-			throw new NotFoundException("Mascota not found with id " + id);
 		}
 	}
 
