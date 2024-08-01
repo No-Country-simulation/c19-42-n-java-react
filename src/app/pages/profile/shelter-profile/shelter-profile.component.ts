@@ -35,9 +35,8 @@ export class ShelterProfileComponent implements OnInit {
 	shelterUserId: number | null = null;
 
 	shelterId: any | undefined;
-  petId: any | undefined;
-  selectedFile: File | null = null;
-
+	petId: any | undefined;
+	selectedFile: File | null = null;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -76,7 +75,8 @@ export class ShelterProfileComponent implements OnInit {
 		} else {
 			this.errorMessage = 'Refugio no encontrado';
 		}
-		this.route.paramMap.subscribe(params => {
+
+		/* this.route.paramMap.subscribe(params => {
 			console.log('Parámetros de la ruta:', params);
 			const shelterid = params.get('shelterId');
 			const petid = params.get('petId');
@@ -88,7 +88,7 @@ export class ShelterProfileComponent implements OnInit {
 			if (this.petId) {
 				// Cargar la información de la mascota
 				this.petService.getPetById(this.petId).subscribe((pet: Pet) => {
-				  this.editPetForm.patchValue({
+				  	this.editPetForm.patchValue({
 					nombre: pet.nombre,
 					raza: pet.raza,
 					tipoMascota: pet.tipoMascota,
@@ -101,8 +101,8 @@ export class ShelterProfileComponent implements OnInit {
 				});
 			}
 		)}
-	})
-}
+	}) */
+	}
 
 	sortPets(order: string): void {
 		const sortFunctions: { [key: string]: (a: Pet, b: Pet) => number } = {
