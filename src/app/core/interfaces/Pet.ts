@@ -1,4 +1,5 @@
 export interface Pet {
+	protectoraID: any;
 	id: string;
 	edad: number;
 	img: string;
@@ -9,4 +10,5 @@ export interface Pet {
 	raza: string;
 	sexo: string;
 	tipoMascota: string;
+	protectoraId: string;
 }

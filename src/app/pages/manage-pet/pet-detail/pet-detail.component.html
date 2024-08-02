@@ -1,14 +1,19 @@
-<div class="card" *ngIf="pets">
-    <!--<img [src]="pet.imagenUrl" class="card-img-top" alt="Imagen de {{ pet.nombre }}"-->
-    <div class="card-body">
-      <h5 class="card-title">{{ pets.nombre }}</h5>
-      <p class="card-text">Raza: {{ pets.raza }}</p>
-      <p class="card-text">Tipo de Mascota: {{ pets.tipoMascota }}</p>
-      <p class="card-text">Peso: {{ pets.peso }} kg</p>
-      <p class="card-text">Pelaje: {{ pets.pelaje }}</p>
-      <p class="card-text">Sexo: {{ pets.sexo }}</p>
-      <p class="card-text">Nivel de Actividad: {{ pets.nivelActividad}}</p>
-      <p class="card-text">ID de Protectora: {{ pets.protectoraID }}</p>
-      <p class="card-text">Edad: {{ pets.edad }} años</p>
+<div class="container pet-list" >
+  <div class="row">
+    <div class="col-3">
+      <img [src]="pet?.img" alt="{{pet?.nombre}}" style="max-width: 180px; max-height: 200px;" class="img-fluid">
     </div>
+    <div class="col-9">
+      <h2>{{pet?.nombre}}</h2>
+      <ul>
+        <li>Raza: {{pet?.raza}}</li>
+        <li>Tipo de pet: {{pet?.tipoMascota}}</li>
+        <li>Peso: {{pet?.peso}} kilos</li>
+        <li>Pelaje: {{pet?.pelaje}}</li>
+        <li>Sexo: {{pet?.sexo}}</li>
+        <li>Nivel de actividad: {{pet?.nivelActividad}}</li>
+        <li>Edad: {{pet?.edad}} años</li>
+      </ul></div>
+      <button type="submit" class="btn btn-primary mb-5 mt-3" routerLink="/manage-pet/create">Volver</button>
   </div>
+</div>

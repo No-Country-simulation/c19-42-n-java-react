@@ -47,3 +47,11 @@ img[mat-card-image].pet-img {
 div h3 {
 	font-size: map-get($map: $font-size, $key: body1);
 }
+
+.mat-mdc-outlined-button {
+	font-size: map-get($map: $font-size, $key: body3);
+
+	@media (width >= 768px) {
+		font-size: map-get($map: $font-size, $key: body1);
+	}
+}

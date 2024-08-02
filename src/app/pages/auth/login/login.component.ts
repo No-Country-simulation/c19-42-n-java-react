@@ -7,7 +7,7 @@ import {
 	Validators,
 } from '@angular/forms';
 import { Login } from '../../../core/interfaces/Login';
-import { LoginService } from '../../../core/services/login.service';
+import { LoginService } from '../../../core/services/auth/login.service';
 import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 
