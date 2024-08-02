@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-protectora
+spec:
+  selector:
+    app: mysql-protectora
+  ports:
+    - port: 3306
+      targetPort: 3306
+      nodePort: 30008
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-protectora
+spec:
+  selector:
+    matchLabels:
+      app: mysql-protectora
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mysql-protectora
+    spec:
+      containers:
+        - name: mysql-protectora
+          image: mysql:5.7
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: rootpassword
+            - name: MYSQL_DATABASE
+              value: adoptapp_protectora-service
+            - name: MYSQL_USER
+              value: user
+            - name: MYSQL_PASSWORD
+              value: password

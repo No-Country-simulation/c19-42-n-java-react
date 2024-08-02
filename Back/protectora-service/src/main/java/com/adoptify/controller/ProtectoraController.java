@@ -1,6 +1,5 @@
 package com.adoptify.controller;
 
-import com.adoptify.dto.ProtectoraDTO;
 import com.adoptify.model.Protectora;
 import com.adoptify.service.ProtectoraService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/protectora")
-@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
+@CrossOrigin("*")
 public class ProtectoraController {
 
     @Autowired
@@ -43,23 +42,6 @@ public class ProtectoraController {
         }else {
             return ResponseEntity.ok(protectora);
         }
+
     }
-
-	@PutMapping("/update/{usuarioId}")
-	public ResponseEntity<Void> updateProtectora(@PathVariable Long usuarioId, @RequestBody ProtectoraDTO protectoraDTO) {
-		service.updateProtectora(usuarioId, protectoraDTO);
-		return ResponseEntity.ok().build();
-	}
-
-	@GetMapping("/mascotas/{protectoraID}")
-	public ResponseEntity<?> getMascotasByProtectoraID(@PathVariable Long protectoraID) {
-		return ResponseEntity.ok().body(service.getMascotasByProtectoraID(protectoraID)) ;
-	}
-
-	@GetMapping("/user/{userId}")
-	public ResponseEntity<?> getProtectoraByUserId(@PathVariable Long userId) {
-		Protectora protectora = service.getProtectoraByUserId(userId);
-		return ResponseEntity.ok(protectora);
-	}
-
 }

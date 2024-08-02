@@ -90,7 +90,6 @@ public class AuthService {
         user = usuarioRepository.save(user);
 
         // Register protectora profile
-		request.setUsuarioId(user.getId());
         protectoraClient.createProtectoraProfile(request);
 
         String token = jwtService.createToken(user);

@@ -1,138 +1,62 @@
 package com.noCountry.gestionmascotas.controlador;
 
-import com.noCountry.gestionmascotas.entidades.nivelActividad;
 import com.noCountry.gestionmascotas.entidades.tipoMascota;
 import com.noCountry.gestionmascotas.servicio.IservicioMascota;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.noCountry.gestionmascotas.entidades.mascotas;
 import com.noCountry.gestionmascotas.entidades.vacunaInfo;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/mascota")
-@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class controladorMascota {
 
     @Autowired
     private IservicioMascota servMascota;
 
-	@PostMapping("/crear")
-	public ResponseEntity<?> crearMascota(@RequestParam("nombre") String nombre,
-									   @RequestParam("raza") String raza,
-									   @RequestParam("tipoMascota") tipoMascota tipoMascota,
-									   @RequestParam("peso") Long peso,
-									   @RequestParam("img") MultipartFile img,
-									   @RequestParam("pelaje") String pelaje,
-									   @RequestParam("sexo") String sexo,
-									   @RequestParam("nivelActividad") nivelActividad nivelActividad,
-									   @RequestParam("protectoraID") Long protectoraID,
-									   @RequestParam("edad") Long edad) throws IOException {
-
-		mascotas mascota = new mascotas();
-		mascota.setNombre(nombre);
-		mascota.setRaza(raza);
-		mascota.setTipoMascota(tipoMascota);
-		mascota.setPeso(peso);
-		mascota.setPelaje(pelaje);
-		mascota.setSexo(sexo);
-		mascota.setNivelActividad(nivelActividad);
-		mascota.setProtectoraID(protectoraID);
-		mascota.setEdad(edad);
-
-		//String base64Image = "data:" + img.getContentType() + ";base64," + Base64.getEncoder().encodeToString(img.getBytes());
-		//mascota.setImg(base64Image);
-		//String base64Image = Base64.getEncoder().encodeToString(img.getBytes());
-		//mascota.setImg(base64Image);
-
-		servMascota.saveMascota(mascota, img);
-		return ResponseEntity.ok().body(Collections.singletonMap("message", "la mascota se creó con éxito"));
-	}
-
-    @GetMapping("/listar")
-    public ResponseEntity<?>lsitarMascotas(){
-        return ResponseEntity.ok().body(servMascota.listarMascotas()) ;
+    @PostMapping("/crear")
+    public String crearMascota(@RequestBody mascotas masco){
+        servMascota.saveMascota(masco);
+        return "la mascota se creó con éxito";
     }
 
-	@GetMapping("/listar/{id}")
-	public ResponseEntity<?> listarMascotaId(@PathVariable Long id) {
-		return ResponseEntity.ok().body(servMascota.findMascota(id));
-	}
+    @GetMapping("/listar")
+    public List<mascotas> lsitarMascotas(){
+        return  servMascota.listarMascotas();
+    }
 
-	@PutMapping("/editar/{id}")
-	public ResponseEntity<?> editarMascota(@PathVariable Long id,
-								@RequestParam("nombre") String nombre,
-								@RequestParam("raza") String raza,
-								@RequestParam("tipoMascota") tipoMascota tipoMascota,
-								@RequestParam("peso") Long peso,
-								@RequestParam(value = "img", required = false) MultipartFile img,
-								@RequestParam("pelaje") String pelaje,
-								@RequestParam("sexo") String sexo,
-								@RequestParam("nivelActividad") nivelActividad nivelActividad,
-								@RequestParam("protectoraID") Long protectoraID,
-								@RequestParam("edad") Long edad) throws IOException {
+    @PutMapping("/editar/{id}")
+    public String editarMascota(@PathVariable Long id, @RequestBody mascotas masco){
+        servMascota.editMascota(id, masco);
+        return "Mascota editada correctamente";
 
-		mascotas mascota = new mascotas();
-		mascota.setNombre(nombre);
-		mascota.setRaza(raza);
-		mascota.setTipoMascota(tipoMascota);
-		mascota.setPeso(peso);
-		mascota.setPelaje(pelaje);
-		mascota.setSexo(sexo);
-		mascota.setNivelActividad(nivelActividad);
-		mascota.setProtectoraID(protectoraID);
-		mascota.setEdad(edad);
-
-		servMascota.editMascota(id, mascota, img);
-		return ResponseEntity.ok().body(Collections.singletonMap("messagge", "Mascota editada correctamente"));
-	}
-
-	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<Object> eliminarMascota(@PathVariable Long id){
-		servMascota.deleteMascota(id);
-		Map<String, String> response = new HashMap<>();
-		response.put("message", "Mascota eliminada correctamente");
-		return ResponseEntity.ok().body(response);
-		//servMascota.deleteMascota(id);
-		//return ResponseEntity.ok().body("Mascota eliminada correctamente");
-	}
+    }
+    @DeleteMapping("/delete/{id}")
+    public String eliminarMascota(@PathVariable Long id){
+        servMascota.deleteMascota(id);
+        return "Mascota eliminada correctamente";
+    }
 
     @PostMapping("/vacunas/{mascotaId}")
-    public ResponseEntity<?> addVacuna(@PathVariable Long mascotaId, @RequestBody vacunaInfo vacunaInfo){
-        return ResponseEntity.ok().body(servMascota.addVacuna(mascotaId, vacunaInfo));
+    public mascotas addVacuna(@PathVariable Long mascotaId, @RequestBody vacunaInfo vacunaInfo){
+        return servMascota.addVacuna(mascotaId, vacunaInfo);
     }
 
     @GetMapping("/raza/{raza}")
-    public ResponseEntity<?> listarMascotaPorRaza(@PathVariable String raza){
-        return ResponseEntity.ok().body(servMascota.findMascotasByRaza(raza));
+    public List<mascotas> listarMascotaPorRaza(@PathVariable String raza){
+        return servMascota.findMascotasByRaza(raza);
     }
     @GetMapping("/edad/{edad}")
-    public ResponseEntity<?> listarMascotasPorEdad(@PathVariable Long edad){
-        return ResponseEntity.ok().body(servMascota.findMascotaByEdad(edad));
+    public List<mascotas> listarMascotasPorEdad(@PathVariable Long edad){
+        return servMascota.findMascotaByEdad(edad);
     }
     @GetMapping("/raza/{raza}/edad/{edad}")
-    public ResponseEntity<?> listarMascotasPorEdadYRaza(@PathVariable String raza, @PathVariable Long edad){
-        return ResponseEntity.ok().body( servMascota.findMascotasByRazaAndEdad(raza, edad));
+    public List<mascotas> listarMascotasPorEdadYRaza(@PathVariable String raza, @PathVariable Long edad){
+        return servMascota.findMascotasByRazaAndEdad(raza, edad);
     }
     @GetMapping("/tipo/{tipoMascota}")
-    public ResponseEntity<?> listarMascotasPorTipo(@PathVariable tipoMascota tipoMascota){
-        return ResponseEntity.ok().body(servMascota.findMascotasByTipo(tipoMascota));
+    public List<mascotas> listarMascotasPorTipo(@PathVariable tipoMascota tipoMascota){
+        return servMascota.findMascotasByTipo(tipoMascota);
     }
-
-	@GetMapping("/buscarPorProtectoraID/{protectoraID}")
-	public ResponseEntity<?> buscarMascotasPorProtectoraID(@PathVariable Long protectoraID) {
-		return ResponseEntity.ok().body(servMascota.findMascotasByProtectoraID(protectoraID));
-	}
-
-	@GetMapping("/ultimas")
-	public ResponseEntity<?> obtenerUltimasTresMascotas() {
-		return ResponseEntity.ok().body(servMascota.getLastThreeMascotas());
-	}
 }

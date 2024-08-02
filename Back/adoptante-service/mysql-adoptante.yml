@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-adoptante
+spec:
+  selector:
+    app: mysql-adoptante
+  ports:
+    - port: 3306
+      targetPort: 3306
+      nodePort: 30011
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-adoptante
+spec:
+  selector:
+    matchLabels:
+      app: mysql-adoptante
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mysql-adoptante
+    spec:
+      containers:
+        - name: mysql-adoptante
+          image: mysql:5.7
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: rootpassword
+            - name: MYSQL_DATABASE
+              value: adoptapp_adoptante_db
+            - name: MYSQL_USER
+              value: user
+            - name: MYSQL_PASSWORD
+              value: password
