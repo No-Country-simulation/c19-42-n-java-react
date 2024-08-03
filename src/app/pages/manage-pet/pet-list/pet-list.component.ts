@@ -3,13 +3,17 @@ import { Pet } from '../model/pet';
 import { PetService } from '../service/pet.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+
+
+
 
 
 
 @Component({
   selector: 'app-pet-list',
   standalone: true,
-  imports: [CommonModule, RouterModule,],
+  imports: [CommonModule, RouterModule, MatCardModule],
   providers: [PetService],
   templateUrl: './pet-list.component.html',
   styleUrls: ['./pet-list.component.css']
@@ -17,6 +21,7 @@ import { RouterModule } from '@angular/router';
 export class PetListComponent implements OnInit {
   public petService = inject(PetService);
   pets: Pet[] = [];
+  router: any;
 
   ngOnInit(): void {
     this.loadPets();
@@ -40,6 +45,12 @@ export class PetListComponent implements OnInit {
   }
   reloadPage(): void{
     location.reload();
+  }
+
+  verPerfil(id: number | undefined): any{
+    this.router.navigate(['/manage-pet/detail', id]);
+
+
   }
 }
   // pets: Pet [] = [];

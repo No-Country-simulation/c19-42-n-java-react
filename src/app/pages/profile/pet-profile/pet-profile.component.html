@@ -12,7 +12,7 @@
 				class="pet-img mb-3"
 			/>
 		</div>
-		<mat-card-content class="d-flex flex-column flex-grow-1">
+		<mat-card-content class="d-flex flex-column flex-grow-1 pb-0">
 			<div class="flex-grow-1 w-100">
 				<h2 class="fw-bold">{{ pet.nombre }}</h2>
 				<div class="d-flex flex-column gap-2">
@@ -29,9 +29,9 @@
 					</ul>
 				</div>
 			</div>
-			<a mat-flat-button routerLink="/adopt" class="adopt-button"
-				>Adoptar</a
-			>
+			<a mat-flat-button [routerLink]="['/pet', pet.id, 'adopt']">
+				Adoptar
+			</a>
 		</mat-card-content>
 	</mat-card>
 	} @if (errorMessage ) {

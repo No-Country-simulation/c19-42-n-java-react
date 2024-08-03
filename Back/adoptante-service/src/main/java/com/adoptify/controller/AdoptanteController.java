@@ -1,6 +1,5 @@
 package com.adoptify.controller;
 
-import com.adoptify.dto.AdoptanteDto;
 import com.adoptify.model.Adoptante;
 import com.adoptify.service.AdoptanteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/adoptante")
-@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
+@CrossOrigin("*")
 public class AdoptanteController {
 
     @Autowired
@@ -43,17 +42,6 @@ public class AdoptanteController {
         }else {
             return ResponseEntity.ok(adoptante);
         }
+
     }
-
-	@PutMapping("/update/{usuarioId}")
-	public ResponseEntity<Void> updateAdoptante(@PathVariable Long usuarioId, @RequestBody AdoptanteDto adoptanteDTO) {
-		adoptanteService.updateAdoptante(usuarioId, adoptanteDTO);
-		return ResponseEntity.ok().build();
-	}
-
-	@GetMapping("/user/{userId}")
-	public ResponseEntity<?> getAdoptanteByUserId(@PathVariable Long userId) {
-		Adoptante adoptante = adoptanteService.getAdoptanteByUserId(userId);
-		return ResponseEntity.ok(adoptante);
-	}
 }

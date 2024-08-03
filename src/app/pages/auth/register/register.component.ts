@@ -9,7 +9,7 @@ import {
 import { passwordValidator } from './password-validator';
 import { JsonPipe } from '@angular/common';
 import { Router } from '@angular/router';
-import { LoginService } from '../../../core/services/login.service';
+import { LoginService } from '../../../core/services/auth/login.service';
 import { Shelter, User } from '../../../core/interfaces/User';
 import { Login } from '../../../core/interfaces/Login';
 

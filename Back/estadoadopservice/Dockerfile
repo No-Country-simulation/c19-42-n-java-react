@@ -1,4 +1,0 @@
-FROM openjdk:17-jdk-slim
-ARG JAR_FILE=target/estadoadopService-0.0.1.jar
-COPY ${JAR_FILE} app_estadoadopcion.jar
-ENTRYPOINT ["java", "-jar", "app_estadoadopcion.jar"]

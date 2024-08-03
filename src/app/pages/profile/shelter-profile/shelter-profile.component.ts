@@ -9,11 +9,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { Pet } from '../../../core/interfaces/Pet';
 import { LoginService } from '../../../core/services/login.service';
+import { FormGroup } from '@angular/forms';
+
 @Component({
 	selector: 'app-shelter-profile',
 	standalone: true,
-	imports: [CommonModule,
-		
+	imports: [
 		RouterModule,
 		AsyncPipe,
 		MatCardModule,
@@ -79,10 +80,15 @@ export class ShelterProfileComponent implements OnInit {
 		} else {
 			this.errorMessage = 'Refugio no encontrado';
 		}
-		
+		this.route.paramMap.subscribe((params) => {
+			const shelterId = params.get('shelterId');
+			const petId = params.get('id');
+			this.shelterId = shelterId ? Number(shelterId) : null;
+			this.petId = petId ? Number(petId) : null;
+			console.log('ID del refugio:', this.shelterId);
+			console.log('ID de la mascota:', this.petId);
+		});
 	}
-
-
 
 	sortPets(order: string): void {
 		const sortFunctions: { [key: string]: (a: Pet, b: Pet) => number } = {

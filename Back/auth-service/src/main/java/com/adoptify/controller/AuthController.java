@@ -1,9 +1,7 @@
 package com.adoptify.controller;
 
 import com.adoptify.dto.*;
-import com.adoptify.model.User;
 import com.adoptify.service.AuthService;
-import com.adoptify.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,31 +9,29 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
+@CrossOrigin("*")
 public class AuthController {
 
     @Autowired
     private AuthService authService;
 
-	@Autowired
-	private UserService userService;
-
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+        // Verificar si el nombre de usuario y la contraseña no están vacíos
         if (request.getUsername() == null || request.getPassword() == null ||
                 request.getUsername().isEmpty() || request.getPassword().isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Nombre de usuario y contraseña son obligatorios");
         }
 
         try {
+            // Realizar la autenticación
             AuthResponse authResponse = authService.login(request);
             return ResponseEntity.ok(authResponse);
         } catch (AuthenticationException e) {
+            // Manejar casos en los que la autenticación falle
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales no válidas");
         }
     }
@@ -73,20 +69,5 @@ public class AuthController {
     }
 
 
-	@PutMapping("/user/{id}")
-	public ResponseEntity<Void> updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
-		userService.updateUser(id, userDTO);
-		return ResponseEntity.ok().build();
-	}
-
-	@GetMapping("/user/{id}")
-	public ResponseEntity<?> getUserById(@PathVariable Long id){
-		Optional<User> optionalUser = userService.getUser(id);
-		if (optionalUser.isPresent()) {
-			return ResponseEntity.ok().body(optionalUser);
-		}else {
-			return ResponseEntity.badRequest().body("Usuario no encontrado");
-		}
-	}
 
 }

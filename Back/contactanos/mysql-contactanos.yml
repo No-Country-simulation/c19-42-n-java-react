@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-contacto
+spec:
+  selector:
+    app: mysql-contacto
+  ports:
+    - port: 3306
+      targetPort: 3306
+      nodePort: 30004
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-contacto
+spec:
+  selector:
+    matchLabels:
+      app: mysql-contacto
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mysql-contacto
+    spec:
+      containers:
+        - name: mysql-contacto
+          image: mysql:5.7
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: rootpassword
+            - name: MYSQL_DATABASE
+              value: adoptapp_contactame
+            - name: MYSQL_USER
+              value: user
+            - name: MYSQL_PASSWORD
+              value: password
