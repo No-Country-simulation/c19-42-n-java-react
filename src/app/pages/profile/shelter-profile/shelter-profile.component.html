@@ -166,13 +166,7 @@
 									<div class="d-flex flex-row gap-2 mt-3">
 										<a
 											mat-mini-fab
-											[routerLink]="[
-												'/shelter',
-												shelter.id,
-												'pet',
-												pet.id,
-												'edit'
-											]"
+											[routerLink]="['/manage-pet/edit', pet.id]"
 										>
 											<mat-icon fontIcon="edit" />
 										</a>

@@ -3,8 +3,6 @@ import { Pet } from '../model/pet';
 import { PetService } from '../service/pet.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { PetCreateComponent } from '../pet-create/pet-create.component';
-import { error } from 'node:console';
 
 
 

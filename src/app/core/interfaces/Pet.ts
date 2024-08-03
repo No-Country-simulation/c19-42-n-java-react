@@ -1,4 +1,5 @@
 export interface Pet {
+	protectoraID: any;
 	id: string;
 	edad: number;
 	img: string;

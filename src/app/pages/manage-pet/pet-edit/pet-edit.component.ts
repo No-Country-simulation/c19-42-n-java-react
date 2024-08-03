@@ -15,8 +15,9 @@ import { CommonModule } from '@angular/common';
 })
 export class PetEditComponent{
   editPetForm: FormGroup;
-  petId: any | undefined;
+  petId: number | null = null;
   selectedFile: File | null = null;
+  shelterId: number | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -39,29 +40,36 @@ export class PetEditComponent{
   }
 
   ngOnInit(): void {
-    // Obtener el ID de la mascota desde los parámetros de la ruta
-    this.route.paramMap.subscribe(params => {
-      const id = params.get('id');
-      this.petId = id ? Number(id) : null;
-      console.log('ID de la mascota:', this.petId); // Agrega esta línea para depuración
-      if (this.petId) {
-        // Cargar la información de la mascota
-        this.petService.getPetById(this.petId).subscribe((pet: Pet) => {
-          this.editPetForm.patchValue({
-            nombre: pet.nombre,
-            raza: pet.raza,
-            tipoMascota: pet.tipoMascota,
-            peso: pet.peso,
-            pelaje: pet.pelaje,
-            sexo: pet.sexo,
-            nivelActividad: pet.nivelActividad, 
-            protectoraID: pet.protectoraID,
-            edad: pet.edad
-          });
-        }); 
-      }
-    });
-  }
+    // Obtener los ID de la ruta
+  this.route.paramMap.subscribe(params => {
+    const shelterId = params.get('shelterId');
+    const petId = params.get('petId');
+    
+    // Asignar los valores obtenidos, o null si no están presentes
+    this.shelterId = shelterId ? Number(shelterId) : null;
+    this.petId = petId ? Number(petId) : null;
+
+    console.log('ID del refugio:', this.shelterId);
+    console.log('ID de la mascota:', this.petId);
+
+    if (this.petId) {
+      // Cargar la información de la mascota si el ID es válido
+      this.petService.getPetById(this.petId).subscribe((pet: Pet) => {
+        this.editPetForm.patchValue({
+          nombre: pet.nombre,
+          raza: pet.raza,
+          tipoMascota: pet.tipoMascota,
+          peso: pet.peso,
+          pelaje: pet.pelaje,
+          sexo: pet.sexo,
+          nivelActividad: pet.nivelActividad, 
+          protectoraID: pet.protectoraID,
+          edad: pet.edad
+        });
+      });
+    }
+  });
+}
 
   onFileChange(event: any): void {
     const file = event.target.files[0];
@@ -72,22 +80,27 @@ export class PetEditComponent{
 
   updatePet(): void {
     if (this.editPetForm.valid) {
-      const updatedPet = new FormData();
-      for (const [name, control] of Object.entries(this.editPetForm.controls)) {
-        updatedPet.append(name, control.value);
-      }
-      if (this.selectedFile) {
-        updatedPet.append('img', this.selectedFile);
-      }
-
-      this.petService.updatePet(this.petId, updatedPet).subscribe({
-        next: () => {
-          this.router.navigate(['/manage-pet/list']);
-        },
-        error: (err) => {
-          console.error('Error al actualizar la mascota', err);
+      if (this.petId !== null) {
+        const updatedPet = new FormData();
+        for (const [name, control] of Object.entries(this.editPetForm.controls)) {
+          updatedPet.append(name, control.value);
         }
-      });
+        if (this.selectedFile) {
+          updatedPet.append('img', this.selectedFile);
+        }
+  
+        this.petService.updatePet(this.petId, updatedPet).subscribe({
+          next: () => {
+            this.router.navigate(['/manage-pet/list']);
+          },
+          error: (err) => {
+            console.error('Error al actualizar la mascota', err);
+          }
+        });
+      } else {
+        console.error('ID de la mascota es null. No se puede actualizar la mascota.');
+        // Puedes agregar alguna lógica adicional aquí, como mostrar un mensaje de error al usuario.
+      }
     }
   }
 

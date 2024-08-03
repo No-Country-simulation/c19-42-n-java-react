@@ -8,8 +8,9 @@ spring:
 
     url: jdbc:mysql://localhost:3306/adoptapp_gestionmascota?createDatabaseIfNotExist=true
     username: root
-    password: naruto12
+    password:
     driver-class-name: com.mysql.cj.jdbc.Driver
+
 
   jpa:
     hibernate:

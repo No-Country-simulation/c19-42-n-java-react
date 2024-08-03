@@ -1,7 +1,4 @@
 export class Pet {
-    append(arg0: string, value: any) {
-      throw new Error('Method not implemented.');
-    }
 
     id?: number;
     nombre: string;
