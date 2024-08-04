@@ -17,12 +17,13 @@ export class PetEditComponent{
   editPetForm: FormGroup;
   petId: any | undefined;
   selectedFile: File | null = null;
+  shelterId: any | undefined;
 
   constructor(
     private fb: FormBuilder,
     private petService: PetService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
   ) {
     this.editPetForm = this.fb.group({
       nombre: ['', Validators.required],
@@ -41,7 +42,11 @@ export class PetEditComponent{
   ngOnInit(): void {
     // Obtener el ID de la mascota desde los parámetros de la ruta
     this.route.paramMap.subscribe(params => {
-      const id = params.get('id');
+      console.log(params);
+      const shelterid = params.get('shelterId');
+      const id = params.get('petId');
+      
+      this.shelterId = shelterid ? Number(shelterid) : null;
       this.petId = id ? Number(id) : null;
       console.log('ID de la mascota:', this.petId); // Agrega esta línea para depuración
       if (this.petId) {
@@ -79,10 +84,9 @@ export class PetEditComponent{
       if (this.selectedFile) {
         updatedPet.append('img', this.selectedFile);
       }
-
       this.petService.updatePet(this.petId, updatedPet).subscribe({
         next: () => {
-          this.router.navigate(['/manage-pet/list']);
+          this.router.navigate(['/shelter', this.shelterId]);
         },
         error: (err) => {
           console.error('Error al actualizar la mascota', err);

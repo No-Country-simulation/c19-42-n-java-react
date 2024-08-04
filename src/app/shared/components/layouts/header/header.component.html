@@ -31,7 +31,7 @@
 			>
 				@if (isAuthenticated){
 					routerLink
-				<a [routerLink]="['/shelter', shelter.id]" class="flex-grow-1" >Bienvenido, {{ username }}</a>
+				<a [routerLink]="['/shelter/:shelterId']" class="flex-grow-1" >Bienvenido, {{ username }}</a>
 				<!-- @if (isShelter ) {
 				<button mat-mini-fab (click)="goToProfile()"><mat-icon>user</mat-icon></button>
 				} -->

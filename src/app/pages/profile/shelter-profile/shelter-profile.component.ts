@@ -80,32 +80,6 @@ export class ShelterProfileComponent implements OnInit {
 		} else {
 			this.errorMessage = 'Refugio no encontrado';
 		}
-		this.route.paramMap.subscribe(params => {
-			console.log('Parámetros de la ruta:', params);
-			const shelterid = params.get('shelterId');
-			const petid = params.get('petId');
-			this.shelterId = shelterid ? Number(shelterid) : null;
-			this.petId = petid ? Number(petid) : null;
-			console.log('ID del refugio:', this.shelterId);
-			console.log('ID de la mascota:', this.petId);
-
-			if (this.petId) {
-				// Cargar la información de la mascota
-				this.petService.getPetById(this.petId).subscribe((pet: Pet) => {
-				  this.editPetForm.patchValue({
-					nombre: pet.nombre,
-					raza: pet.raza,
-					tipoMascota: pet.tipoMascota,
-					peso: pet.peso,
-					pelaje: pet.pelaje,
-					sexo: pet.sexo,
-					nivelActividad: pet.nivelActividad, 
-					protectoraID: pet.protectoraID,
-					edad: pet.edad
-				});
-			}	
-		)} 
-	})
 }
 
 	sortPets(order: string): void {
